@@ -2,16 +2,16 @@ package model;
 
 public class TipoAcomodacao {
   int codigo;
-  String tipo;
+  String nome;
   String descricao;
   int quantidadeExistente;
   double valorDiaria;
   int adultosComportados;
   int criancasComportadas;
 
-  public TipoAcomodacao(int codigo, String tipo, String descricao, int quantidadeExistente, double valorDiaria, int adultosComportados, int criancasComportadas) {
+  public TipoAcomodacao(int codigo, String name, String descricao, int quantidadeExistente, double valorDiaria, int adultosComportados, int criancasComportadas) {
     this.codigo = codigo;
-    this.tipo = tipo;
+    this.nome = name;
     this.descricao = descricao;
     this.quantidadeExistente = quantidadeExistente;
     this.valorDiaria = valorDiaria;
@@ -23,8 +23,8 @@ public class TipoAcomodacao {
     return codigo;
   }
 
-  public String getTipo() {
-    return tipo;
+  public String getNome() {
+    return nome;
   }
 
   public String getDescricao() {
