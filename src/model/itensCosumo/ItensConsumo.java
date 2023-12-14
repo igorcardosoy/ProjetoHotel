@@ -5,7 +5,7 @@ import model.enums.TipoItens;
 public class ItensConsumo {
 
   TipoItens tipo;
-  int coidgo;
+  int codigo;
   String descricao;
   double valor;
 
@@ -25,5 +25,14 @@ public class ItensConsumo {
         this.tipo = TipoItens.RESTAURANTE;
         break;
     }
+  }
+
+
+  public int getCodigo() {
+    return codigo;
+  }
+
+  public TipoItens getTipo() {
+    return tipo;
   }
 }
