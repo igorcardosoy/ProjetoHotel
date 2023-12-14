@@ -1,4 +1,4 @@
-package model;
+package model.itensCosumo;
 
 import model.itensCosumo.ItensConsumo;
 
