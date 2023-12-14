@@ -1,8 +1,9 @@
 package model;
 
 import model.enums.TipoDoc;
+import model.pessoas.Hospede;
 
-public class Indentificacao {
+public class Indentificacao{
   private int numero;
   private TipoDoc tipo;
 

@@ -1,6 +1,8 @@
 package model.enums;
 
-public enum Estados {
+import model.pessoas.Pessoa;
+
+public enum Estados{
   ACRE("Acre"),
   ALAGOAS("Alagoas"),
   AMAPA("Amapá"),

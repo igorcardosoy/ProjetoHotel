@@ -3,6 +3,7 @@ package model.pessoas;
 import model.Indentificacao;
 import model.ListaItensConsumo;
 import model.enums.Estados;
+import model.enums.TipoDoc;
 import model.enums.TipoItens;
 import model.itensCosumo.Consumo;
 import model.itensCosumo.ItensConsumo;
@@ -22,11 +23,11 @@ public class Hospede extends Pessoa {
   private List<Consumo> dadosConsumoFrigobar;
   private List<ItensConsumo> itensComprados;
 
-public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais, String email, Indentificacao indentificacao, String nomeMae, String nomePai) {
+public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais, String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai) {
     super(nome, telefone, cidade, estado, dataNascimento, 1);
     this.pais = pais;
     this.email = email;
-    this.indentificacao = indentificacao;
+    this.indentificacao = new Indentificacao(numDoc, tipoDoc);
     this.nomeMae = nomeMae;
     this.nomePai = nomePai;
     setItensComprados();

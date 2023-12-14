@@ -1,6 +1,8 @@
 package model.enums;
 
-public enum TipoItens {
+import model.itensCosumo.ItensConsumo;
+
+public enum TipoItens{
   LAVANDERIA("Lavanderia"),
   FRIGOBAR("Frigobar"),
   RESTAURANTE("Restaurante");

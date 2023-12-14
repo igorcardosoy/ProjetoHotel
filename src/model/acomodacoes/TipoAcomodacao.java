@@ -1,6 +1,6 @@
 package model.acomodacoes;
 
-public class TipoAcomodacao {
+public class TipoAcomodacao{
   int codigo;
   String nome;
   String descricao;
