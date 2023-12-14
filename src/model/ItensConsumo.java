@@ -7,8 +7,8 @@ public class ItensConsumo {
   String descricao;
   double valor;
 
-  public ItensConsumo(int coidgo, String tipo, String descricao, double valor) {
-    this.coidgo = coidgo;
+  public ItensConsumo(int codigo, String tipo, String descricao, double valor) {
+    this.codigo = codigo;
     this.descricao = descricao;
     this.valor = valor;
 
