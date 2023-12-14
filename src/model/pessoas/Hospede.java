@@ -47,14 +47,26 @@ public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDa
     return key > 1;
   }
 
-  public void consumirItem(LocalDateTime dataDoConsumo, String nomeFuncionario, int qntConsumida, double valorUnitario, int codigoItem, ListaItensConsumo listaItensConsumo) {
-    ItensConsumo item = listaItensConsumo.getItem(codigoItem);
+  public void consumirItem(LocalDateTime dataDoConsumo, String nomeFuncionario, int qntConsumida, double valorUnitario, int codigoItem, List<ItensConsumo> listaItensConsumo) {
 
-    if (item.getTipo() == TipoItens.FRIGOBAR) {
-      dadosConsumoFrigobar.add(new Consumo(dataDoConsumo, nomeFuncionario, codigoItem, qntConsumida, valorUnitario));
-    } else {
-      dadosConsumo.add(new Consumo(dataDoConsumo, nomeFuncionario, codigoItem, qntConsumida, valorUnitario));
+    ItensConsumo itemConsumido = null;
+
+    for (ItensConsumo item : listaItensConsumo) {
+      if (item.getCodigo() == codigoItem) {
+        itemConsumido = item;
+        break;
+      }
     }
+
+    if (itemConsumido != null)
+    {
+      if (itemConsumido.getTipo() == TipoItens.FRIGOBAR) {
+        dadosConsumoFrigobar.add(new Consumo(dataDoConsumo, nomeFuncionario, codigoItem, qntConsumida, valorUnitario));
+      } else {
+        dadosConsumo.add(new Consumo(dataDoConsumo, nomeFuncionario, codigoItem, qntConsumida, valorUnitario));
+      }
+    }
+
   }
 
   public boolean removerItem(ItensConsumo item, int key) {
