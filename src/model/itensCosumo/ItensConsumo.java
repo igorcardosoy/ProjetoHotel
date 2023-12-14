@@ -1,4 +1,6 @@
-package model;
+package model.itensCosumo;
+
+import model.enums.TipoItens;
 
 public class ItensConsumo {
 

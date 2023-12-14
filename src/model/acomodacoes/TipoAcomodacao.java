@@ -1,4 +1,4 @@
-package model;
+package model.acomodacoes;
 
 public class TipoAcomodacao {
   int codigo;
