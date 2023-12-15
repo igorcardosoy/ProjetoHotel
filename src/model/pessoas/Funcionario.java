@@ -1,16 +1,29 @@
 package model.pessoas;
 
+import model.acomodacoes.Acomodacao;
+import model.acomodacoes.Acomodado;
+import model.acomodacoes.Reserva;
+import model.acomodacoes.ReservaAbstract;
+import model.enums.Estados;
+import model.itensCosumo.Consumo;
+import view.Hotel;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Funcionario extends Pessoa{
-    private Funcionario(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento) {
-        super(nome, telefone, cidade, estado, dataNascimento, 002);
+
+    protected Funcionario(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
+            super(nome, telefone, cidade, estado, dataNascimento, key);
     }
 
     // Métodos de manipulacao de cadastro de hospede
 
     // Metodo public que sera consultado no main, verificando se há cadastro desse mesmo hospede, antes de iniciar um novo cadastro
-    public boolean existeHospede(Hospede hospede){
-        for (Hospede lista : hotel.getHospedes()) {
-            if (lista.getIndentificacao().getNumDoc() == hospede.getIndentificacao().getNumDoc()) {
+    public boolean existeHospede(Hospede hospede, List<Hospede> hospedes){
+        for (Hospede lista : hospedes){
+            if (lista.getIndentificacao().getNumero() == hospede.getIndentificacao().getNumero()) {
                 return true;
             }
         }
@@ -18,18 +31,18 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean cadastrarHospede(Hospede hospede) {
-        if (!existeHospede(hospede)) {
-            hotel.getHospedes().add(hospede);
+    private boolean cadastrarHospede(Hospede hospede, List<Hospede> hospedes) {
+        if (!existeHospede(hospede, hospedes)) {
+            hospedes.add(hospede);
             return true;
         }
 
         return false;
     }
 
-    private boolean removerHospede(Hospede hospede) {
-        if (existeHospede(hospede)) {
-            hotel.getHospedes().remove(hospede);
+    private boolean removerHospede(Hospede hospede, List<Hospede> hospedes) {
+        if (existeHospede(hospede, hospedes)) {
+            hospedes.remove(hospede);
             return true;
         }
         
@@ -37,9 +50,9 @@ public class Funcionario extends Pessoa{
     }
 
     // Metodo public que sera consultado no main, verificando se há reserva no nome do hospede, antes de iniciar um novo cadastro
-    public boolean temReserva(String nomeHospede) {
-        for (ReservaAbstract lista : hotel.getReservas()) {
-            if (lista.getHospede().getNome() == nomeHospede) {
+    public boolean temReserva(String nomeHospede, List<Reserva> reservas) {
+        for (Reserva lista : reservas) {
+            if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
                 return true;
             }
         }
@@ -47,18 +60,18 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean cadastrarReserva(ReservaAbstract reserva) {
-        if (!temReserva(reserva.getHospede().getNome())) {
-            hotel.getReservas().add(reserva);
+    private boolean cadastrarReserva(Reserva reserva, List<Reserva> reservas) {
+        if (!temReserva(reserva.getHospedePrincipal().getNome(), reservas)) {
+            reservas.add(reserva);
             return true; 
         }
 
         return false;
     }
 
-    private boolean removerReserva(ReservaAbstract reserva) {
-        if (temReserva(reserva.getHospede().getNome())) {
-            hotel.getReservas().remove(reserva);
+    private boolean removerReserva(Reserva reserva, List<Reserva> reservas) {
+        if (temReserva(reserva.getHospedePrincipal().getNome(), reservas)) {
+            reservas.remove(reserva);
             return true;
         }
 
@@ -66,31 +79,31 @@ public class Funcionario extends Pessoa{
     }
 
     // Método que recupera reservas de hospedes com nome igual
-    public boolean getReserva(String nomeHospede) {
-        List <ReservaAbstract> reservasComNomeIgual = new ArrayList<>();
+    public List<Reserva> getReserva(String nomeHospede, List<Reserva> reservas) {
+        List <Reserva> reservasComNomeIgual = new ArrayList<>();
 
-        for (ReservaAbstract lista : hotel.getReservas()) {
-            if (lista.getHospede().getIndentificacao().getNumDoc() == hospede.getIndentificacao().getNumDoc()) {
+        for (Reserva lista : reservas) {
+            if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
                 reservasComNomeIgual.add(lista);
             }
         }
 
-        if(reservasComNomeIgual.size() > 0) {
+        if(!reservasComNomeIgual.isEmpty()) {
             return reservasComNomeIgual;
         }
 
         return null;
     }
 
-    private boolean acomodarHospede(String nomeHospede, Funcionario funcionarioResponsavel) {
-        if (temReserva(nomeHospede) == false) {
-            for (ReservaAbstract lista : hotel.getReservas()) {
-                if (lista.getHospede().getNome() == nomeHospede) {
+    private boolean acomodarHospede(String nomeHospede, Funcionario funcionarioResponsavel, List<Reserva> reservas, List<Acomodado> acomodados) {
+        if (temReserva(nomeHospede, reservas)) {
+            for (Reserva lista : reservas) {
+                if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
     
-                    ReservaAbstract acomodar = new ReservaAbstract(lista.getCheckIn(), lista.getCheckOut(), lista.getHospede(), lista.getAcomodacao(), funcionarioResponsavel); 
-    
-                    hotel.getReservas().remove(lista);
-                    hotel.getAcomodados().add(acomodar);
+                    Acomodado acomodar = new Acomodado(lista.getCheckIn(), lista.getCheckOut(), lista.getHospedePrincipal(), lista.getAcomodacao(), funcionarioResponsavel);
+
+                    reservas.remove(lista);
+                    acomodados.add(acomodar);
                     return true;
                 }
             }
@@ -99,43 +112,32 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean acomodarHospede(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospede, Acomodacao acomodacao, Funcionario funcionarioResponsavel) {
-        if(!temReserva(hospede.getNome())) {
-            ReservaAbstract acomodar = new ReservaAbstract(checkIn, checkOut, hospede, acomodacao, funcionarioResponsavel);
-            hotel.getAcomodados().add(acomodar);
+    private boolean acomodarHospede(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospede, Acomodacao acomodacao, Funcionario funcionarioResponsavel, List<Acomodado> acomodados, List<Reserva> reservas) {
+        if(!temReserva(hospede.getNome(), reservas)) {
+            Acomodado acomodar = new Acomodado(checkIn, checkOut, hospede, acomodacao, funcionarioResponsavel);
+            acomodados.add(acomodar);
             return true;
         }
 
         return false;
     }
 
-    private boolean desacomodarHospede(Hospede hospede) {
-        hotel.getAcomodacoes().remove(acomodacao);
+    private boolean desacomodarHospede(Hospede hospede, Acomodado acomodado, List<Acomodado> acomodados) {
+       return acomodados.remove(acomodado);
     }
 
     // Manipulacao de cadastro de consumo
-    
-    private boolean cadastrarConsumoFrigobar(Consumo consumo, Hospede hospede) {
-        hotel.getConsumosFrigobar().add(consumo);
+    public boolean cadastrarConsumo(Consumo consumo, Hospede hospede, List<Hospede> hospedes) {
+        if (existeHospede(hospede, hospedes)) {
+            hospede.getConsumo().add(consumo);
+            return true;
+        }
+
+        return false;
+
     }
 
-    private boolean removerConsumoFrigobar(Consumo consumo) {
-        hotel.getConsumosFrigobar().remove(consumo);
-    }
-
-    private boolean cadastrarConsumoLavanderia(Consumo consumo, Hospede hospede) {
-        hotel.getConsumosLavanderia().add(consumo);
-    }
-
-    private boolean removerConsumoLavanderia(Consumo consumo, Hospede hospede) {
-        hotel.getConsumosLavanderia().remove(consumo);
-    }
-
-    private boolean cadastrarConsumoRestaurante(Consumo consumo, Hospede hospede) {
-        hotel.getConsumosRestaurante().add(consumo);
-    }
-
-    private boolean removerConsumoRestaurante(Consumo consumo, Hospede hospede) {
-        hotel.getConsumosRestaurante().remove(consumo);
+    protected LocalDate getdataNascimento() {
+        return super.getDataNascimento();
     }
 }

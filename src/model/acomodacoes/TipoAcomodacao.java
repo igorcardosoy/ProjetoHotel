@@ -46,4 +46,8 @@ public class TipoAcomodacao{
   public int getCriancasComportadas() {
     return criancasComportadas;
   }
+
+  public TipoAcomodacao getTipo() {
+    return this;
+  }
 }

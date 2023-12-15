@@ -1,7 +1,6 @@
 package model.pessoas;
 
 import model.Indentificacao;
-import model.ListaItensConsumo;
 import model.enums.Estados;
 import model.enums.TipoDoc;
 import model.enums.TipoItens;
@@ -11,6 +10,7 @@ import model.itensCosumo.ItensConsumo;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Hospede extends Pessoa {
@@ -141,5 +141,9 @@ public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDa
 
   public void setNomePai(String nomePai) {
     this.nomePai = nomePai;
+  }
+
+  public Indentificacao getIndentificacao() {
+    return this.indentificacao;
   }
 }

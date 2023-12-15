@@ -1,5 +1,6 @@
 package model.pessoas;
 
+import model.Indentificacao;
 import model.enums.Estados;
 
 import java.time.LocalDate;

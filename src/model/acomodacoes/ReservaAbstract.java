@@ -1,6 +1,7 @@
 package model.acomodacoes;
 
 import model.pessoas.Hospede;
+import model.pessoas.Pessoa;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -28,6 +29,10 @@ public abstract class ReservaAbstract {
     return hospedes.remove(hospede);
   }
 
+  public List<Hospede> getHospedes() {
+    return hospedes;
+  }
+
   public LocalDateTime getCheckIn() {
     return checkIn;
   }
@@ -51,4 +56,5 @@ public abstract class ReservaAbstract {
   public void setCheckOut(LocalDateTime checkOut) {
     this.checkOut = checkOut;
   }
+
 }

@@ -1,47 +1,25 @@
 package view;
 
-import model.acomodacoes.ReservaAbstract;
-import model.acomodacoes.TipoAcomodacao;
+import model.acomodacoes.*;
 import model.itensCosumo.ItensConsumo;
+import model.pessoas.Administrador;
+import model.pessoas.Funcionario;
 import model.pessoas.Hospede;
-import model.pessoas.Pessoa;
 
 import java.util.List;
 
-import java.util.Scanner;
+public class Hotel {
+  private List<Administrador> administradores;
+  private List<Hospede> hospedes;
+  private List<Funcionario> funcionarios;
 
-public static class Hotel {
-  List<Pessoa> administradores;
-  List<Pessoa> hospedes;
-  List<Pessoa> funcionarios;
+  private List<ItensConsumo> itensConsumoDisponiveis;
 
-  List<ItensConsumo> itensConsumoDisponiveis;
+  private List<Acomodacao> acomodacoesDisponiveis;
+  private List<TipoAcomodacao> tiposAcomodacao;
 
-  List<Acomodacao> acomodacoes;
-  List<TipoAcomodacao> tiposAcomodacao;
+  private List<Reserva> reservas;
+  private List<Acomodado> acomodados;
 
-  List<ReservaAbstract> reservas;
-  List<ReservaAbstract> acomodados;
 
-  Scanner scan = new Scanner(System.in);
-
-  public List<ItensConsumo> getItensConsumoDisponiveis() {
-    return itensConsumoDisponiveis;
-  }
-
-  public List<Acomodacao> getAcomodacoes() {
-    return acomodacoes;
-  }
-
-  public List<TipoAcomodacao> getTiposAcomodacao() {
-    return tiposAcomodacao;
-  }
-
-  public List<ReservaAbstract> getReservas() {
-    return reservas;
-  }
-
-  public List<ReservaAbstract> getAcomodados() {
-    return acomodados;
-  }
 }

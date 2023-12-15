@@ -8,10 +8,10 @@ public class Reserva extends ReservaAbstract {
   private double multa;
   private double desconto;
 
-  public Reserva(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal, Acomodacao acomodacao, double multa, double desconto, double multa1, double desconto1) {
+  public Reserva(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal, Acomodacao acomodacao, double multa, double desconto) {
     super(checkIn, checkOut, hospedePrincipal, acomodacao);
-    this.multa = multa1;
-    this.desconto = desconto1;
+    this.multa = multa;
+    this.desconto = desconto;
   }
 
   public double getMulta() {
