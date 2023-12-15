@@ -16,6 +16,9 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Hotel {
+
+  private int nivelAcesso;
+
   private List<Administrador> administradores;
   private List<Hospede> hospedes;
   private List<Funcionario> funcionarios;
@@ -45,28 +48,87 @@ public class Hotel {
   }
 
   public void init() {
-    String opcao;
+    String opcao = "";
     String title = "Hotel";
+    boolean quit = false;
 
-    do {
-      Object[] questions = {
-              "Cadastrar administrador",
-              "Cadastrar funcionario",
-              "Cadastrar hospede",
-              "Cadastrar acomodacao",
-              "Cadastrar tipo de acomodacao",
-              "Cadastrar item de consumo",
-              "Cadastrar reserva",
-              "Cadastrar acomodado",
-              "Cadastrar consumo",
-              "Ver administradores",
-              "Sair"};
+    while (!quit) {
 
-      opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE, null, questions, questions[0]);
+      int escolha;
 
-      menu(opcao);
+      Object[] acessos = {
+              "Sair",
+              "Hospede",
+              "Funcionario",
+              "Administrador"};
 
-    } while (!opcao.equals("Sair"));
+      do {
+        escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
+        nivelAcesso(escolha);
+        if (nivelAcesso == -1) {
+          quit = true;
+        }
+      } while (nivelAcesso == 0);
+
+      while (!opcao.equals("Sair") && nivelAcesso > 0) {
+
+        Object[] questions = {
+                "Cadastrar administrador",
+                "Cadastrar funcionario",
+                "Cadastrar hospede",
+                "Cadastrar acomodacao",
+                "Cadastrar tipo de acomodacao",
+                "Cadastrar item de consumo",
+                "Cadastrar reserva",
+                "Cadastrar acomodado",
+                "Cadastrar consumo",
+                "Ver administradores",
+                "Mudar acesso"};
+
+        opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE, null, questions, questions[0]);
+
+        menu(opcao);
+
+      }
+    }
+  }
+
+  private void nivelAcesso(int acesso) {
+
+      int senha;
+
+      switch (acesso) {
+          case 3:
+              // Senha para acesso de administrador
+              senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de administrador", JOptionPane.QUESTION_MESSAGE));
+              if (senha != 1234) {
+                  JOptionPane.showMessageDialog(null, "Senha incorreta");
+              } else {
+                  nivelAcesso = 3;
+              }
+              break;
+          case 2:
+              // Senha para entrar como funcionario
+              senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
+              if (senha != 4321) {
+                  JOptionPane.showMessageDialog(null, "Senha incorreta");
+              } else {
+                  nivelAcesso = 2;
+              }
+              break;
+          case 1:
+            //Entrar como hospede? Sim ou não
+              if ( JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                  nivelAcesso = 1;
+              } else {
+                nivelAcesso = 0;
+              }
+              break;
+          case 0:
+              // Sair...
+              nivelAcesso = -1;
+              break;
+      }
   }
 
   private void menu(String opcao){
@@ -100,6 +162,9 @@ public class Hotel {
 //        break;
       case "Ver administradores":
         mostrarAdministradores();
+        break;
+      case "Mudar acesso":
+        nivelAcesso = 0;
         break;
       case "Sair":
         System.out.println("Saindo...");
