@@ -20,8 +20,7 @@ public class Funcionario extends Pessoa{
 
     // Métodos de manipulacao de cadastro de hospede
 
-    // Metodo public que sera consultado no main, verificando se há cadastro desse mesmo hospede, antes de iniciar um novo cadastro
-    public boolean existeHospede(Hospede hospede, List<Hospede> hospedes){
+    private boolean existeHospede(Hospede hospede, List<Hospede> hospedes){
         for (Hospede lista : hospedes){
             if (lista.getIndentificacao().getNumero() == hospede.getIndentificacao().getNumero()) {
                 return true;
@@ -31,7 +30,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean cadastrarHospede(Hospede hospede, List<Hospede> hospedes) {
+    public boolean cadastrarHospede(Hospede hospede, List<Hospede> hospedes) {
         if (!existeHospede(hospede, hospedes)) {
             hospedes.add(hospede);
             return true;
@@ -40,7 +39,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean removerHospede(Hospede hospede, List<Hospede> hospedes) {
+    public boolean removerHospede(Hospede hospede, List<Hospede> hospedes) {
         if (existeHospede(hospede, hospedes)) {
             hospedes.remove(hospede);
             return true;
@@ -60,7 +59,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean cadastrarReserva(Reserva reserva, List<Reserva> reservas) {
+    public boolean cadastrarReserva(Reserva reserva, List<Reserva> reservas) {
         if (!temReserva(reserva.getHospedePrincipal().getNome(), reservas)) {
             reservas.add(reserva);
             return true; 
@@ -69,7 +68,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean removerReserva(Reserva reserva, List<Reserva> reservas) {
+    public boolean removerReserva(Reserva reserva, List<Reserva> reservas) {
         if (temReserva(reserva.getHospedePrincipal().getNome(), reservas)) {
             reservas.remove(reserva);
             return true;
@@ -95,7 +94,7 @@ public class Funcionario extends Pessoa{
         return null;
     }
 
-    private boolean acomodarHospede(String nomeHospede, Funcionario funcionarioResponsavel, List<Reserva> reservas, List<Acomodado> acomodados) {
+    public boolean acomodarHospede(String nomeHospede, Funcionario funcionarioResponsavel, List<Reserva> reservas, List<Acomodado> acomodados) {
         if (temReserva(nomeHospede, reservas)) {
             for (Reserva lista : reservas) {
                 if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
@@ -112,7 +111,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean acomodarHospede(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospede, Acomodacao acomodacao, Funcionario funcionarioResponsavel, List<Acomodado> acomodados, List<Reserva> reservas) {
+    public boolean acomodarHospede(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospede, Acomodacao acomodacao, Funcionario funcionarioResponsavel, List<Acomodado> acomodados, List<Reserva> reservas) {
         if(!temReserva(hospede.getNome(), reservas)) {
             Acomodado acomodar = new Acomodado(checkIn, checkOut, hospede, acomodacao, funcionarioResponsavel);
             acomodados.add(acomodar);
@@ -122,7 +121,7 @@ public class Funcionario extends Pessoa{
         return false;
     }
 
-    private boolean desacomodarHospede(Hospede hospede, Acomodado acomodado, List<Acomodado> acomodados) {
+    public boolean desacomodarHospede(Hospede hospede, Acomodado acomodado, List<Acomodado> acomodados) {
        return acomodados.remove(acomodado);
     }
 

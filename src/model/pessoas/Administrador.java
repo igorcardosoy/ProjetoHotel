@@ -28,9 +28,12 @@ public class Administrador extends Funcionario{
         return false;
     }
 
-    public boolean cadastrarFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
-        if (!existeFuncionario(funcionario, funcionarios)) {
-            funcionarios.add(funcionario);
+    public boolean cadastrarFuncionario(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, List<Funcionario> funcionarios) {
+
+        Funcionario new_funcioario = new Funcionario(nome,  telefone,  cidade,  estado,  dataNascimento, 2);
+
+        if (!existeFuncionario(new_funcioario, funcionarios)) {
+            funcionarios.add(new_funcioario);
             return true;
         }
         
@@ -129,4 +132,18 @@ public class Administrador extends Funcionario{
 
         return false;
     }
+
+  @Override
+  public String toString() {
+    return "Administrador {" +
+            "nome = '" + getNome() + '\'' +
+            ", telefone = " + getTelefone() +
+            ", cidade = '" + getCidade() + '\'' +
+            ", estado= " + getEstado() +
+            ", dataNascimento=" + getdataNascimento();
+            }
+
 }
+
+
+
