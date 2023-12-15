@@ -10,10 +10,7 @@ import model.pessoas.Hospede;
 import javax.swing.*;
 import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 public class Hotel {
 
@@ -73,18 +70,39 @@ public class Hotel {
 
       while (!opcao.equals("Sair") && nivelAcesso > 0) {
 
-        Object[] questions = {
-            "Cadastrar administrador",
-            "Cadastrar funcionario",
-            "Cadastrar hospede",
-            "Cadastrar acomodacao",
-            "Cadastrar tipo de acomodacao",
-            "Cadastrar item de consumo",
-            "Cadastrar reserva",
-            "Cadastrar acomodado",
-            "Cadastrar consumo",
-            "Ver administradores",
-            "Mudar acesso" };
+        Object[] functionADM = {};
+        Object[] functionFUNC = {};
+
+        if (nivelAcesso == 3) {
+          functionADM = new Object[]{
+                  "Cadastrar administrador",
+                  "Cadastrar funcionario",
+                  "Ver administradores",
+                  "Cadastrar tipo de acomodacao"
+          };
+        }
+
+        if (nivelAcesso >= 2) {
+          functionFUNC = new Object[]{
+                  "Cadastrar hospede",
+                  "Cadastrar acomodacao",
+                  "Cadastrar item de consumo",
+                  "Cadastrar reserva",
+                  "Cadastrar acomodado",
+                  "Cadastrar consumo"
+          };
+        }
+
+        Object[] functionDefault = {
+                "Encerrar estadia",
+                "Mudar acesso"
+        };
+
+        // Juntar as funcoes ADM, FUNC e DEFAULT
+        Object[] questions = new Object[functionADM.length + functionFUNC.length + functionDefault.length];
+        System.arraycopy(functionADM, 0, questions, 0, functionADM.length);
+        System.arraycopy(functionFUNC, 0, questions, functionADM.length, functionFUNC.length);
+        System.arraycopy(functionDefault, 0, questions, functionADM.length + functionFUNC.length, functionDefault.length);
 
         opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, questions, questions[0]);
@@ -135,34 +153,37 @@ public class Hotel {
         }
         break;
       case 2:
-
-        Object[] nomesFuncionarios = new Object[funcionarios.size()];
-        for (int i = 0; i < funcionarios.size(); i++) {
-          nomesFuncionarios[i] = funcionarios.get(i).getNome();
-        }
-
-        String nomeFuncionario = (String) JOptionPane.showInputDialog(null, "Escolha um funcionario",
-            "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null, nomesFuncionarios, nomesFuncionarios[0]);
-
-        Funcionario func = null;
-
-        for (Funcionario lista : funcionarios) {
-          if (lista.getNome().equals(nomeFuncionario)) {
-            func = lista;
-            break;
-          }
-        }
-
-        // Senha para entrar como funcionario
-        senha = Integer.parseInt(
-            JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
-        assert func != null;
-        if (func.allowAccess(senha)) {
-          JOptionPane.showMessageDialog(null, "Senha incorreta");
+        if (funcionarios.isEmpty()) {
+          JOptionPane.showMessageDialog(null, "Nao ha funcionarios cadastrados");
         } else {
-          nivelAcesso = 2;
+          Object[] nomesFuncionarios = new Object[funcionarios.size()];
+          for (int i = 0; i < funcionarios.size(); i++) {
+            nomesFuncionarios[i] = funcionarios.get(i).getNome();
+          }
+
+          String nomeFuncionario = (String) JOptionPane.showInputDialog(null, "Escolha um funcionario",
+                  "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null, nomesFuncionarios, nomesFuncionarios[0]);
+
+          Funcionario func = null;
+
+          for (Funcionario lista : funcionarios) {
+            if (lista.getNome().equals(nomeFuncionario)) {
+              func = lista;
+              break;
+            }
+          }
+
+          // Senha para entrar como funcionario
+          senha = Integer.parseInt(
+                  JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
+          assert func != null;
+          if (func.allowAccess(senha)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta");
+          } else {
+            nivelAcesso = 2;
+          }
+          break;
         }
-        break;
       case 1:
         // Entrar como hospede? Sim ou não
         if (JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede",
