@@ -15,6 +15,8 @@ import java.util.*;
 public class Hotel {
 
   private int nivelAcesso;
+  private Administrador administrador;
+  private Funcionario funcionario;
 
   private List<Administrador> administradores;
   private List<Hospede> hospedes;
@@ -142,6 +144,7 @@ public class Hotel {
           for (Administrador lista : administradores) {
             if (lista.getNome().equals(nome)) {
               adm = lista;
+              administrador = adm;
               break;
             }
           }
@@ -210,30 +213,55 @@ public class Hotel {
       case "Cadastrar administrador":
         cadastrarAdministrador();
         break;
-      // case "Cadastrar funcionario":
-      // cadastrarFuncionario();
-      // break;
-      // case "Cadastrar hospede":
-      // cadastrarHospede();
-      // break;
-      // case "Cadastrar acomodacao":
-      // cadastrarAcomodacao();
-      // break;
-      // case "Cadastrar tipo de acomodacao":
-      // cadastrarTipoAcomodacao();
-      // break;
-      // case "Cadastrar item de consumo":
-      // cadastrarItemConsumo();
-      // break;
-      // case "Cadastrar reserva":
-      // cadastrarReserva();
-      // break;
-      // case "Cadastrar acomodado":
-      // cadastrarAcomodado();
-      // break;
-      // case "Cadastrar consumo":
-      // cadastrarConsumo();
-      // break;
+//       case "Cadastrar funcionario":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarFuncionario();
+//       break;
+//       case "Cadastrar hospede":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarHospede();
+//       break;
+//       case "Cadastrar acomodacao":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarAcomodacao();
+//       break;
+//       case "Cadastrar tipo de acomodacao":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarTipoAcomodacao();
+//       break;
+//       case "Cadastrar item de consumo":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarItemConsumo();
+//       break;
+//       case "Cadastrar reserva":
+//
+//         // not implemented yet
+//
+//
+//         administrador.cadastrarReserva();
+//       break;
+//       case "Cadastrar acomodado":
+//
+//          // not implemented yet
+//
+//         administrador.acomodarHospede();
+//       break;
+//       case "Cadastrar consumo":
+//
+//         // not implemented yet
+//
+//         administrador.cadastrarConsumo();
+//       break;
       case "Ver administradores":
         mostrarAdministradores();
         break;
