@@ -27,7 +27,6 @@ public class ItensConsumo {
     }
   }
 
-
   public int getCodigo() {
     return codigo;
   }

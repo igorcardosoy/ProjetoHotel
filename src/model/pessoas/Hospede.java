@@ -25,7 +25,8 @@ public class Hospede extends Pessoa {
   private List<Consumo> dadosConsumoRestaurante;
   private List<ItensConsumo> itensComprados;
 
-public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais, String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai) {
+  public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais,
+      String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai) {
     super(nome, telefone, cidade, estado, dataNascimento, 1);
     this.pais = pais;
     this.email = email;
@@ -45,24 +46,24 @@ public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDa
     this.dadosConsumoFrigobar = new ArrayList<>(5);
   }
 
-  //key 3 == adm, 2 == funcionario, 1 == hospede
+  // key 3 == adm, 2 == funcionario, 1 == hospede
   private boolean canEdit(int key) {
     return key > 1;
   }
 
-  public void consumirItem(LocalDateTime dataDoConsumo, String nomeFuncionario, int qntConsumida, double valorUnitario, int codigoItem, List<ItensConsumo> listaItensConsumo) {
+  public void consumirItem(LocalDateTime dataDoConsumo, String nomeFuncionario, int qntConsumida, double valorUnitario,
+      int codigoItem, List<ItensConsumo> listaItensConsumo) {
 
     ItensConsumo itemConsumido = null;
 
     for (ItensConsumo item : listaItensConsumo) {
       if (item.getCodigo() == codigoItem) {
-          itemConsumido = item;
+        itemConsumido = item;
         break;
       }
     }
 
-    if (itemConsumido != null)
-    {
+    if (itemConsumido != null) {
       if (itemConsumido.getTipo() == TipoItens.FRIGOBAR) {
         dadosConsumoFrigobar.add(new Consumo(dataDoConsumo, nomeFuncionario, codigoItem, qntConsumida, valorUnitario));
       } else {
@@ -73,7 +74,7 @@ public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDa
   }
 
   public boolean removerItem(ItensConsumo item, int key) {
-    if (canEdit(key)){
+    if (canEdit(key)) {
       return itensComprados.remove(item);
     }
 
@@ -91,7 +92,7 @@ public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDa
     return false;
   }
 
-  public List<Consumo> getConsumo(){
+  public List<Consumo> getConsumo() {
     return dadosConsumo;
   }
 

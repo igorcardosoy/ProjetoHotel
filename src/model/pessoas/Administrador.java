@@ -9,18 +9,20 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-public class Administrador extends Funcionario{
+public class Administrador extends Funcionario {
     public Administrador(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento) {
         super(nome, telefone, cidade, estado, dataNascimento, 3);
-    }   
+    }
 
     // Manipulacao de funcionario
 
-
-    // Metodo que verifica se há um cadastro do funcionario, antes de iniciar um novo cadastro
+    // Metodo que verifica se há um cadastro do funcionario, antes de iniciar um
+    // novo cadastro
     public boolean existeFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
         for (Funcionario lista : funcionarios) {
-            if (lista.getNome().equals(funcionario.getNome()) && lista.getdataNascimento().equals(funcionario.getdataNascimento()) && lista.getTelefone() == funcionario.getTelefone()) {
+            if (lista.getNome().equals(funcionario.getNome())
+                    && lista.getdataNascimento().equals(funcionario.getdataNascimento())
+                    && lista.getTelefone() == funcionario.getTelefone()) {
                 return true;
             }
         }
@@ -28,15 +30,16 @@ public class Administrador extends Funcionario{
         return false;
     }
 
-    public boolean cadastrarFuncionario(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, List<Funcionario> funcionarios) {
+    public boolean cadastrarFuncionario(String nome, int telefone, String cidade, Estados estado,
+            LocalDate dataNascimento, List<Funcionario> funcionarios) {
 
-        Funcionario new_funcioario = new Funcionario(nome,  telefone,  cidade,  estado,  dataNascimento, 2);
+        Funcionario new_funcioario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
 
         if (!existeFuncionario(new_funcioario, funcionarios)) {
             funcionarios.add(new_funcioario);
             return true;
         }
-        
+
         return false;
     }
 
@@ -49,18 +52,20 @@ public class Administrador extends Funcionario{
         return false;
     }
 
-    public boolean editarFuncionario(Funcionario funcionario, Funcionario newFuncionario, List<Funcionario> funcionarios) {
+    public boolean editarFuncionario(Funcionario funcionario, Funcionario newFuncionario,
+            List<Funcionario> funcionarios) {
         if (existeFuncionario(funcionario, funcionarios)) {
             funcionarios.remove(funcionario);
             funcionarios.add(newFuncionario);
             return true;
         }
-        
+
         return false;
     }
 
     // Manipulacao de cadastros de acomodacao
-    public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao acomodacao, List<Acomodacao> acomodacoesDisponiveis) {
+    public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao acomodacao,
+            List<Acomodacao> acomodacoesDisponiveis) {
         for (Acomodacao lista : acomodacoes) {
             if (lista.getNumero() == acomodacao.getNumero()) {
                 return false;
@@ -106,7 +111,7 @@ public class Administrador extends Funcionario{
                 return true;
             }
         }
-        
+
         return false;
     }
 
@@ -133,17 +138,22 @@ public class Administrador extends Funcionario{
         return false;
     }
 
-  @Override
-  public String toString() {
-    return "Administrador {" +
-            "nome = '" + getNome() + '\'' +
-            ", telefone = " + getTelefone() +
-            ", cidade = '" + getCidade() + '\'' +
-            ", estado= " + getEstado() +
-            ", dataNascimento=" + getdataNascimento();
-            }
+    public boolean allowAccess(int nivelAcesso) {
+        return password(nivelAcesso);
+    }
+
+    private boolean password(int key) {
+        return key == 4321;
+    }
+
+    @Override
+    public String toString() {
+        return "Administrador {" +
+                "nome = '" + getNome() + '\'' +
+                ", telefone = " + getTelefone() +
+                ", cidade = '" + getCidade() + '\'' +
+                ", estado= " + getEstado() +
+                ", dataNascimento=" + getdataNascimento();
+    }
 
 }
-
-
-

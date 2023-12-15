@@ -1,6 +1,6 @@
 package model.acomodacoes;
 
-public class TipoAcomodacao{
+public class TipoAcomodacao {
   int codigo;
   String nome;
   String descricao;
@@ -9,7 +9,8 @@ public class TipoAcomodacao{
   int adultosComportados;
   int criancasComportadas;
 
-  public TipoAcomodacao(int codigo, String name, String descricao, int quantidadeExistente, double valorDiaria, int adultosComportados, int criancasComportadas) {
+  public TipoAcomodacao(int codigo, String name, String descricao, int quantidadeExistente, double valorDiaria,
+      int adultosComportados, int criancasComportadas) {
     this.codigo = codigo;
     this.nome = name;
     this.descricao = descricao;

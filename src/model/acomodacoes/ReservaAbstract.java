@@ -13,13 +13,13 @@ public abstract class ReservaAbstract {
   private List<Hospede> hospedes;
   private Acomodacao acomodacao;
 
-  public ReservaAbstract(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal, Acomodacao acomodacao) {
+  public ReservaAbstract(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal,
+      Acomodacao acomodacao) {
     this.checkIn = checkIn;
     this.checkOut = checkOut;
     this.hospedePrincipal = hospedePrincipal;
     this.acomodacao = acomodacao;
   }
-
 
   public void addHospede(Hospede hospede) {
     hospedes.add(hospede);

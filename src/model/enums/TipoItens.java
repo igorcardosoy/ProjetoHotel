@@ -2,7 +2,7 @@ package model.enums;
 
 import model.itensCosumo.ItensConsumo;
 
-public enum TipoItens{
+public enum TipoItens {
   LAVANDERIA("Lavanderia"),
   FRIGOBAR("Frigobar"),
   RESTAURANTE("Restaurante");
@@ -10,5 +10,3 @@ public enum TipoItens{
   TipoItens(String tipo) {
   }
 }
-
-

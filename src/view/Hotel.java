@@ -57,13 +57,14 @@ public class Hotel {
       int escolha;
 
       Object[] acessos = {
-              "Sair",
-              "Hospede",
-              "Funcionario",
-              "Administrador"};
+          "Sair",
+          "Hospede",
+          "Funcionario",
+          "Administrador" };
 
       do {
-        escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
+        escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
+            JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
         nivelAcesso(escolha);
         if (nivelAcesso == -1) {
           quit = true;
@@ -73,19 +74,20 @@ public class Hotel {
       while (!opcao.equals("Sair") && nivelAcesso > 0) {
 
         Object[] questions = {
-                "Cadastrar administrador",
-                "Cadastrar funcionario",
-                "Cadastrar hospede",
-                "Cadastrar acomodacao",
-                "Cadastrar tipo de acomodacao",
-                "Cadastrar item de consumo",
-                "Cadastrar reserva",
-                "Cadastrar acomodado",
-                "Cadastrar consumo",
-                "Ver administradores",
-                "Mudar acesso"};
+            "Cadastrar administrador",
+            "Cadastrar funcionario",
+            "Cadastrar hospede",
+            "Cadastrar acomodacao",
+            "Cadastrar tipo de acomodacao",
+            "Cadastrar item de consumo",
+            "Cadastrar reserva",
+            "Cadastrar acomodado",
+            "Cadastrar consumo",
+            "Ver administradores",
+            "Mudar acesso" };
 
-        opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE, null, questions, questions[0]);
+        opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
+            null, questions, questions[0]);
 
         menu(opcao);
 
@@ -95,71 +97,117 @@ public class Hotel {
 
   private void nivelAcesso(int acesso) {
 
-      int senha;
+    int senha;
 
-      switch (acesso) {
-          case 3:
-              // Senha para acesso de administrador
-              senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de administrador", JOptionPane.QUESTION_MESSAGE));
-              if (senha != 1234) {
-                  JOptionPane.showMessageDialog(null, "Senha incorreta");
-              } else {
-                  nivelAcesso = 3;
-              }
+    switch (acesso) {
+      case 3:
+        if (administradores.isEmpty()) {
+          JOptionPane.showMessageDialog(null, "Nao ha administradores cadastrados");
+          cadastrarAdministrador();
+        } else {
+          // Selecionar qual administrador de acordo com o nome.
+          Object[] nomes = new Object[administradores.size()];
+          for (int i = 0; i < administradores.size(); i++) {
+            nomes[i] = administradores.get(i).getNome();
+          }
+
+          String nome = (String) JOptionPane.showInputDialog(null, "Escolha um administrador", "Acesso de administrador",
+                  JOptionPane.QUESTION_MESSAGE, null, nomes, nomes[0]);
+
+          Administrador adm = null;
+
+          for (Administrador lista : administradores) {
+            if (lista.getNome().equals(nome)) {
+              adm = lista;
               break;
-          case 2:
-              // Senha para entrar como funcionario
-              senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
-              if (senha != 4321) {
-                  JOptionPane.showMessageDialog(null, "Senha incorreta");
-              } else {
-                  nivelAcesso = 2;
-              }
-              break;
-          case 1:
-            //Entrar como hospede? Sim ou não
-              if ( JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                  nivelAcesso = 1;
-              } else {
-                nivelAcesso = 0;
-              }
-              break;
-          case 0:
-              // Sair...
-              nivelAcesso = -1;
-              break;
-      }
+            }
+          }
+
+          // Senha para acesso de administrador
+          senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de administrador",
+                  JOptionPane.QUESTION_MESSAGE));
+          assert adm != null;
+          if (adm.allowAccess(senha)) {
+            JOptionPane.showMessageDialog(null, "Senha incorreta");
+          } else {
+            nivelAcesso = 3;
+          }
+        }
+        break;
+      case 2:
+
+        Object[] nomesFuncionarios = new Object[funcionarios.size()];
+        for (int i = 0; i < funcionarios.size(); i++) {
+          nomesFuncionarios[i] = funcionarios.get(i).getNome();
+        }
+
+        String nomeFuncionario = (String) JOptionPane.showInputDialog(null, "Escolha um funcionario",
+            "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null, nomesFuncionarios, nomesFuncionarios[0]);
+
+        Funcionario func = null;
+
+        for (Funcionario lista : funcionarios) {
+          if (lista.getNome().equals(nomeFuncionario)) {
+            func = lista;
+            break;
+          }
+        }
+
+        // Senha para entrar como funcionario
+        senha = Integer.parseInt(
+            JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
+        assert func != null;
+        if (func.allowAccess(senha)) {
+          JOptionPane.showMessageDialog(null, "Senha incorreta");
+        } else {
+          nivelAcesso = 2;
+        }
+        break;
+      case 1:
+        // Entrar como hospede? Sim ou não
+        if (JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede",
+            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+          nivelAcesso = 1;
+        } else {
+          nivelAcesso = 0;
+        }
+        break;
+      case 0:
+        // Sair...
+        nivelAcesso = -1;
+        break;
+    }
   }
 
-  private void menu(String opcao){
+  private void menu(String opcao) {
     switch (opcao) {
       case "Cadastrar administrador":
         cadastrarAdministrador();
         break;
-//      case "Cadastrar funcionario":
-//        cadastrarFuncionario();
-//        break;
-//      case "Cadastrar hospede":
-//        cadastrarHospede();
-//        break;
-//      case "Cadastrar acomodacao":
-//        cadastrarAcomodacao();
-//        break;
-//      case "Cadastrar tipo de acomodacao":
-//        cadastrarTipoAcomodacao();
-//        break;
-//      case "Cadastrar item de consumo":
-//        cadastrarItemConsumo();
-//        break;
-//      case "Cadastrar reserva":
-//        cadastrarReserva();
-//        break;
-//      case "Cadastrar acomodado":
-//        cadastrarAcomodado();
-//        break;
-//      case "Cadastrar consumo":
-//        cadastrarConsumo();
-//        break;
+      // case "Cadastrar funcionario":
+      // cadastrarFuncionario();
+      // break;
+      // case "Cadastrar hospede":
+      // cadastrarHospede();
+      // break;
+      // case "Cadastrar acomodacao":
+      // cadastrarAcomodacao();
+      // break;
+      // case "Cadastrar tipo de acomodacao":
+      // cadastrarTipoAcomodacao();
+      // break;
+      // case "Cadastrar item de consumo":
+      // cadastrarItemConsumo();
+      // break;
+      // case "Cadastrar reserva":
+      // cadastrarReserva();
+      // break;
+      // case "Cadastrar acomodado":
+      // cadastrarAcomodado();
+      // break;
+      // case "Cadastrar consumo":
+      // cadastrarConsumo();
+      // break;
       case "Ver administradores":
         mostrarAdministradores();
         break;
@@ -179,20 +227,24 @@ public class Hotel {
 
     String title = "Cadastrar administrador";
 
-    String nome = JOptionPane.showInputDialog(null, "Digite o nome do administrador", title, JOptionPane.QUESTION_MESSAGE);
-    int telefone = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o telefone do administrador", title, JOptionPane.QUESTION_MESSAGE));
-    String cidade = JOptionPane.showInputDialog(null, "Digite a cidade do administrador", title, JOptionPane.QUESTION_MESSAGE);
-
+    String nome = JOptionPane.showInputDialog(null, "Digite o nome do administrador", title,
+        JOptionPane.QUESTION_MESSAGE);
+    int telefone = Integer.parseInt(
+        JOptionPane.showInputDialog(null, "Digite o telefone do administrador", title, JOptionPane.QUESTION_MESSAGE));
+    String cidade = JOptionPane.showInputDialog(null, "Digite a cidade do administrador", title,
+        JOptionPane.QUESTION_MESSAGE);
 
     Object[] estados = new Object[Estados.values().length];
     System.arraycopy(Estados.values(), 0, estados, 0, estados.length);
-    Estados estado = (Estados) JOptionPane.showInputDialog(null, "Escolha o estado do administrador", title, JOptionPane.QUESTION_MESSAGE, null, estados, estados[0]);
+    Estados estado = (Estados) JOptionPane.showInputDialog(null, "Escolha o estado do administrador", title,
+        JOptionPane.QUESTION_MESSAGE, null, estados, estados[0]);
 
     LocalDate dataNascimento = null;
     boolean done = false;
     while (!done) {
       try {
-        dataNascimento = LocalDate.parse(JOptionPane.showInputDialog(null, "Digite a data de nascimento do administrador", title, JOptionPane.QUESTION_MESSAGE));
+        dataNascimento = LocalDate.parse(JOptionPane.showInputDialog(null,
+            "Digite a data de nascimento do administrador", title, JOptionPane.QUESTION_MESSAGE));
         done = true;
       } catch (Exception e) {
         JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);

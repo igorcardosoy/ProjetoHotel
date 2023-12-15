@@ -22,7 +22,7 @@ public abstract class Pessoa {
     setKey(key);
   }
 
-  private void setKey(int key ) {
+  private void setKey(int key) {
     this.key = key;
   }
 

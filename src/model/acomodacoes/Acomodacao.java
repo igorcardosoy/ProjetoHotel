@@ -2,7 +2,7 @@ package model.acomodacoes;
 
 import model.acomodacoes.TipoAcomodacao;
 
-public class Acomodacao{
+public class Acomodacao {
   int numero;
   int andar;
   TipoAcomodacao tipo;
