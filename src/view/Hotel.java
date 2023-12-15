@@ -69,48 +69,53 @@ public class Hotel {
       } while (nivelAcesso == 0);
 
       while (!opcao.equals("Sair") && nivelAcesso > 0) {
-
-        Object[] functionADM = {};
-        Object[] functionFUNC = {};
-
-        if (nivelAcesso == 3) {
-          functionADM = new Object[]{
-                  "Cadastrar administrador",
-                  "Cadastrar funcionario",
-                  "Ver administradores",
-                  "Cadastrar tipo de acomodacao"
-          };
-        }
-
-        if (nivelAcesso >= 2) {
-          functionFUNC = new Object[]{
-                  "Cadastrar hospede",
-                  "Cadastrar acomodacao",
-                  "Cadastrar item de consumo",
-                  "Cadastrar reserva",
-                  "Cadastrar acomodado",
-                  "Cadastrar consumo"
-          };
-        }
-
-        Object[] functionDefault = {
-                "Encerrar estadia",
-                "Mudar acesso"
-        };
-
-        // Juntar as funcoes ADM, FUNC e DEFAULT
-        Object[] questions = new Object[functionADM.length + functionFUNC.length + functionDefault.length];
-        System.arraycopy(functionADM, 0, questions, 0, functionADM.length);
-        System.arraycopy(functionFUNC, 0, questions, functionADM.length, functionFUNC.length);
-        System.arraycopy(functionDefault, 0, questions, functionADM.length + functionFUNC.length, functionDefault.length);
+        Object[] questions = functionAceess();
 
         opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, questions, questions[0]);
 
         menu(opcao);
-
       }
     }
+  }
+
+  private Object[] functionAceess(){
+    Object[] functionADM = {};
+    Object[] functionFUNC = {};
+
+    if (nivelAcesso == 3) {
+      functionADM = new Object[]{
+              "Cadastrar administrador",
+              "Cadastrar funcionario",
+              "Ver administradores",
+              "Cadastrar tipo de acomodacao"
+      };
+    }
+
+    if (nivelAcesso >= 2) {
+      functionFUNC = new Object[]{
+              "Cadastrar hospede",
+              "Cadastrar acomodacao",
+              "Cadastrar item de consumo",
+              "Cadastrar reserva",
+              "Cadastrar acomodado",
+              "Cadastrar consumo"
+      };
+    }
+
+    Object[] functionDefault = {
+            "Encerrar estadia",
+            "Mudar acesso"
+    };
+
+    // Juntar as funcoes ADM, FUNC e DEFAULT
+    Object[] questions = new Object[functionADM.length + functionFUNC.length + functionDefault.length];
+
+    System.arraycopy(functionADM, 0, questions, 0, functionADM.length);
+    System.arraycopy(functionFUNC, 0, questions, functionADM.length, functionFUNC.length);
+    System.arraycopy(functionDefault, 0, questions, functionADM.length + functionFUNC.length, functionDefault.length);
+
+    return questions;
   }
 
   private void nivelAcesso(int acesso) {
