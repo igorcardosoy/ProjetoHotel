@@ -1,6 +1,7 @@
 package model.pessoas;
 
 import model.Indentificacao;
+import model.acomodacoes.Acomodacao;
 import model.enums.Estados;
 import model.enums.TipoDoc;
 import model.enums.TipoItens;
@@ -162,4 +163,5 @@ public class Hospede extends Pessoa {
   public Indentificacao getIdentificacao() {
     return this.identificacao;
   }
+
 }

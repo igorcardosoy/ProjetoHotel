@@ -26,7 +26,7 @@ public class Funcionario extends Pessoa {
     // Método privado que verifica se um hóspede já existe na lista
     private boolean existeHospede(Hospede hospede, List<Hospede> hospedes) {
         for (Hospede lista : hospedes) {
-            if (lista.getIndentificacao().getNumero() == hospede.getIndentificacao().getNumero()) {
+            if (lista.getIdentificacaoNumero() == hospede.getIdentificacaoNumero()) {
                 return true;
             }
         }

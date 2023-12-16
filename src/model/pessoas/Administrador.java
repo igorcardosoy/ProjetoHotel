@@ -153,11 +153,7 @@ public class Administrador extends Funcionario {
     // Sobrescrevendo o método toString() para fornecer uma representação textual do objeto
     @Override
     public String toString() {
-        return "Administrador {" +
-                "nome = '" + getNome() + '\'' +
-                ", telefone = " + getTelefone() +
-                ", cidade = '" + getCidade() + '\'' +
-                ", estado= " + getEstado() +
-                ", dataNascimento=" + getdataNascimento();
+        return "Administrador: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
+                + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento();
     }
 }
