@@ -9,15 +9,17 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+// Definição da classe Administrador que herda de Funcionario
 public class Administrador extends Funcionario {
-    public Administrador(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento) {
+
+    // Construtor da classe Administrador que chama o construtor da classe pai (Funcionario)
+    public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento) {
         super(nome, telefone, cidade, estado, dataNascimento, 3);
     }
 
-    // Manipulacao de funcionario
+    // Manipulação de funcionário
 
-    // Metodo que verifica se há um cadastro do funcionario, antes de iniciar um
-    // novo cadastro
+    // Método que verifica se há um cadastro do funcionário antes de iniciar um novo cadastro
     public boolean existeFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
         for (Funcionario lista : funcionarios) {
             if (lista.getNome().equals(funcionario.getNome())
@@ -26,56 +28,56 @@ public class Administrador extends Funcionario {
                 return true;
             }
         }
-
         return false;
     }
 
-    public boolean cadastrarFuncionario(String nome, int telefone, String cidade, Estados estado,
-            LocalDate dataNascimento, List<Funcionario> funcionarios) {
+    // Método para cadastrar um novo funcionário
+    public boolean cadastrarFuncionario(String nome, long telefone, String cidade, Estados estado,
+                                        LocalDate dataNascimento, List<Funcionario> funcionarios) {
+        Funcionario new_funcionario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
 
-        Funcionario new_funcioario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
-
-        if (!existeFuncionario(new_funcioario, funcionarios)) {
-            funcionarios.add(new_funcioario);
+        if (!existeFuncionario(new_funcionario, funcionarios)) {
+            funcionarios.add(new_funcionario);
             return true;
         }
-
         return false;
     }
 
+    // Método para remover um funcionário
     public boolean removerFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
         if (existeFuncionario(funcionario, funcionarios)) {
             funcionarios.remove(funcionario);
             return true;
         }
-
         return false;
     }
 
+    // Método para editar as informações de um funcionário
     public boolean editarFuncionario(Funcionario funcionario, Funcionario newFuncionario,
-            List<Funcionario> funcionarios) {
+                                     List<Funcionario> funcionarios) {
         if (existeFuncionario(funcionario, funcionarios)) {
             funcionarios.remove(funcionario);
             funcionarios.add(newFuncionario);
             return true;
         }
-
         return false;
     }
 
-    // Manipulacao de cadastros de acomodacao
+    // Manipulação de cadastros de acomodação
+
+    // Método para cadastrar uma nova acomodação
     public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao acomodacao,
-            List<Acomodacao> acomodacoesDisponiveis) {
+                                       List<Acomodacao> acomodacoesDisponiveis) {
         for (Acomodacao lista : acomodacoes) {
             if (lista.getNumero() == acomodacao.getNumero()) {
                 return false;
             }
         }
-
         acomodacoesDisponiveis.add(acomodacao);
         return true;
     }
 
+    // Método para editar as informações de uma acomodação
     public boolean editarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao newAcomodacao, int numeroAcomodacao) {
         for (Acomodacao lista : acomodacoes) {
             if (lista.getNumero() == numeroAcomodacao) {
@@ -84,49 +86,50 @@ public class Administrador extends Funcionario {
                 return true;
             }
         }
-
         return false;
     }
 
+    // Método para remover uma acomodação
     public boolean removerAcomodacao(Acomodacao acomodacao, List<Acomodacao> acomodacoes) {
         return acomodacoes.remove(acomodacao);
     }
 
+    // Método para cadastrar um novo tipo de acomodação
     public boolean cadastrarTipoAcomodacao(TipoAcomodacao tipoAcomodacao, List<TipoAcomodacao> tiposAcomodacao) {
         for (TipoAcomodacao lista : tiposAcomodacao) {
             if (lista.getNome().equals(tipoAcomodacao.getNome())) {
                 return false;
             }
         }
-
         tiposAcomodacao.add(tipoAcomodacao);
         return true;
     }
 
+    // Método para remover um tipo de acomodação
     public boolean removerTipoAcomodacao(TipoAcomodacao tipoAcomodacao, List<TipoAcomodacao> tiposAcomodacao) {
-
         for (TipoAcomodacao lista : tiposAcomodacao) {
             if (lista.equals(tipoAcomodacao)) {
                 tiposAcomodacao.remove(lista);
                 return true;
             }
         }
-
         return false;
     }
 
-    // Manipulacao de cadastros de consumo
+    // Manipulação de cadastros de consumo
+
+    // Método para cadastrar um novo item de consumo
     public boolean cadastrarItemConsumo(ItensConsumo itemConsumo, List<ItensConsumo> itensConsumo) {
         for (ItensConsumo lista : itensConsumo) {
             if (lista.getCodigo() == itemConsumo.getCodigo()) {
                 return false;
             }
         }
-
         itensConsumo.add(itemConsumo);
         return true;
     }
 
+    // Método para remover um item de consumo
     public boolean removerItemConsumo(ItensConsumo itemConsumo, List<ItensConsumo> itensConsumo) {
         for (ItensConsumo lista : itensConsumo) {
             if (lista.getCodigo() == itemConsumo.getCodigo()) {
@@ -134,18 +137,20 @@ public class Administrador extends Funcionario {
                 return true;
             }
         }
-
         return false;
     }
 
+    // Método que verifica se o administrador tem acesso com a senha fornecida
     public boolean allowAccess(int nivelAcesso) {
         return password(nivelAcesso);
     }
 
+    // Método privado para verificar a senha do administrador
     private boolean password(int key) {
         return key == 4321;
     }
 
+    // Sobrescrevendo o método toString() para fornecer uma representação textual do objeto
     @Override
     public String toString() {
         return "Administrador {" +
@@ -155,5 +160,4 @@ public class Administrador extends Funcionario {
                 ", estado= " + getEstado() +
                 ", dataNascimento=" + getdataNascimento();
     }
-
 }

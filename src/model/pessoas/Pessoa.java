@@ -7,13 +7,13 @@ import java.time.LocalDate;
 
 public abstract class Pessoa {
   private String nome;
-  private int telefone;
+  private long telefone;
   private String cidade;
   private Estados estado;
   private LocalDate dataNascimento;
   private int key;
 
-  public Pessoa(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
+  public Pessoa(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
     this.nome = nome;
     this.telefone = telefone;
     this.cidade = cidade;
@@ -30,7 +30,7 @@ public abstract class Pessoa {
     return nome;
   }
 
-  public int getTelefone() {
+  public long getTelefone() {
     return telefone;
   }
 

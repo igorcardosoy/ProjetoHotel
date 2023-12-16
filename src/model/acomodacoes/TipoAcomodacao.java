@@ -1,18 +1,22 @@
 package model.acomodacoes;
 
+// Definição da classe TipoAcomodacao
 public class TipoAcomodacao {
-  int codigo;
-  String nome;
-  String descricao;
-  int quantidadeExistente;
-  double valorDiaria;
-  int adultosComportados;
-  int criancasComportadas;
 
-  public TipoAcomodacao(int codigo, String name, String descricao, int quantidadeExistente, double valorDiaria,
-      int adultosComportados, int criancasComportadas) {
+  // Atributos da classe
+  int codigo;                   // Código identificador do tipo de acomodação
+  String nome;                  // Nome do tipo de acomodação
+  String descricao;             // Descrição do tipo de acomodação
+  int quantidadeExistente;      // Quantidade existente desse tipo de acomodação
+  double valorDiaria;           // Valor da diária para esse tipo de acomodação
+  int adultosComportados;       // Número de adultos que podem ser acomodados
+  int criancasComportadas;      // Número de crianças que podem ser acomodadas
+
+  // Construtor da classe TipoAcomodacao que recebe parâmetros para inicializar os atributos
+  public TipoAcomodacao(int codigo, String nome, String descricao, int quantidadeExistente, double valorDiaria,
+                        int adultosComportados, int criancasComportadas) {
     this.codigo = codigo;
-    this.nome = name;
+    this.nome = nome;
     this.descricao = descricao;
     this.quantidadeExistente = quantidadeExistente;
     this.valorDiaria = valorDiaria;
@@ -20,6 +24,7 @@ public class TipoAcomodacao {
     this.criancasComportadas = criancasComportadas;
   }
 
+  // Métodos para obter os valores dos atributos
   public int getCodigo() {
     return codigo;
   }
@@ -48,6 +53,7 @@ public class TipoAcomodacao {
     return criancasComportadas;
   }
 
+  // Método para obter o próprio objeto TipoAcomodacao
   public TipoAcomodacao getTipo() {
     return this;
   }
