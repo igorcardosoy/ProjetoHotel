@@ -34,4 +34,8 @@ public class ItensConsumo {
   public TipoItens getTipo() {
     return tipo;
   }
+
+  public String getDescricao(){
+    return descricao;
+  }
 }

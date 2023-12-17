@@ -4,8 +4,7 @@ import model.Indentificacao;
 import model.pessoas.Hospede;
 
 public enum TipoDoc {
-  CPF("CPF"), RG("RG"), PASSAPORTE("Passaporte");
-
-  TipoDoc(String doc) {
-  }
+  CPF("CPF"),
+  RG("RG"),
+  PASSAPORTE("Passaporte");
 }

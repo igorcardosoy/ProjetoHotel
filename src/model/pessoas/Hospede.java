@@ -54,12 +54,13 @@ public class Hospede extends Pessoa {
   private void setDadosConsumo() {
     this.dadosConsumo = new ArrayList<>(5);
     this.dadosConsumoFrigobar = new ArrayList<>(5);
-    // Também seria bom inicializar as outras listas, como dadosConsumoLavanderia e dadosConsumoRestaurante, se necessário
+    // this.dadosConsumoLavanderia = new ArrayList<>(5);
+    // this.dadosConsumoRestaurante = new ArrayList<>(5);
   }
 
   // Método privado para verificar se o usuário tem permissão para editar (key 3 == adm, 2 == funcionario, 1 == hospede)
   private boolean canEdit(int key) {
-    return key > 1;
+    return key == keys.HOSPEDE;
   }
 
   // Método para registrar o consumo de um item

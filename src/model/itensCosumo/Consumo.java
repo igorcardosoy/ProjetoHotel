@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 
 public class Consumo {
   LocalDateTime dataConsumo;
-  String nomeFuncionario;
+  String funcionarioResponsavel;
   int codigoItem;
   int quantidade;
-  double valor;
+  double valorTotal;
 
-  public Consumo(LocalDateTime dataConsumo, String nomeFuncionario, int codigoItem, int quantidade, double valor) {
+  public Consumo(LocalDateTime dataConsumo, String funcionarioResponsavel, int codigoItem, int quantidade, double valorTotal) {
     this.dataConsumo = dataConsumo;
-    this.nomeFuncionario = nomeFuncionario;
+    this.funcionarioResponsavel = funcionarioResponsavel;
     this.codigoItem = codigoItem;
     this.quantidade = quantidade;
-    this.valor = valor;
+    this.valorTotal = valorTotal;
   }
 }
