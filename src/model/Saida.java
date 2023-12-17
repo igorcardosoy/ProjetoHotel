@@ -94,4 +94,15 @@ public class Saida {
         return Math.abs(totalPagar);
     }
 
+    @Override
+    public String toString() {
+        float totalPagar = calcularTotal();
+
+        return "Saida do hóspede: [Número da Acomodação=" + numAcomodacao + ", Data de Saida=" + dataSaida + ", Horário da Saida=" + horaSaida
+                + ", Número de Diárias Cobradas=" + diariaCost + ", Valor de Cada Diária=" + uniDiaria + ", Valor Gasto com Telefonemas=" + telefonemaCost
+                + ", Desconto=" + desconto + "Total a pagar=" + totalPagar + "]";
+    }
+
+    
+
 }
