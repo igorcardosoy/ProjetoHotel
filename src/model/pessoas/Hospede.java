@@ -5,6 +5,7 @@ import model.acomodacoes.Acomodacao;
 import model.enums.Estados;
 import model.enums.TipoDoc;
 import model.enums.TipoItens;
+import model.enums.Keys;
 import model.itensCosumo.Consumo;
 import model.itensCosumo.ItensConsumo;
 
@@ -60,7 +61,7 @@ public class Hospede extends Pessoa {
 
   // Método privado para verificar se o usuário tem permissão para editar (key 3 == adm, 2 == funcionario, 1 == hospede)
   private boolean canEdit(int key) {
-    return key == keys.HOSPEDE;
+    return key == Keys.FUNCIONARIO.getkey();
   }
 
   // Método para registrar o consumo de um item

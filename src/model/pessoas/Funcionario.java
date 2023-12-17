@@ -3,10 +3,8 @@ package model.pessoas;
 import model.acomodacoes.Acomodacao;
 import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
-import model.acomodacoes.ReservaAbstract;
 import model.enums.Estados;
 import model.itensCosumo.Consumo;
-import view.Hotel;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -99,8 +97,7 @@ public class Funcionario extends Pessoa {
         if (temReserva(nomeHospede, reservas)) {
             for (Reserva lista : reservas) {
                 if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
-                    Acomodado acomodar = new Acomodado(lista.getCheckIn(), lista.getCheckOut(),
-                            lista.getHospedePrincipal(), lista.getAcomodacao(), funcionarioResponsavel);
+                    Acomodado acomodar = new Acomodado(lista);
                     reservas.remove(lista);
                     acomodados.add(acomodar);
                     return true;
@@ -115,7 +112,7 @@ public class Funcionario extends Pessoa {
                                    Acomodacao acomodacao, Funcionario funcionarioResponsavel, List<Acomodado> acomodados,
                                    List<Reserva> reservas) {
         if (!temReserva(hospede.getNome(), reservas)) {
-            Acomodado acomodar = new Acomodado(checkIn, checkOut, hospede, acomodacao, funcionarioResponsavel);
+            Acomodado acomodar = new Acomodado(checkIn, checkOut, hospede, acomodacao, funcionarioResponsavel, null);
             acomodados.add(acomodar);
             return true;
         }
