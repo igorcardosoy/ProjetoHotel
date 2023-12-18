@@ -44,7 +44,11 @@ public class Hospede extends Pessoa {
     // Inicializando listas
     setItensComprados();
     setDadosConsumo();
+
+
   }
+
+
 
   // Método privado para inicializar a lista de itens comprados
   private void setItensComprados() {
