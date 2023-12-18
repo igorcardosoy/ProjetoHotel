@@ -3,6 +3,7 @@ package view;
 import model.acomodacoes.*;
 import model.enums.Estados;
 import model.enums.TipoDoc;
+import model.itensCosumo.Consumo;
 import model.itensCosumo.ItensConsumo;
 import model.pessoas.Administrador;
 import model.pessoas.Funcionario;
@@ -652,8 +653,28 @@ public class Hotel {
 
   // TO DO
   private void mostarItensConsumo() {
+    StringBuilder message = new StringBuilder("Itens de consumo do hotel:\n");
+    
+    for (Consumo consumo : itensConsumoDisponiveis) {
+        message.append("---------------------------------\n");
+        message.append("Data de consumo: ").append(consumo.getDataConsumo()).append("\n");
+        message.append("Número da Acomodação: ").append(consumo.getNumero()).append("\n");
 
-  }
+        List<ItemConsumo> itensConsumidos = consumo.getItensConsumidos();
+        for (ItemConsumo item : itensConsumidos) {
+            message.append("   - Código do Item: ").append(item.getCodigo()).append("\n");
+            message.append("     Descrição: ").append(item.getDescricao()).append("\n");
+            message.append("     Quantidade Consumida: ").append(item.getQuantidadeConsumida()).append("\n");
+            message.append("     Valor Unitário: ").append(item.getValorUnitario()).append("\n");
+            message.append("     Valor Total: ").append(item.getValorTotal()).append("\n");
+        }
+
+        message.append("Valor Total do Consumo: ").append(consumo.getValorTotal()).append("\n");
+        message.append("---------------------------------\n");
+    }
+
+    JOptionPane.showMessageDialog(null, message.toString(), "Itens de Consumo", JOptionPane.INFORMATION_MESSAGE);
+}
 
   // TO DO
   private void mostrarAcomodacoes() {
@@ -667,7 +688,7 @@ public class Hotel {
 
   // TO DO
   private void mostrarConsumos() {
-
+    
   }
 
   // TO DO
@@ -706,8 +727,18 @@ public class Hotel {
   }
 
   // TO DO
-  private void removerReserva() {
-
+  private void removerReserva(Reserva reserva) {
+    if (reservas.contains(reserva)) {
+      // Verifica se a reserva está dentro do prazo sem multa
+      if (reserva.getPrazoRemocaoSemMulta()) {
+          reservas.remove(reserva);
+          JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!");
+      } else {
+          JOptionPane.showMessageDialog(null, "Não é possível remover a reserva sem multa após o prazo.");
+      }
+  } else {
+      JOptionPane.showMessageDialog(null, "Reserva não encontrada.");
+    }
   }
 
   // TO DO
