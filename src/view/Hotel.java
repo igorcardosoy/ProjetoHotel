@@ -678,7 +678,7 @@ public class Hotel {
 
   // TO DO
   private void mostrarAcomodacoes() {
-
+    
   }
 
   // TO DO
@@ -808,6 +808,20 @@ public class Hotel {
 
   // TO DO
   private void cadastrarAcomodado() {
+    String title = "Cadastrar acomodado";
+
+    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede a ser acomodado", title,
+            JOptionPane.QUESTION_MESSAGE);
+    int numeroAcomodacao = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o número da acomodação", title,
+            JOptionPane.QUESTION_MESSAGE));
+    LocalDate dataCheckIn = LocalDate.now();  // Você pode ajustar conforme necessário
+
+    Acomodado acomodado = new Acomodado(nomeHospede, numeroAcomodacao, dataCheckIn);
+
+    acomodados.add(acomodado);
+
+    JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso!");
+}
 
   }
 
