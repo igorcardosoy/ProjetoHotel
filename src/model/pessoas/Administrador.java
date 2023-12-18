@@ -1,6 +1,7 @@
 package model.pessoas;
 
 import model.acomodacoes.Acomodacao;
+import model.acomodacoes.Acomodado;
 import model.acomodacoes.TipoAcomodacao;
 import model.enums.Estados;
 import model.itensCosumo.ItensConsumo;
@@ -66,10 +67,10 @@ public class Administrador extends Funcionario {
     // Manipulação de cadastros de acomodação
 
     // Método para cadastrar uma nova acomodação
-    public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao acomodacao,
-                                       List<Acomodacao> acomodacoesDisponiveis) {
-        for (Acomodacao lista : acomodacoes) {
-            if (lista.getNumero() == acomodacao.getNumero()) {
+    public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoesDisponiveis,
+                                       List<Acomodado> acomodacoes, Acomodacao acomodacao) {
+        for (Acomodado lista : acomodacoes) {
+            if (Objects.equals(lista.getAcomodacao().getNumero(), acomodacao.getNumero())) {
                 return false;
             }
         }
@@ -140,14 +141,11 @@ public class Administrador extends Funcionario {
         return false;
     }
 
-    // Método que verifica se o administrador tem acesso com a senha fornecida
-    public boolean allowAccess(int nivelAcesso) {
-        return password(nivelAcesso);
-    }
 
     // Método privado para verificar a senha do administrador
-    private boolean password(int key) {
-        return key == 4321;
+    @Override
+    protected boolean password(int key) {
+        return key == 1234;
     }
 
     // Sobrescrevendo o método toString() para fornecer uma representação textual do objeto

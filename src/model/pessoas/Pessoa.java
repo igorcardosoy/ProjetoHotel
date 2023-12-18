@@ -69,4 +69,12 @@ public abstract class Pessoa {
   public void setDataNascimento(LocalDate dataNascimento) {
     this.dataNascimento = dataNascimento;
   }
+
+  public String toString() {
+    return "Nome: " + nome + "\n" +
+            "Telefone: " + telefone + "\n" +
+            "Cidade: " + cidade + "\n" +
+            "Estado: " + estado + "\n" +
+            "Data de Nascimento: " + dataNascimento + "\n";
+  }
 }

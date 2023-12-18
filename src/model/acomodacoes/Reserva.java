@@ -80,4 +80,12 @@ public class Reserva {
     public void setCheckOut(LocalDateTime checkOut) {
         this.checkOut = checkOut;
     }
+
+    public double getMulta() {
+        return multa;
+    }
+
+  public boolean canRemoveWithoutPay() {
+    return false;
+  }
 }

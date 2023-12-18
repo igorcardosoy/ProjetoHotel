@@ -5,29 +5,18 @@ import model.enums.TipoItens;
 public class ItensConsumo {
 
   TipoItens tipo;
-  int codigo;
+  long codigo;
   String descricao;
   double valor;
 
-  public ItensConsumo(int codigo, String tipo, String descricao, double valor) {
+  public ItensConsumo(long codigo, TipoItens tipo, String descricao, double valor) {
     this.codigo = codigo;
     this.descricao = descricao;
     this.valor = valor;
-
-    switch (tipo) {
-      case "LAVANDERIA":
-        this.tipo = TipoItens.LAVANDERIA;
-        break;
-      case "FRIGOBAR":
-        this.tipo = TipoItens.FRIGOBAR;
-        break;
-      case "RESTAURANTE":
-        this.tipo = TipoItens.RESTAURANTE;
-        break;
-    }
+    this.tipo = tipo;
   }
 
-  public int getCodigo() {
+  public long getCodigo() {
     return codigo;
   }
 

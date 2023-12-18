@@ -1,19 +1,26 @@
 package model;
 
 public class CartaoCredito {
-    private int numero;
+    private long numero;
     private int cvv;
     private String nome;
     private String dataValidade;
 
-    public CartaoCredito(int numero, int cvv, String nome, String dataValidade) {
+    public CartaoCredito(long numero, int cvv, String nome, String dataValidade) {
         this.numero = numero;
         this.cvv = cvv;
         this.nome = nome;
         this.dataValidade = dataValidade;
     }
 
-    public int getNumero() {
+    public long getNumero() {
+        return numero;
+    }
+
+    public long getNumerosFinais() {
+        for (int i = 0; i < 3; i++){
+            numero = numero % 10000;
+        }
         return numero;
     }
 

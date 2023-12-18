@@ -4,7 +4,7 @@ package model.acomodacoes;
 public class TipoAcomodacao {
 
   // Atributos da classe
-  int codigo;                   // Código identificador do tipo de acomodação
+  long codigo;                   // Código identificador do tipo de acomodação
   String nome;                  // Nome do tipo de acomodação
   String descricao;             // Descrição do tipo de acomodação
   int quantidadeExistente;      // Quantidade existente desse tipo de acomodação
@@ -13,7 +13,7 @@ public class TipoAcomodacao {
   int criancasComportadas;      // Número de crianças que podem ser acomodadas
 
   // Construtor da classe TipoAcomodacao que recebe parâmetros para inicializar os atributos
-  public TipoAcomodacao(int codigo, String nome, String descricao, int quantidadeExistente, double valorDiaria,
+  public TipoAcomodacao(long codigo, String nome, String descricao, int quantidadeExistente, double valorDiaria,
                         int adultosComportados, int criancasComportadas) {
     this.codigo = codigo;
     this.nome = nome;
@@ -25,7 +25,7 @@ public class TipoAcomodacao {
   }
 
   // Métodos para obter os valores dos atributos
-  public int getCodigo() {
+  public long getCodigo() {
     return codigo;
   }
 

@@ -139,7 +139,7 @@ public class Funcionario extends Pessoa {
     }
 
     // Método privado para verificar a senha do funcionário
-    private boolean password(int key) {
+    protected boolean password(int key) {
         return key == 4321;
     }
 
