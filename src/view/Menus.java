@@ -232,7 +232,6 @@ public class Menus {
       default:
         return true;
     }
-
-    return false;
+      return false;
   }
 }

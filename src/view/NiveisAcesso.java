@@ -172,28 +172,30 @@ public class NiveisAcesso {
   }
 
   // Método que gerencia o nível de acesso
-  public void nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios) {
+  public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios) {
     switch (acesso) {
       case 3:
-        ADMAccess(administradores, usuario);
+        usuario = ADMAccess(administradores, usuario);
         break;
       case 2:
         // Nível de acesso para funcionários
-        FuncAccess(funcionarios, usuario);
+        usuario = FuncAccess(funcionarios, usuario);
         break;
       case 1:
         // Entrar como hóspede? Sim ou não
-        HospedeAccess(usuario);
+        usuario = HospedeAccess(usuario);
         break;
       case 0:
         // Sair...
         nivelAcesso = -1;
         break;
     }
+
+    return usuario;
   }
 
   // Método para entrar como administrador
-  private void ADMAccess(List<Administrador> administradores, Pessoa usuario) {
+  private Pessoa ADMAccess(List<Administrador> administradores, Pessoa usuario) {
     Estados[] estados = Estados.values();
     int senha;
 
@@ -226,12 +228,15 @@ public class NiveisAcesso {
         JOptionPane.showMessageDialog(null, "Senha incorreta");
       } else {
         nivelAcesso = 3;
+        return usuario;
       }
     }
+
+    return usuario;
   }
 
   // Método para entrar como funcionário
-  private void FuncAccess(List<Funcionario> funcionarios, Pessoa usuario) {
+  private Pessoa FuncAccess(List<Funcionario> funcionarios, Pessoa usuario) {
     int senha;
 
     if (funcionarios.isEmpty()) {
@@ -263,19 +268,23 @@ public class NiveisAcesso {
       } else {
         nivelAcesso = 2;
         usuario = func;
+        return usuario;
       }
     }
+    return usuario;
   }
 
   // Método para entrar como hóspede
-  private void HospedeAccess(Pessoa usuario) {
+  private Pessoa HospedeAccess(Pessoa usuario) {
     if (JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede",
             JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
       nivelAcesso = 1;
       usuario = null;
+      return usuario;
     } else {
       nivelAcesso = 0;
     }
+    return usuario;
   }
 
   public int getNivelAcesso() {

@@ -82,15 +82,15 @@ public class Hotel {
               "Funcionario",
               "Administrador" };
 
-      do {
+      while (niveisAcesso.getNivelAcesso() <= 0){
         // Janela de diálogo para escolher o acesso
         escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
-        niveisAcesso.nivelAcesso(escolha, usuario, administradores, funcionarios);
+        usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores, funcionarios);
         if (niveisAcesso.getNivelAcesso() == -1) {
           quit = true;
         }
-      } while (niveisAcesso.getNivelAcesso() == 0);
+      }
 
       // Loop enquanto a opção não for "Sair" e o nível de acesso for maior que 0
       while (!opcao.equals("Sair") && niveisAcesso.getNivelAcesso() > 0) {
@@ -115,7 +115,8 @@ public class Hotel {
                 funcionarios, reservas,
                 acomodados, itensConsumoDisponiveis,
                 tiposAcomodacao, acomodacoesDisponiveis,
-                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar, estados, niveisAcesso.getNivelAcesso());
+                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
+                estados, niveisAcesso.getNivelAcesso());
         if (voltar) {
           niveisAcesso.setNivelAcesso(0);
         }
