@@ -1,26 +1,26 @@
 package model;
 
 import model.acomodacoes.Acomodacao;
+import model.acomodacoes.Reserva;
 import model.acomodacoes.Acomodado;
 import model.pessoas.Hospede;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Saida {
     private int numAcomodacao; //Número da acomodação utilizada
-    private LocalDate dataSaida; //Data da saída
-    private LocalTime horaSaida; //Hora da saída
+    private LocalDateTime DataHora; //checkout do hospede
     private float diariaCost; //Número de diárias cobradas
     private float uniDiaria; //Valor de cada diária
     private float telefonemaCost; //Valor gasto com telefonemas
     private float desconto; //Desconto concedido
 
-    public Saida( Acomodacao acomodacao, int numAcomodacao, LocalDate dataSaida, LocalTime horaSaida, float diariaCost, float uniDiaria, float telefonemaCost){
+    public Saida(Acomodacao acomodacao, Reserva reserva, int numAcomodacao, LocalDateTime DataHora, float diariaCost, float uniDiaria, float telefonemaCost){
         this.numAcomodacao = acomodacao.getNumero();
-        this.dataSaida = dataSaida;
-        this.horaSaida = horaSaida;
+        this.DataHora = reserva.getCheckOut();
         this.diariaCost = diariaCost;
         this.uniDiaria = uniDiaria;
         this.telefonemaCost = telefonemaCost;
@@ -34,20 +34,13 @@ public class Saida {
         this.numAcomodacao = numAcomodacao;
     }
 
-    public LocalDate getDataSaida() {
-        return dataSaida;
+    
+    public LocalDateTime getDataHora() {
+        return DataHora;
     }
 
-    public void setDataSaida(LocalDate dataSaida) {
-        this.dataSaida = dataSaida;
-    }
-
-    public LocalTime getHoraSaida() {
-        return horaSaida;
-    }
-
-    public void setHoraSaida(LocalTime horaSaida) {
-        this.horaSaida = horaSaida;
+    public void setDataHora(LocalDateTime dataHora) {
+        this.DataHora = dataHora;
     }
 
     public float getDiariaCost() {
@@ -98,10 +91,11 @@ public class Saida {
     public String toString() {
         float totalPagar = calcularTotal();
 
-        return "Saida do hóspede: [Número da Acomodação=" + numAcomodacao + ", Data de Saida=" + dataSaida + ", Horário da Saida=" + horaSaida
-                + ", Número de Diárias Cobradas=" + diariaCost + ", Valor de Cada Diária=" + uniDiaria + ", Valor Gasto com Telefonemas=" + telefonemaCost
-                + ", Desconto=" + desconto + "Total a pagar=" + totalPagar + "]";
+        return "Saida do hóspede: [Número da Acomodação=" + numAcomodacao + ", Data e Horário de Saida=" + DataHora + 
+                ", Número de Diárias Cobradas=" + diariaCost + ", Valor de Cada Diária=" + uniDiaria + ", Valor Gasto com Telefonemas=" + 
+                telefonemaCost + ", Desconto=" + desconto + "Total a pagar=" + totalPagar + "]";
     }
+
 
     
 
