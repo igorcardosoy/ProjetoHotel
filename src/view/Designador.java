@@ -5,7 +5,16 @@ import model.acomodacoes.Acomodacao;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Definição da classe Designador
+ */
 public class Designador {
+    /**
+     * Método estatico que acessa as acomodações disponíveis
+     * @param descricao
+     * @param acomodacoes
+     * @return as acomodações disponíveis
+     */
     public static List<Acomodacao> getAcomodacoesDisponiveis(String descricao,
                                                              List<Acomodacao> acomodacoes){
         List<Acomodacao> acomodacoesDisponiveis = new ArrayList<>();
