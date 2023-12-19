@@ -65,8 +65,11 @@ public class Cadastros {
         }
       }
 
+      int key = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha do administrador", title,
+              JOptionPane.QUESTION_MESSAGE));
+
       // Adicionar o administrador à lista
-      administradores.add(new Administrador(nome, telefone, cidade, estado, dataNascimento));
+      administradores.add(new Administrador(nome, telefone, cidade, estado, dataNascimento, key));
     }
   }
 
@@ -302,11 +305,6 @@ public class Cadastros {
         if (reserva != null) {
           if (usuario instanceof Funcionario funcionario) {
             funcionario.cadastrarAcomodado(reserva, acomodados, acomodacoesDisponiveis, tiposAcomodacao);
-            JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
-          }
-
-          if (usuario instanceof Administrador administrador) {
-            administrador.cadastrarAcomodado(reserva, acomodados, acomodacoesDisponiveis, tiposAcomodacao);
             JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
           }
         } else {

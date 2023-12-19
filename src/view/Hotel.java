@@ -170,7 +170,7 @@ public class Hotel {
   private void defaultValues(){
     // Cadastrar administradores
     administradores.add(new Administrador("Igu", 16992479541L, "Ibaté",
-            Estados.SP, LocalDate.parse("2005-04-18")));
+            Estados.SP, LocalDate.parse("2005-04-18"), 40028922));
     usuario = administradores.getFirst();
 
     // Cadastrar funcionários

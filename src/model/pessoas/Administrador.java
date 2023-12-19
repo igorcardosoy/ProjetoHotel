@@ -16,8 +16,8 @@ import static view.Hotel.formatterData;
 public class Administrador extends Funcionario {
 
     // Construtor da classe Administrador que chama o construtor da classe pai (Funcionario)
-    public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento) {
-        super(nome, telefone, cidade, estado, dataNascimento, 3);
+    public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
+        super(nome, telefone, cidade, estado, dataNascimento, key);
     }
 
     // Manipulação de funcionário

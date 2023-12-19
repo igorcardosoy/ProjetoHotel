@@ -334,7 +334,7 @@ public class NiveisAcesso {
         JOptionPane.showMessageDialog(null, "Senha incorreta");
       } else {
         nivelAcesso = 1;
-        usuario = usuario;
+        usuario = hospede;
         return usuario;
       }
     }

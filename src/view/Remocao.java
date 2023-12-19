@@ -32,21 +32,40 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerAcomodado(List<Acomodado> acomodados) {
+  public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado) {
 
-      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
+    List<Hospede> hospedesAcomodados = acomodado.getAllHospedes();
+    acomodados.remove(acomodado);
 
-      Acomodado acomodado = null;
+    for (Hospede hospede1 : hospedesAcomodados) {
+          hospedes.remove(hospede1);
+    }
 
-      for (Acomodado acomodado1 : acomodados) {
-          if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
-              acomodado = acomodado1;
-              break;
-          }
-      }
 
-      acomodados.remove(acomodado);
+
       JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes) {
+
+    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
+
+    Acomodado acomodado = null;
+
+    for (Acomodado acomodado1 : acomodados) {
+      if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
+        acomodado = acomodado1;
+        break;
+      }
+    }
+
+    for (Hospede hospede1 : hospedes) {
+      hospedes.remove(hospede1);
+    }
+
+    acomodados.remove(acomodado);
+
+    JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public static void removerReserva(List<Reserva> reservas) {
@@ -94,7 +113,7 @@ public class Remocao {
 
   }
 
-  public static void encerrarEstadia(List<Acomodado> acomodados, Acomodado acomodado){
+  public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
     boolean certeza = JOptionPane.showConfirmDialog(null, "Deseja encerrar a estadia?", "Encerrar estadia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 
     if (certeza) {
@@ -129,7 +148,7 @@ public class Remocao {
 
       JOptionPane.showMessageDialog(null, saida.toString(), "Encerrar estadia", JOptionPane.INFORMATION_MESSAGE);
 
-      removerAcomodado(acomodados);
+      removerAcomodado(acomodados, hospedes, acomodado);
     }
   }
 }
