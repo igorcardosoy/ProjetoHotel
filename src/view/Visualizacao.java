@@ -90,22 +90,6 @@ public class Visualizacao {
     return message.toString();
   }
 
-  public static Object mostrarConsumos() {
-
-//    String title = "Consumos";
-//
-//    StringBuilder message = new StringBuilder();
-//
-//    message.append("--------------------------------------------------").append("\n");
-//    for (Consumo consumo : consumos) {
-//      message.append(consumo.toString()).append("\n");
-//      message.append("--------------------------------------------------").append("\n");
-//    }
-//
-//    return message.toString();
-    return null;
-  }
-
   public static Object mostrarAcomodados(List<Acomodado> acomodados) {
 
     StringBuilder message = new StringBuilder();

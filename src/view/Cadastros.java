@@ -17,7 +17,6 @@ import model.pessoas.Pessoa;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 import static view.Hotel.formatterData;
@@ -36,7 +35,7 @@ public class Cadastros {
    */
   // Método para cadastrar um administrador
   public static void cadastrarAdministrador(List<Administrador> administradores, Pessoa usuario) {
-    if (usuario.getKey() >= 3) {
+    if (usuario instanceof Administrador) {
 
       // Janela de diálogo para coletar informações do administrador
       String title = "Cadastrar administrador";
@@ -227,8 +226,6 @@ public class Cadastros {
           }
         }
 
-
-
       LocalDateTime dataCheckOut = null;
         done = false;
         while (!done) {
@@ -246,40 +243,45 @@ public class Cadastros {
         int numCriancas = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de criancas", title,
                 JOptionPane.QUESTION_MESSAGE));
 
-        String nomeCartao = JOptionPane.showInputDialog(null, "Digite o nome do cartao", title,
-                JOptionPane.QUESTION_MESSAGE);
+        if (numAdultos + numCriancas > acomodacao.getTipo().getAdultosComportados() + acomodacao.getTipo().getCriancasComportadas()){
+          JOptionPane.showMessageDialog(null, "Numero de hospedes maior que o suportado pela acomodacao", title, JOptionPane.ERROR_MESSAGE);
+          JOptionPane.showMessageDialog(null, "Estadia cancelada!", title, JOptionPane.INFORMATION_MESSAGE);
+        } else {
+          String nomeCartao = JOptionPane.showInputDialog(null, "Digite o nome do cartao", title,
+                  JOptionPane.QUESTION_MESSAGE);
 
-        long numeroCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero do cartao", title,
-                JOptionPane.QUESTION_MESSAGE));
+          long numeroCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero do cartao", title,
+                  JOptionPane.QUESTION_MESSAGE));
 
-        int codigoCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o codigo do cartao", title,
-                JOptionPane.QUESTION_MESSAGE));
+          int codigoCartao = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o codigo do cartao", title,
+                  JOptionPane.QUESTION_MESSAGE));
 
-        String dataValidadeCartao = JOptionPane.showInputDialog(null, "Digite a data de validade do cartao", title,
-                JOptionPane.QUESTION_MESSAGE);
+          String dataValidadeCartao = JOptionPane.showInputDialog(null, "Digite a data de validade do cartao", title,
+                  JOptionPane.QUESTION_MESSAGE);
 
-        JOptionPane.showMessageDialog(null, "Cadastro do hospede principal", title, JOptionPane.INFORMATION_MESSAGE);
-        cadastrarHospede(hospedes, usuario);
-        Hospede hospedePrincipal = hospedes.getLast();
+          JOptionPane.showMessageDialog(null, "Cadastro do hospede principal", title, JOptionPane.INFORMATION_MESSAGE);
+          cadastrarHospede(hospedes, usuario);
+          Hospede hospedePrincipal = hospedes.getLast();
 
-      CartaoCredito cartaoCredito = new CartaoCredito(numeroCartao, codigoCartao, nomeCartao, dataValidadeCartao);
+          CartaoCredito cartaoCredito = new CartaoCredito(numeroCartao, codigoCartao, nomeCartao, dataValidadeCartao);
 
-      Reserva reserva = new Reserva(dataCheckIn, dataCheckOut, hospedePrincipal, acomodacao, cartaoCredito);
+          Reserva reserva = new Reserva(dataCheckIn, dataCheckOut, hospedePrincipal, acomodacao, cartaoCredito);
 
-      if (usuario instanceof Funcionario funcionario)
-        funcionario.cadastrarReserva(reserva, reservas);
-      if (usuario instanceof Administrador administrador)
-        administrador.cadastrarReserva(reserva, reservas);
+          if (usuario instanceof Funcionario funcionario)
+            funcionario.cadastrarReserva(reserva, reservas);
 
-      int numHospedes = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de hospedes que estaram na reserva: ", title, JOptionPane.QUESTION_MESSAGE));
+          int numHospedes = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de hospedes que estaram na reserva: ", title, JOptionPane.QUESTION_MESSAGE));
 
-      for (int i = 0; i < numHospedes; i++) {
-        JOptionPane.showMessageDialog(null, "Cadastro do hospede " + (i + 1), title, JOptionPane.INFORMATION_MESSAGE);
-        cadastrarHospede(hospedes, usuario);
-        reserva.addHospede(hospedes.getLast());
+          for (int i = 0; i < numHospedes; i++) {
+            JOptionPane.showMessageDialog(null, "Cadastro do hospede " + (i + 1), title, JOptionPane.INFORMATION_MESSAGE);
+            cadastrarHospede(hospedes, usuario);
+            reserva.addHospede(hospedes.getLast());
+          }
+
+          JOptionPane.showMessageDialog(null, "Reserva cadastrada com sucesso!", title, JOptionPane.INFORMATION_MESSAGE);
       }
 
-      JOptionPane.showMessageDialog(null, "Reserva cadastrada com sucesso!", title, JOptionPane.INFORMATION_MESSAGE);
+
     }
   }
 
@@ -342,9 +344,6 @@ public class Cadastros {
               JOptionPane.showMessageDialog(null, "Data invalida", "Cadastrar acomodado", JOptionPane.ERROR_MESSAGE);
             }
           }
-
-          //Cadastro de hóspedes
-          List<Hospede> hospedesEstadia = new ArrayList<>(5);
 
           //Cadastro do hospede principal
           JOptionPane.showMessageDialog(null, "Cadastro do hospede principal", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);

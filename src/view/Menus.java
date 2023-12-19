@@ -37,7 +37,6 @@ public class Menus {
       case "Ver reservas" -> Visualizacao.mostrarReservas(reservas);
       case "Ver acomodados" -> Visualizacao.mostrarAcomodados(acomodados);
       case "Ver itens de consumo" -> Visualizacao.mostarItensConsumo(itensConsumo);
-      case "Ver consumos" -> Visualizacao.mostrarConsumos();
       case "Ver tipos de acomodacao" -> Visualizacao.mostrarTiposAcomodacao(tiposAcomodacao);
       case "Ver acomodacoes" -> Visualizacao.mostrarAcomodacoes(acomodacoes);
       default -> "Opcao invalida";
@@ -56,7 +55,8 @@ public class Menus {
           List<ItensConsumo> itensConsumo,
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
-          Object[] funcoesRemover
+          Object[] funcoesRemover,
+          Pessoa usuario
   ) {
     String title = "Remover";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
@@ -64,7 +64,7 @@ public class Menus {
 
     switch (opcao) {
       case "Remover hospede":
-        Remocao.removerHospede(hospedes);
+        Remocao.removerHospede(hospedes, usuario);
         break;
       case "Remover administrador":
         Remocao.removerAdministrador();
@@ -73,13 +73,13 @@ public class Menus {
         Remocao.removerFuncionario();
         break;
       case "Remover reserva":
-        Remocao.removerReserva(reservas);
+        Remocao.removerReserva(reservas, usuario);
         break;
       case "Remover acomodado":
-        Remocao.removerAcomodado(acomodados, hospedes);
+        Remocao.removerAcomodado(acomodados, hospedes, usuario);
         break;
       case "Remover item de consumo":
-        Remocao.removerItemConsumo(itensConsumo);
+        Remocao.removerItemConsumo(itensConsumo, usuario);
         break;
       case "Remover consumo":
         Remocao.removerConsumo();
@@ -225,7 +225,7 @@ public class Menus {
         menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);
         break;
       case "Remover":
-        menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover);
+        menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover, usuario);
         break;
       case "Vizualizar":
         menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);

@@ -13,8 +13,8 @@ public class Indentificacao {
 
   /**
    * Construtor da classe Identificação
-   * @param numero
-   * @param tipo
+   * @param numero numero da identificação
+   * @param tipo tipo da identificação
    */
   public Indentificacao(int numero, TipoDoc tipo) {
     this.numero = numero;
@@ -39,7 +39,7 @@ public class Indentificacao {
 
   /**
    * Método de modificação do número da identificação
-   * @param numero
+   * @param numero numero da identificação
    */
   public void setNumero(int numero) {
     this.numero = numero;
@@ -47,7 +47,7 @@ public class Indentificacao {
 
   /**
    * Método de modificação do tipo da identificação
-   * @param tipo
+   * @param tipo tipo da identificação
    */
   public void setTipo(TipoDoc tipo) {
     this.tipo = tipo;

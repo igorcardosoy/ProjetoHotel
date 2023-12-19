@@ -14,9 +14,9 @@ public class Acomodacao {
     /**
      * Construtor da classe Acomodacao que recebe parâmetros para inicializar
      * os atributos.
-     * @param numero
-     * @param andar
-     * @param tipo
+     * @param numero numero da acomodacao
+     * @param andar andar da acomodacao
+     * @param tipo  tipo da acomodacao
      */
   public Acomodacao(int numero, int andar, TipoAcomodacao tipo) {
     this.numero = numero;

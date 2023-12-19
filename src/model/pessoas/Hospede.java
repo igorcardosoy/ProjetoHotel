@@ -37,19 +37,19 @@ public class Hospede extends Pessoa {
 
   /**
    * Construtor da classe Hospede
-   * @param nome
-   * @param telefone
-   * @param cidade
-   * @param estado
-   * @param dataNascimento
-   * @param pais
-   * @param email
-   * @param tipoDoc
-   * @param numDoc
-   * @param nomeMae
-   * @param nomePai
-   * @param funcionarioResponsavel
-   * @param senha
+   * @param nome, nome do hospede
+   * @param telefone, telefone do hospede
+   * @param cidade, cidade do hospede
+   * @param estado, estado do hospede
+   * @param dataNascimento, data de nascimento do hospede
+   * @param pais, pais de origem do hospede
+   * @param email, email do hospede
+   * @param tipoDoc tipo de documento do hospede
+   * @param numDoc número do documento do hospede
+   * @param nomeMae nome da mãe do hospede
+   * @param nomePai nome do pai do hospede
+   * @param funcionarioResponsavel funcionário responsável pelo hospede
+   * @param senha senha do hospede
    */
   public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais,
                  String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai, Funcionario funcionarioResponsavel, int senha){
@@ -86,7 +86,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método privado para verificar se o usuário tem permissão para editar
-   * @param key
+   * @param key senha do usuário
    * @return true se a senha estiver correta, false caso contrario.
   */
   private boolean canEdit(int key) {
@@ -95,12 +95,12 @@ public class Hospede extends Pessoa {
 
   /**
    * Método para registrar o consumo de um item
-   * @param dataDoConsumo
-   * @param nomeFuncionario
-   * @param qntConsumida
-   * @param valorUnitario
-   * @param codigoItem
-   * @param listaItensConsumo
+   * @param dataDoConsumo data do consumo
+   * @param nomeFuncionario nome do funcionário
+   * @param qntConsumida quantidade consumida
+   * @param valorUnitario valor unitário
+   * @param codigoItem código do item
+   * @param listaItensConsumo lista de itens de consumo
    */
   public void consumirItem(LocalDateTime dataDoConsumo, String nomeFuncionario, int qntConsumida, double valorUnitario,
                            int codigoItem, List<ItensConsumo> listaItensConsumo) {
@@ -126,8 +126,8 @@ public class Hospede extends Pessoa {
 
   /**
    * Método para remover um item da lista de itens comprados
-   * @param item
-   * @param key
+   * @param item item a ser removido
+   * @param key senha do usuário
    * @return itensComprados.remove(item) caso um item tenha sido removido ou false caso contrário
    */
   public boolean removerItem(ItensConsumo item, int key) {
@@ -140,7 +140,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método para contabilizar os itens consumidos
-   * @param key
+   * @param key senha do usuário
    * @return true caso a contabilização dos itens ocorrer com sucesso ou false caso contrário
    */
   public boolean contabilizarItens(int key) {
@@ -247,7 +247,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação do país do hospede
-   * @param pais
+   * @param pais que seram setados
    */
   public void setPais(String pais) {
     this.pais = pais;
@@ -255,7 +255,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação do email do hospede
-   * @param email
+   * @param email que sera setado
    */
   public void setEmail(String email) {
     this.email = email;
@@ -263,7 +263,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação da identificação do hospede
-   * @param identificacao
+   * @param identificacao que sera setada
    */
   public void setIdentificacao(Indentificacao identificacao) {
     this.identificacao = identificacao;
@@ -271,7 +271,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação do nome da mãe do hospede
-   * @param nomeMae
+   * @param nomeMae que sera setado
    */
   public void setNomeMae(String nomeMae) {
     this.nomeMae = nomeMae;
@@ -279,7 +279,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação do nome do pai do hospede
-   * @param nomePai
+   * @param nomePai que sera setado
    */
   public void setNomePai(String nomePai) {
     this.nomePai = nomePai;
@@ -287,7 +287,7 @@ public class Hospede extends Pessoa {
 
   /**
    * Método de modificação do funcinário responsável pelo do hospede
-   * @param funcionarioResponsavel
+   * @param funcionarioResponsavel que sera setado
    */
   public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
     this.funcionarioResponsavel = funcionarioResponsavel;
@@ -303,7 +303,7 @@ public class Hospede extends Pessoa {
 
    /**
     * Método protegido para verificar a senha do hospede
-    * @param key
+    * @param key senha do hospede
     * @return true se a senha estiver correta, false caso contrario.
     */
   @Override

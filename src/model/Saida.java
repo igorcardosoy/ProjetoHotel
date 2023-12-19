@@ -29,13 +29,13 @@ public class Saida {
 
     /**
      * Construtor da classe Saida caso o hospede tenha desconto
-     * @param checkOut
-     * @param numAcomodacao
-     * @param diariaCost
-     * @param uniDiaria
-     * @param telefonemaCost
-     * @param gastosConsumo
-     * @param desconto
+     * @param checkOut checkout do hospede
+     * @param numAcomodacao número da acomodação utilizada
+     * @param diariaCost número de diárias cobradas
+     * @param uniDiaria valor de cada diária
+     * @param telefonemaCost valor gasto com telefonemas
+     * @param gastosConsumo valor gasto com consumo
+     * @param desconto  desconto concedido
      */
     public Saida(LocalDateTime checkOut, int numAcomodacao, int diariaCost, double uniDiaria, double telefonemaCost, double gastosConsumo, float desconto){
         this.numAcomodacao = numAcomodacao;
@@ -49,12 +49,12 @@ public class Saida {
 
     /**
      * Construtor da classe Saida caso o hospede não tenha desconto
-     * @param checkOut
-     * @param numAcomodacao
-     * @param diariaCost
-     * @param uniDiaria
-     * @param telefonemaCost
-     * @param gastosConsumo
+     * @param checkOut checkout do hospede
+     * @param numAcomodacao número da acomodação utilizada
+     * @param diariaCost número de diárias cobradas
+     * @param uniDiaria valor de cada diária
+     * @param telefonemaCost valor gasto com telefonemas
+     * @param gastosConsumo valor gasto com consumo
      */
     public Saida(LocalDateTime checkOut, int numAcomodacao, int diariaCost, double uniDiaria, double telefonemaCost, double gastosConsumo){
         this.numAcomodacao = numAcomodacao;
@@ -76,7 +76,7 @@ public class Saida {
 
     /**
      * Método de modificação ao número da acomodação utilizada
-     * @param numAcomodacao
+     * @param numAcomodacao número da acomodação utilizada
      */
     public void setNumAcomodacao(int numAcomodacao) {
         this.numAcomodacao = numAcomodacao;
@@ -92,7 +92,7 @@ public class Saida {
 
     /**
      * Método de modificação a data e hora do checkout
-     * @param dataHora
+     * @param dataHora data e hora
      */
     public void setDataHora(LocalDateTime dataHora) {
         this.DataHora = dataHora;
@@ -108,7 +108,7 @@ public class Saida {
 
     /**
      * Método de modificação ao valor da diária
-     * @param diariaCost
+     * @param diariaCost valor da diária
      */
     public void setDiariaCost(int diariaCost) {
         this.diariaCost = diariaCost;
@@ -124,7 +124,7 @@ public class Saida {
 
     /**
      * Método de modificação ao valor de cada diária
-     * @param uniDiaria
+     * @param uniDiaria valor de cada diária
      */
     public void setUniDiaria(float uniDiaria) {
         this.uniDiaria = uniDiaria;
@@ -140,7 +140,7 @@ public class Saida {
 
     /**
      * Método de modificação ao gasto com telefonemas
-     * @param telefonemaCost
+     * @param telefonemaCost gasto com telefonemas
      */
     public void setTelefonemaCost(float telefonemaCost) {
         this.telefonemaCost = telefonemaCost;
@@ -156,7 +156,7 @@ public class Saida {
 
     /**
      * Método de modificação do desconto
-     * @param desconto
+     * @param desconto desconto
      */
     public void setDesconto(float desconto) {
         this.desconto = desconto;

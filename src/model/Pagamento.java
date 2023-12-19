@@ -12,7 +12,7 @@ public class Pagamento {
 
     /**
      * Construtor da classe Pagamento
-     * @param formasPagamento
+     * @param formasPagamento formas de pagamento
      */
     public Pagamento(FormasPagamento formasPagamento){
         this.formaPagamento = formaPagamento;

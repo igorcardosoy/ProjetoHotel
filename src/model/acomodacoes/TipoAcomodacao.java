@@ -21,13 +21,13 @@ public class TipoAcomodacao {
     /**
      * Construtor da classe TipoAcomodacao que recebe parâmetros para inicializar
      * os atributos.
-     * @param codigo
-     * @param nome
-     * @param descricao
-     * @param quantidadeExistente
-     * @param valorDiaria
-     * @param adultosComportados
-     * @param criancasComportadas
+     * @param codigo codigo do tipo de acomodacao
+     * @param nome nome do tipo de acomodacao
+     * @param descricao descricao do tipo de acomodacao
+     * @param quantidadeExistente quantidade existente do tipo de acomodacao
+     * @param valorDiaria valor da diaria do tipo de acomodacao
+     * @param adultosComportados quantidade de adultos que cabem na acomodacao
+     * @param criancasComportadas quantidade de criancas que cabem na acomodacao
      */
   public TipoAcomodacao(long codigo, String nome, String descricao, int quantidadeExistente, double valorDiaria,
                         int adultosComportados, int criancasComportadas) {

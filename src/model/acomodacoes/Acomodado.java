@@ -23,12 +23,12 @@ public class Acomodado extends Reserva {
   /**
    * Construtor da classe Acomodado que recebe os parâmetros do hospede, alem
    * de seu funcionarioResponsavel.
-   * @param checkIn
-   * @param checkOut
-   * @param hospedePrincipal
-   * @param acomodacao
-   * @param responsavel
-   * @param cartaoCredito
+   * @param checkIn checkin do hospede
+   * @param checkOut checkout do hospede
+   * @param hospedePrincipal hospede principal
+   * @param acomodacao acomodacao
+   * @param responsavel funcionario responsavel
+   * @param cartaoCredito cartao de credito
    */
   public Acomodado(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal,
                    Acomodacao acomodacao, Funcionario responsavel, CartaoCredito cartaoCredito) {
@@ -42,8 +42,8 @@ public class Acomodado extends Reserva {
    * Construtor da classe Acomodado que recebe a reserva previa do hospede,
    * alem de seu funcionarioResponsavel.
    * para efetuar a
-   * @param reserva
-   * @param funcionarioResponsavel
+   * @param reserva reserva previa do hospede
+   * @param funcionarioResponsavel funcionario responsavel
    */
   public Acomodado(Reserva reserva, Funcionario funcionarioResponsavel) {
     super(reserva.getCheckIn(), reserva.getCheckOut(), reserva.getHospedePrincipal(), reserva.getAcomodacao(), reserva.getCartaoCredito());
