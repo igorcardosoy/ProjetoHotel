@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static view.Hotel.formatterData;
 
@@ -28,7 +29,7 @@ public class Funcionario extends Pessoa {
     // Método privado que verifica se um hóspede já existe na lista
     private boolean existeHospede(Hospede hospede, List<Hospede> hospedes) {
         for (Hospede lista : hospedes) {
-            if (lista.getIdentificacaoNumero() == hospede.getIdentificacaoNumero()) {
+            if (lista.getIdentificacaoNumero() == hospede.getIdentificacaoNumero() && lista.getIdentificacaoTipo().equals(hospede.getIdentificacaoTipo())){
                 return true;
             }
         }

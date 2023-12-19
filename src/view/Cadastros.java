@@ -20,6 +20,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static view.Hotel.formatterData;
+
 /**
  * Classe que contém os métodos para cadastrar novos objetos no sistema.
  */
@@ -56,7 +58,7 @@ public class Cadastros {
       while (!done) {
         try {
           dataNascimento = LocalDate.parse(JOptionPane.showInputDialog(null,
-                  "Digite a data de nascimento do administrador", title, JOptionPane.QUESTION_MESSAGE));
+                  "Digite a data de nascimento do administrador", title, JOptionPane.QUESTION_MESSAGE), formatterData);
           done = true;
         } catch (Exception e) {
           JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
@@ -93,7 +95,7 @@ public class Cadastros {
       while (!done) {
         try {
           dataNascimento = LocalDate.parse(JOptionPane.showInputDialog(null,
-                  "Digite a data de nascimento do funcionario", title, JOptionPane.QUESTION_MESSAGE));
+                  "Digite a data de nascimento do funcionario", title, JOptionPane.QUESTION_MESSAGE), formatterData);
           done = true;
         } catch (Exception e) {
           JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
@@ -130,7 +132,7 @@ public class Cadastros {
       while (!done) {
         try {
           dataNascimento = LocalDate.parse(JOptionPane.showInputDialog(null,
-                  "Digite a data de nascimento do hospede", title, JOptionPane.QUESTION_MESSAGE));
+                  "Digite a data de nascimento do hospede", title, JOptionPane.QUESTION_MESSAGE), formatterData);
           done = true;
         } catch (Exception e) {
           JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
@@ -206,14 +208,14 @@ public class Cadastros {
 
       // Selecionar a acomodação desejada dentre as acomodacoes disponiveis
       Acomodacao acomodacao = (Acomodacao) JOptionPane.showInputDialog(null, "Escolha a acomodacao", title,
-              JOptionPane.QUESTION_MESSAGE, null, acomodacoesDisponiveis.toArray(), acomodacoesDisponiveis.get(0));
+              JOptionPane.QUESTION_MESSAGE, null, acomodacoesDisponiveis.toArray(), acomodacoesDisponiveis.getFirst());
 
         LocalDateTime dataCheckIn = null;
         boolean done = false;
         while (!done) {
           try {
             dataCheckIn = LocalDate.parse(JOptionPane.showInputDialog(null,
-                    "Digite a data de check-in", title, JOptionPane.QUESTION_MESSAGE)).atStartOfDay();
+                    "Digite a data de check-in", title, JOptionPane.QUESTION_MESSAGE), formatterData).atStartOfDay();
             done = true;
           } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
@@ -227,7 +229,7 @@ public class Cadastros {
         while (!done) {
           try {
             dataCheckOut = LocalDate.parse(JOptionPane.showInputDialog(null,
-                    "Digite a data de check-out", title, JOptionPane.QUESTION_MESSAGE)).atStartOfDay();
+                    "Digite a data de check-out", title, JOptionPane.QUESTION_MESSAGE), formatterData).atStartOfDay();
             done = true;
           } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
@@ -315,7 +317,16 @@ public class Cadastros {
           acomodacoes[i] = acomodacoesDisponiveis.get(i).getNumero();
         }
 
-       Acomodacao acomodacao = (Acomodacao) JOptionPane.showInputDialog(null, "Escolha a acomodacao", "Cadastrar acomodado", JOptionPane.QUESTION_MESSAGE, null, acomodacoes, acomodacoes[0]);
+       int acomodacaoInt = (int) JOptionPane.showInputDialog(null, "Escolha a acomodacao", "Cadastrar acomodado", JOptionPane.QUESTION_MESSAGE, null, acomodacoes, acomodacoes[0]);
+
+        Acomodacao acomodacao = null;
+
+        for (Acomodacao acomodacao1 : acomodacoesDisponiveis) {
+          if (acomodacao1.getNumero() == acomodacaoInt) {
+            acomodacao = acomodacao1;
+            break;
+          }
+        }
 
         if (acomodacao != null) {
           LocalDateTime dataCheckIn = LocalDateTime.now();
@@ -324,8 +335,8 @@ public class Cadastros {
           LocalDateTime dataCheckOut = null;
           while (!done) {
             try {
-              dataCheckOut = LocalDateTime.parse(JOptionPane.showInputDialog(null,
-                      "Digite a data de check-out", "Cadastrar acomodado", JOptionPane.QUESTION_MESSAGE));
+              dataCheckOut = LocalDate.parse(JOptionPane.showInputDialog(null,
+                      "Digite a data de check-out", "Cadastrar acomodado", JOptionPane.QUESTION_MESSAGE), formatterData).atStartOfDay();
               done = true;
             } catch (Exception e) {
               JOptionPane.showMessageDialog(null, "Data invalida", "Cadastrar acomodado", JOptionPane.ERROR_MESSAGE);
