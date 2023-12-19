@@ -24,8 +24,26 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerConsumo() {
+  public static void removerConsumo(List<ItensConsumo> itensConsumoDisponiveis) {
+    String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo a ser removido", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
 
+    ItensConsumo itemConsumoRemover = null;
+
+    // Procurar o item de consumo na lista
+    for (ItensConsumo item : itensConsumoDisponiveis) {
+        if (item.getDescricao().equals(nomeItemConsumo)) {
+            itemConsumoRemover = item;
+            break;
+        }
+    }
+
+    // Remover o item de consumo da lista
+    if (itemConsumoRemover != null) {
+        itensConsumoDisponiveis.remove(itemConsumoRemover);
+        JOptionPane.showMessageDialog(null, "Item de consumo removido com sucesso!", "Remover item de consumo", JOptionPane.INFORMATION_MESSAGE);
+    } else {
+        JOptionPane.showMessageDialog(null, "Item de consumo não encontrado!", "Remover item de consumo", JOptionPane.ERROR_MESSAGE);
+    }
   }
 
   // TO DO
