@@ -8,10 +8,16 @@ import model.pessoas.Pessoa;
 import javax.swing.*;
 import java.util.List;
 
+/**
+ * Definição da classe NiveisAcesso que gerencia os níveis de acesso a cada responsável
+ */
 public class NiveisAcesso {
 
   private int nivelAcesso;
 
+  /**
+   * Método dos níveis de acesso
+   */
   public NiveisAcesso() {
     this.nivelAcesso = 0;
   }
@@ -53,6 +59,10 @@ public class NiveisAcesso {
     return funcoesCadastro;
   }
 
+  /**
+   * Método que fornece ao funcionário editar algo do sistema
+   * @return fução de edição
+   */
   public Object[] functionsEditar(){
     Object[] funcoesEditar = new Object[0];
 
@@ -89,6 +99,10 @@ public class NiveisAcesso {
     return funcoesEditar;
   }
 
+  /**
+   * Método que permite o funcionario remover algo do sistema
+   * @return função de remover
+   */
   public Object[] functionsRemover(){
     Object[] funcoesRemover = new Object[0];
 
@@ -124,6 +138,10 @@ public class NiveisAcesso {
     return funcoesRemover;
   }
 
+  /**
+   * Método que permite o funcionario realizar a visualização do sistema
+   * @return função de vizualizar
+   */
   public Object[] functionsVizualizar(){
     Object[] funcoesVizualizar = new Object[0];
 
@@ -158,6 +176,10 @@ public class NiveisAcesso {
     return funcoesVizualizar;
   }
 
+  /**
+   * Método que permite o funcionario realizar a finalização da estadia ou cosumir um item
+   * @return funcao default
+   */
   public Object[] functionsDefault(){
     Object[] funcoesDefault = new Object[0];
 
@@ -170,7 +192,15 @@ public class NiveisAcesso {
     return funcoesDefault;
   }
 
-  // Método que gerencia o nível de acesso
+  /**
+   * Método que gerencia o nível de acesso
+   * @param acesso
+   * @param usuario
+   * @param administradores
+   * @param funcionarios
+   * @param hospedes
+   * @return usuario a usar o sistema
+   */
   public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios, List<Hospede> hospedes) {
     switch (acesso) {
       case 2:
@@ -193,7 +223,12 @@ public class NiveisAcesso {
     return usuario;
   }
 
-  // Método para entrar como administrador
+  /**
+   * Método para entrar como administrador
+   * @param administradores
+   * @param usuario
+   * @return usuario acessado
+   */
   private Pessoa ADMAccess(List<Administrador> administradores, Pessoa usuario) {
     String senha;
 
@@ -243,7 +278,12 @@ public class NiveisAcesso {
     return usuario;
   }
 
-  // Método para entrar como funcionário
+  /**
+   * Método para entrar como funcionário
+   * @param funcionarios
+   * @param usuario
+   * @return usuario acessado
+   */
   private Pessoa FuncAccess(List<Funcionario> funcionarios, Pessoa usuario) {
     String senha;
 
@@ -289,7 +329,12 @@ public class NiveisAcesso {
     return usuario;
   }
 
-  // Método para entrar como hóspede
+  /**
+   * Método para entrar como hóspede
+   * @param hospedes
+   * @param usuario
+   * @return acessado
+   */
   private Pessoa HospedeAccess(List<Hospede> hospedes, Pessoa usuario) {
     String senha;
 
@@ -339,10 +384,18 @@ public class NiveisAcesso {
     return usuario;
   }
 
+  /**
+   * Método de acesso ao nivel de acesso
+   * @return nivel de acesso
+   */
   public int getNivelAcesso() {
     return nivelAcesso;
   }
 
+  /**
+   * Método de modificação do nível de acesso
+   * @param nivelAcesso
+   */
   public void setNivelAcesso(int nivelAcesso) {
     if (nivelAcesso < this.nivelAcesso)
       this.nivelAcesso = nivelAcesso;
