@@ -32,6 +32,7 @@ public class Hospede extends Pessoa {
   private List<Consumo> dadosConsumoFrigobar;
   private List<ItensConsumo> itensComprados;
   private Funcionario funcionarioResponsavel;
+  private boolean acomodado;
 
   /**
    * Construtor da classe Hospede
@@ -61,6 +62,7 @@ public class Hospede extends Pessoa {
     this.nomePai = nomePai;
     gastosTelefonicos = 0;
     // Inicializando listas
+    this.funcionarioResponsavel = funcionarioResponsavel;
     setItensComprados();
     setDadosConsumo();
   }
@@ -70,6 +72,14 @@ public class Hospede extends Pessoa {
    */
   private void setItensComprados() {
     this.itensComprados = new ArrayList<>(5);
+  }
+
+  public boolean isAcomodado() {
+    return acomodado;
+  }
+
+  public void setAcomodado(boolean acomodado) {
+    this.acomodado = acomodado;
   }
 
   /**
@@ -137,12 +147,9 @@ public class Hospede extends Pessoa {
   /**
    * Método para contabilizar os itens consumidos
    */
-  public void contabilizarItens(Pessoa usuarioLogado) {
-    // Verifica se o usuário tem permissão para contabilizar itens
-    if (usuarioLogado instanceof Funcionario) {
+  public void contabilizarItens() {
       dadosConsumo.addAll(dadosConsumoFrigobar);
       dadosConsumoFrigobar.clear();
-    }
   }
 
   // Métodos de acesso aos atributos da classe Hospede

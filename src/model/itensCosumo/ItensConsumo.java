@@ -55,4 +55,11 @@ public class ItensConsumo {
   public String getDescricao(){
     return descricao;
   }
+
+  public String toString(){
+    return "Código: " + codigo + " | " +
+            "Tipo: " + tipo + " | " +
+            "Descrição: " + descricao + " | " +
+            "Valor: " + valor + " | ";
+  }
 }

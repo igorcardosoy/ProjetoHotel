@@ -2,6 +2,8 @@ package model.itensCosumo;
 
 import java.time.LocalDateTime;
 
+import static view.Hotel.formatterDataHora;
+
 
 /**
  * Definição da classe Consumo do hospede.
@@ -57,7 +59,7 @@ public class Consumo {
   }
 
   public String toString() {
-    return "Data do consumo: " + dataConsumo + "\n" +
+    return "\nData do consumo: " + dataConsumo.format(formatterDataHora)+ "\n" +
            "Código do item: " + codigoItem + "\n" +
            "Quantidade: " + quantidade + "\n" +
            "Valor total: " + valorTotal + "\n";

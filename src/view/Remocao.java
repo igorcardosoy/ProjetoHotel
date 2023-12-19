@@ -179,7 +179,6 @@ public class Remocao {
       double gastosTelefonicos = 0;
 
       for (Hospede hospede : acomodado.getAllHospedes()) {
-        hospede.contabilizarItens(usuarioLogado);
         gastosTelefonicos += hospede.getGastosTelefonicos();
       }
 
@@ -194,6 +193,7 @@ public class Remocao {
       sb.append("\n---------------------------------------");
 
       for (Hospede hospede : acomodado.getAllHospedes()) {
+        hospede.contabilizarItens();
         for (Consumo consumo : hospede.getConsumo()) {
           gastosGeraisConsumo += consumo.getValorTotal();
           sb.append(consumo);

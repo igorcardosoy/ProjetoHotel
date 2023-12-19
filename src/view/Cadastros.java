@@ -299,6 +299,9 @@ public class Cadastros {
         Reserva reserva = null;
         for (Reserva reserva1 : reservas) {
           if (reserva1.getHospedePrincipal().getNome().equalsIgnoreCase(nomeHospedePrincipal)) {
+            for (Hospede hospede : reserva1.getAllHospedes()) {
+              hospede.setAcomodado(true);
+            }
             reserva = reserva1;
             break;
           }

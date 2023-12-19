@@ -146,7 +146,7 @@ public class Hotel {
     Object[] questions;
 
     if (niveisAcesso.getNivelAcesso() == 1){
-      questions = funcoesDefault;
+        questions = funcoesDefault;
     } else {
       questions = new Object[]{
               "Cadastros",

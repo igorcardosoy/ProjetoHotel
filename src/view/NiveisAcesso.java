@@ -6,6 +6,7 @@ import model.pessoas.Hospede;
 import model.pessoas.Pessoa;
 
 import javax.swing.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class NiveisAcesso {
@@ -296,43 +297,57 @@ public class NiveisAcesso {
     if (hospedes.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Nao ha hospedes cadastrados");
     } else {
-      Object[] nomesHospedes = new Object[hospedes.size()];
-      for (int i = 0; i < hospedes.size(); i++) {
-        nomesHospedes[i] = hospedes.get(i).getNome();
-      }
+      List<Hospede> hospedesAcomodados = new ArrayList<>(5);
 
-      String nomeFuncionario = (String) JOptionPane.showInputDialog(null,
-              "Quem é você?",
-              "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null,
-              nomesHospedes,
-              nomesHospedes[0]);
-
-      if (nomeFuncionario == null) {
-        return usuario;
-      }
-
-      Hospede hospede = null;
-
-      for (Hospede lista : hospedes) {
-        if (lista.getNome().equals(nomeFuncionario)) {
-          hospede = lista;
-          break;
+      for (Hospede hospede : hospedes) {
+        if (hospede.isAcomodado())
+        {
+          hospedesAcomodados.add(hospede);
         }
       }
 
-      // Senha para entrar como funcionário
-      senha = JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE);
-
-      if (senha == null || hospede == null) {
+      if (hospedesAcomodados.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Nao ha hospedes acomodados");
         return usuario;
-      }
-
-      if (!hospede.allowAccess(Integer.parseInt(senha))) {
-        JOptionPane.showMessageDialog(null, "Senha incorreta");
       } else {
-        nivelAcesso = 1;
-        usuario = hospede;
-        return usuario;
+        Object[] nomesHospedes = new Object[hospedesAcomodados.size()];
+        for (int i = 0; i < hospedes.size(); i++) {
+          nomesHospedes[i] = hospedesAcomodados.get(i).getNome();
+        }
+
+        String nomeFuncionario = (String) JOptionPane.showInputDialog(null,
+                "Quem é você?",
+                "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null,
+                nomesHospedes,
+                nomesHospedes[0]);
+
+        if (nomeFuncionario == null) {
+          return usuario;
+        }
+
+        Hospede hospede = null;
+
+        for (Hospede lista : hospedes) {
+          if (lista.getNome().equals(nomeFuncionario)) {
+            hospede = lista;
+            break;
+          }
+        }
+
+        // Senha para entrar como funcionário
+        senha = JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE);
+
+        if (senha == null || hospede == null) {
+          return usuario;
+        }
+
+        if (!hospede.allowAccess(Integer.parseInt(senha))) {
+          JOptionPane.showMessageDialog(null, "Senha incorreta");
+        } else {
+          nivelAcesso = 1;
+          usuario = hospede;
+          return usuario;
+        }
       }
     }
 
