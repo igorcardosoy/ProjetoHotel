@@ -11,7 +11,7 @@ O projeto foi desenvolvido pelos seguintes alunos do IFSP, Campus Araraquara, no
 - [Cauã Rufino de Sá](https://github.com/CauaDeSa)
 - [Igor Filipi Cardoso](https://github.com/IgorFilipiCardoso)
 - [Pedro Trofino Vaccare](https://github.com/pevawinto)
-- [Eduardo](https://github.com/Eduardo-Soares-Sousa)
+- [Eduardo Soares de Sousa](https://github.com/Eduardo-Soares-Sousa)
   
 ### 1. Baixar:
 
