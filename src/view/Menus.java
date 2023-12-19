@@ -323,7 +323,7 @@ public class Menus {
               break;
             }
           }
-          Remocao.encerrarEstadia(acomodados, hospedes,acomodado, usuario);
+          Remocao.encerrarEstadia(acomodados, hospedes, acomodado);
         }
         break;
       default:
