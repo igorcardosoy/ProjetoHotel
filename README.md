@@ -57,11 +57,11 @@ Pode-se executar abrindo o executável criado após a compilação ou utilizando
 
 ## Descrição do Projeto:
 
-Todo o projeto foi desenvolvido em torno do conseito de TAD, utilizando estrutura de dados, sendo elas, a Pilha, a Fila e a Lista Duplamente Encadeada. Foram utilizados outros TAD para representar outras entidades dentro do sistema, como o Paciente. 
+...
 
 ## Detalhes da Metodologia de Desenvolvimento:
 
-A divisão de trabalhos funcionou de forma conjunto, ambos fizemos ao mesmo tempo, trocando informações sobre cada parte e ambos implementando uma parte do código. Utilizamos o GitHub e o LiveShare para o densenvolvimento em conjunto. 
+...
 
 ## Diagrama de Classe
 
