@@ -88,11 +88,12 @@ public class Hotel {
               "Funcionario",
               "Administrador" };
 
-      while (niveisAcesso.getNivelAcesso() <= 0 && !quit){
+      while (!quit){
         // Janela de diálogo para escolher o acesso
         escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
         usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores, funcionarios);
+        System.out.println(niveisAcesso.getNivelAcesso());
         if (niveisAcesso.getNivelAcesso() == -1) {
           quit = true;
         }
