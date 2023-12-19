@@ -13,7 +13,7 @@ public class NiveisAcesso {
   private int nivelAcesso;
 
   public NiveisAcesso() {
-    this.nivelAcesso = -1;
+    this.nivelAcesso = 0;
   }
 
   public Object[] functionsCadastro(){
@@ -211,6 +211,10 @@ public class NiveisAcesso {
 
       String nome = (String) JOptionPane.showInputDialog(null, "Escolha um administrador", "Acesso de administrador", JOptionPane.QUESTION_MESSAGE, null, nomes, nomes[0]);
 
+      if (nome == null) {
+        return usuario;
+      }
+
       Administrador adm = null;
 
       for (Administrador lista : administradores) {
@@ -249,6 +253,10 @@ public class NiveisAcesso {
 
       String nomeFuncionario = (String) JOptionPane.showInputDialog(null, "Escolha um funcionario",
               "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null, nomesFuncionarios, nomesFuncionarios[0]);
+
+      if (nomeFuncionario == null) {
+        return usuario;
+      }
 
       Funcionario func = null;
 
