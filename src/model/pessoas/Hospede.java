@@ -31,9 +31,10 @@ public class Hospede extends Pessoa {
 
   // Construtor da classe Hospede
   public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais,
-                 String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai) {
+                 String email, TipoDoc tipoDoc, int numDoc, String nomeMae,
+                 String nomePai, int key) {
     // Chamando o construtor da classe pai (Pessoa)
-    super(nome, telefone, cidade, estado, dataNascimento, 1);
+    super(nome, telefone, cidade, estado, dataNascimento, key);
     // Inicializando os atributos específicos da classe Hospede
     this.pais = pais;
     this.email = email;

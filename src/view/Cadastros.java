@@ -155,12 +155,14 @@ public class Cadastros {
       String nomePai = JOptionPane.showInputDialog(null, "Digite o nome do pai do hospede", title,
               JOptionPane.QUESTION_MESSAGE);
 
-      // Adicionar o hóspede à lista
+      int senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha do hospede", title,
+              JOptionPane.QUESTION_MESSAGE));
 
+      // Adicionar o hóspede à lista
       if (usuario instanceof Funcionario funcionario)
-        funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade, estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae, nomePai), hospedes);
-      if (usuario instanceof Administrador administrador)
-        administrador.cadastrarHospede(new Hospede(nome, telefone, cidade, estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae, nomePai), hospedes);
+        funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade,
+                estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae
+                , nomePai, senha), hospedes);
     }
   }
 
