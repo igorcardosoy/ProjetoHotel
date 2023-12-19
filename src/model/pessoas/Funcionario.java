@@ -209,14 +209,15 @@ public class Funcionario extends Pessoa {
     }
 
     /**
-     * Método protegido para verificar a senha do funcionário
-     * @param key, a senha do funcionário
+     * Metodo que verifica se a senha do funcionario esta correta.
+     * @param key senha do funcionario
      * @return true se a senha estiver correta, false caso contrario.
      */
     @Override
     protected boolean password(int key) {
         return key == this.getKey();
     }
+
 
     /**
      * Método protegido para obter a data de nascimento do funcionário

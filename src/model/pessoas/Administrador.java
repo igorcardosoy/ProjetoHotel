@@ -65,8 +65,8 @@ public class Administrador extends Funcionario {
      * @param funcionarios é uma lista de funcionarios do hotel
      */
     public void cadastrarFuncionario(String nome, long telefone, String cidade, Estados estado,
-                                     LocalDate dataNascimento, List<Funcionario> funcionarios) {
-        Funcionario new_funcionario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
+                                     LocalDate dataNascimento, int senha, List<Funcionario> funcionarios) {
+        Funcionario new_funcionario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, senha);
 
         if (!existeFuncionario(new_funcionario, funcionarios)) {
             funcionarios.add(new_funcionario);

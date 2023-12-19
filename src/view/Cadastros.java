@@ -104,9 +104,12 @@ public class Cadastros {
         }
       }
 
+      int key = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha do funcionario", title,
+              JOptionPane.QUESTION_MESSAGE));
+
       // Adicionar o funcionário à lista
       if (usuario instanceof Administrador administrador)
-        administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, funcionarios);
+        administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, key, funcionarios);
     }
   }
 
