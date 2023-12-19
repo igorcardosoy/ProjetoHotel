@@ -12,7 +12,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-// Definição da classe Hotel
+/**
+ * Definição da classe Hotel
+ * @atributos usuario
+ */
 public class Hotel {
 
   // Atributos da classe

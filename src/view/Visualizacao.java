@@ -11,8 +11,15 @@ import model.pessoas.Hospede;
 
 import java.util.List;
 
+/**
+ * Definição da classe Vizualição que permite realizar a visualização dos setores do hotel
+ */
 public class Visualizacao {
-  // Método para mostrar os hóspedes em uma janela de diálogo
+  /**
+   * Método para mostrar os hóspedes em uma janela de diálogo
+   * @param hospedes
+   * @return os hospedes
+   */
   public static Object mostrarHospedes(List<Hospede> hospedes) {
     StringBuilder message = new StringBuilder();
 
@@ -25,7 +32,11 @@ public class Visualizacao {
     return message.toString();
   }
 
-  // Método para mostrar os administradores em uma janela de diálogo
+  /**
+   * Método para mostrar os administradores em uma janela de diálogo
+   * @param administradores
+   * @return os administradores
+   */
   public static Object mostrarAdministradores(List<Administrador> administradores) {
     StringBuilder message = new StringBuilder();
 
@@ -38,7 +49,11 @@ public class Visualizacao {
     return message.toString();
   }
 
-  // Método para mostrar os funcionários em uma janela de diálogo
+  /**
+   * Método para mostrar os funcionários em uma janela de diálogo
+   * @param funcionarios
+   * @return
+   */
   public static Object mostrarFuncionarios(List<Funcionario> funcionarios) {
     StringBuilder message = new StringBuilder();
 
@@ -51,6 +66,11 @@ public class Visualizacao {
     return message.toString();
   }
 
+  /**
+   * Método para mostrar os iten de consumo
+   * @param itensConsumoDisponiveis
+   * @return
+   */
   public static Object mostarItensConsumo(List<ItensConsumo> itensConsumoDisponiveis){
 
     StringBuilder message = new StringBuilder();
@@ -64,6 +84,11 @@ public class Visualizacao {
     return message.toString();
   }
 
+  /**
+   * Método para mostrar as acomodações disponíveis
+   * @param acomodacoesDisponiveis
+   * @return
+   */
   public static Object mostrarAcomodacoes(List<Acomodacao> acomodacoesDisponiveis) {
 
     StringBuilder message = new StringBuilder();
@@ -77,6 +102,11 @@ public class Visualizacao {
     return message.toString();
   }
 
+  /**
+   * Método para mostrar os tipos de acomodações
+   * @param tiposAcomodacao
+   * @return as acomodações 
+   */
   public static Object mostrarTiposAcomodacao(List<TipoAcomodacao> tiposAcomodacao) {
 
     StringBuilder message = new StringBuilder();
@@ -90,6 +120,11 @@ public class Visualizacao {
     return message.toString();
   }
 
+  /**
+   * Método para mostrar os acomodados
+   * @param acomodados
+   * @return os acomodados
+   */
   public static Object mostrarAcomodados(List<Acomodado> acomodados) {
 
     StringBuilder message = new StringBuilder();
@@ -103,6 +138,11 @@ public class Visualizacao {
     return message.toString();
   }
 
+  /**
+   * Método para mostrar as reservas
+   * @param reservas
+   * @return as reservas
+   */
   public static Object mostrarReservas(List<Reserva> reservas) {
 
     StringBuilder message = new StringBuilder();

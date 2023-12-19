@@ -13,6 +13,9 @@ import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
+/**
+ * Definição da classe Remoção para efetuar as remoções realizadas no sistema
+ */
 public class Remocao {
 
   public static void removerAcomodacao() {
@@ -24,7 +27,10 @@ public class Remocao {
 
   }
 
-  // TO DO
+  /**
+   * Método para a remoção de um item de consumo da lista
+   * @param itensConsumoDisponiveis
+   */
   public static void removerConsumo(List<ItensConsumo> itensConsumoDisponiveis) {
     String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo a ser removido", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
 
@@ -47,7 +53,11 @@ public class Remocao {
     }
   }
 
-  // TO DO
+  /**
+   * Método para romover um item consumido
+   * @param itensConsumoDisponiveis
+   * @param usuarioLogado
+   */
   public static void removerItemConsumo(List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuarioLogado) {
 
     if (usuarioLogado instanceof Funcionario){
@@ -68,7 +78,12 @@ public class Remocao {
 
   }
 
-  // TO DO
+  /**
+   * Método para remover um acomodado do sistema
+   * @param acomodados
+   * @param hospedes
+   * @param acomodado
+   */
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado) {
 
     List<Hospede> hospedesAcomodados = acomodado.getAllHospedes();
@@ -82,6 +97,12 @@ public class Remocao {
     JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
+  /**
+   * Método para remover um acomodado
+   * @param acomodados
+   * @param hospedes
+   * @param acomodado
+   */
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Pessoa usuarioLogado){
 
     if (usuarioLogado instanceof Funcionario){
@@ -110,6 +131,11 @@ public class Remocao {
     }
   }
 
+  /**
+   * Método para remoção de uma reserva
+   * @param reservas
+   * @param usuarioLogado
+   */
   public static void removerReserva(List<Reserva> reservas, Pessoa usuarioLogado){
     if (usuarioLogado instanceof Funcionario){
       boolean found = false;
@@ -151,6 +177,11 @@ public class Remocao {
 
   }
 
+  /**
+   * Método para a remoção de um hospede
+   * @param hospedes
+   * @param usuarioLogado
+   */
   public static void removerHospede(List<Hospede> hospedes, Pessoa usuarioLogado) {
 
     if (usuarioLogado instanceof Funcionario funcionario){
@@ -171,7 +202,13 @@ public class Remocao {
     }
   }
 
-  public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado, Pessoa usuarioLogado){
+  /**
+   * Método para encerrar a estadia do hospede
+   * @param acomodados
+   * @param hospedes
+   * @param acomodado
+   */
+  public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
     boolean certeza = JOptionPane.showConfirmDialog(null, "Deseja encerrar a estadia?", "Encerrar estadia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 
     if (certeza) {
@@ -193,7 +230,6 @@ public class Remocao {
       sb.append("\n---------------------------------------");
 
       for (Hospede hospede : acomodado.getAllHospedes()) {
-        hospede.contabilizarItens();
         for (Consumo consumo : hospede.getConsumo()) {
           gastosGeraisConsumo += consumo.getValorTotal();
           sb.append(consumo);

@@ -8,10 +8,23 @@ import javax.swing.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-
+/**
+ * Definição da classe Menus que oferece as opções do menu do sistema
+ */
 public class Menus {
 
-  // Oferece o menu de funções para visualizar os dados do Hotel
+  /**
+   * Método que oferece o menu de funções para visualizar os dados do Hotel
+   * @param hospedes
+   * @param administradores
+   * @param funcionarios
+   * @param reservas
+   * @param acomodados
+   * @param itensConsumo
+   * @param tiposAcomodacao
+   * @param acomodacoes
+   * @param funcoesVizualizar
+   */
   private void menuVizualizar(
           List<Hospede> hospedes,
           List<Administrador> administradores,
@@ -45,7 +58,19 @@ public class Menus {
     JOptionPane.showMessageDialog(null, result, title, JOptionPane.INFORMATION_MESSAGE);
   }
 
-  // Oferece o menu de funções para remover os dados do Hotel
+  /**
+   * Método que oferece o menu de funções para remover os dados do Hotel
+   * @param hospedes
+   * @param administradores
+   * @param funcionarios
+   * @param reservas
+   * @param acomodados
+   * @param itensConsumo
+   * @param tiposAcomodacao
+   * @param acomodacoes
+   * @param funcoesRemover
+   * @param usuario
+   */
   private void menuRemover(
           List<Hospede> hospedes,
           List<Administrador> administradores,
@@ -96,7 +121,19 @@ public class Menus {
     }
   }
 
-  // Oferece o menu de funções para editar os dados do Hotel
+  /**
+   * Método que oferece o menu de funções para editar os dados do Hotel
+   * @param usuario
+   * @param hospedes
+   * @param administradores
+   * @param funcionarios
+   * @param reservas
+   * @param acomodados
+   * @param itensConsumo
+   * @param tiposAcomodacao
+   * @param acomodacoes
+   * @param funcoesEditar
+   */
   private void menuEditar(
           Pessoa usuario,
           List<Hospede> hospedes,
@@ -147,7 +184,20 @@ public class Menus {
     }
   }
 
-  // Oferece o menu de funções para cadastrar os dados do Hotel
+  /**
+   * Método que oferece o menu de funções para cadastrar os dados do Hotel
+   * @param usuario
+   * @param hospedes
+   * @param administradores
+   * @param funcionarios
+   * @param reservas
+   * @param acomodados
+   * @param itensConsumo
+   * @param tiposAcomodacao
+   * @param acomodacoes
+   * @param funcoesCadastro
+   * @param estados
+   */
   private void menuCadastros(
           Pessoa usuario,
           List<Hospede> hospedes,
@@ -201,7 +251,25 @@ public class Menus {
     }
   }
 
-  // Método que gerencia as opções do menu
+  /**
+   * Método que gerencia as opções do menu
+   * @param opcao
+   * @param usuario
+   * @param hospedes
+   * @param administradores
+   * @param funcionarios
+   * @param reservas
+   * @param acomodados
+   * @param itensConsumo
+   * @param tiposAcomodacao
+   * @param acomodacoes
+   * @param funcoesCadastro
+   * @param funcoesEditar
+   * @param funcoesRemover
+   * @param funcoesVizualizar
+   * @param estados
+   * @return true se não ocorreu nada de errado ou false caso contrario
+   */
   public boolean menu(String opcao, Pessoa usuario,
                       List<Hospede> hospedes,
                       List<Administrador> administradores,
