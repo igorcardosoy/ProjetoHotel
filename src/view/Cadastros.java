@@ -345,8 +345,6 @@ public class Cadastros {
 
           if (usuario instanceof Funcionario funcionario)
             funcionario.cadastrarAcomodado(acomodados, acomodacoesDisponiveis, tiposAcomodacao, dataCheckIn, dataCheckOut, hospedePrincipal, acomodacao);
-          if (usuario instanceof Administrador administrador)
-            administrador.cadastrarAcomodado(acomodados, acomodacoesDisponiveis, tiposAcomodacao, dataCheckIn, dataCheckOut, hospedePrincipal, acomodacao);
 
           int numHospedes = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de hospedes que estaram na estadia: ", "Cadastrar acomodado", JOptionPane.QUESTION_MESSAGE));
 

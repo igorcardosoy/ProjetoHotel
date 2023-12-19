@@ -9,6 +9,7 @@ import model.pessoas.*;
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 // Definição da classe Hotel
@@ -40,6 +41,9 @@ public class Hotel {
   private final NiveisAcesso niveisAcesso;
   private final Menus menus;
 
+  public static final DateTimeFormatter formatterDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+  public static final DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
   /**
    * Construtor da classe Hotel.
    */
@@ -65,6 +69,9 @@ public class Hotel {
     funcoesRemover = new Object[]{};
     funcoesVizualizar = new Object[]{};
     funcoesDefault = new Object[]{};
+
+
+
 
     defaultValues();
   }
@@ -123,7 +130,7 @@ public class Hotel {
                 acomodados, itensConsumoDisponiveis,
                 tiposAcomodacao, acomodacoesDisponiveis,
                 funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
-                estados, niveisAcesso.getNivelAcesso());
+                estados);
         if (voltar) {
           niveisAcesso.setNivelAcesso(0);
         }
@@ -177,9 +184,9 @@ public class Hotel {
       funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
               "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José"), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
-              "Brasil", "maria@gmail.com", TipoDoc.RG, 123456789, "João", "José"), hospedes);
+              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José"), hospedes);
       funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
-              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 123456789, "Maria", "João"), hospedes);
+              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João"), hospedes);
     }
 
     // Cadastrar itens de consumo

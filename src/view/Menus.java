@@ -215,8 +215,7 @@ public class Menus {
                     Object[] funcoesEditar,
                     Object[] funcoesRemover,
                     Object[] funcoesVizualizar,
-                    Object[] estados,
-                          int nivelAcesso)
+                    Object[] estados)
   {
     switch (opcao) {
       case "Cadastros":

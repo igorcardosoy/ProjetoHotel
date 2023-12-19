@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static view.Hotel.formatterData;
+
 // Definição da classe Funcionario que herda de Pessoa
 public class Funcionario extends Pessoa {
 
@@ -154,7 +156,7 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString() {
         return "Funcionario: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
-                + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento();
+                + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento().format(formatterData);
 
 
     }

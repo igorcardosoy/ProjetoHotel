@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import model.CartaoCredito;
 
+import static view.Hotel.*;
+
 // Definição da classe ReservaAbstract (classe abstrata)
 public class Reserva {
 
@@ -92,6 +94,6 @@ public class Reserva {
   }
 
   public String toString() {
-    return "Reserva: " + this.checkIn + " - " + this.checkOut + " - " + this.hospedePrincipal.getNome() + " - " + this.acomodacao.getNumero() + " - " + this.cartaoCredito.getNumero() + " - " + this.multa + " - " + this.hospedes.size();
+    return "Reserva: " + this.checkIn.format(formatterData) + " - " + this.checkOut.format(formatterData) + " - " + this.hospedePrincipal.getNome() + " - " + this.acomodacao.getNumero() + " - " + this.cartaoCredito.getNumero() + " - " + this.multa + " - " + this.hospedes.size();
   }
 }
