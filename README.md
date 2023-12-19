@@ -40,13 +40,13 @@ Pode-se executar abrindo o executável criado após a compilação ou utilizando
 - Para Windows:
 
   ```bash
-  
+  mingw32-make run
   ```
 
 - Para Linux:
 
   ```bash
-  
+  make run
   ```
 
 ## Screenshots:
