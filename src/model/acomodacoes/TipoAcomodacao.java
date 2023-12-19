@@ -1,6 +1,11 @@
 package model.acomodacoes;
 
-// Definição da classe TipoAcomodacao
+/**
+ * Definição da classe TipoAcomodacao.
+ * @atributos codigo, nome, descricao, quantidade existente do tipo, quantidade disponivel do tipo,
+ * valor da diaria,
+ * quantidade de adultos  e criancas que cabem nela.
+ */
 public class TipoAcomodacao {
 
   // Atributos da classe
@@ -13,7 +18,17 @@ public class TipoAcomodacao {
   int adultosComportados;       // Número de adultos que podem ser acomodados
   int criancasComportadas;      // Número de crianças que podem ser acomodadas
 
-  // Construtor da classe TipoAcomodacao que recebe parâmetros para inicializar os atributos
+    /**
+     * Construtor da classe TipoAcomodacao que recebe parâmetros para inicializar
+     * os atributos.
+     * @param codigo
+     * @param nome
+     * @param descricao
+     * @param quantidadeExistente
+     * @param valorDiaria
+     * @param adultosComportados
+     * @param criancasComportadas
+     */
   public TipoAcomodacao(long codigo, String nome, String descricao, int quantidadeExistente, double valorDiaria,
                         int adultosComportados, int criancasComportadas) {
     this.codigo = codigo;
@@ -26,48 +41,85 @@ public class TipoAcomodacao {
     this.criancasComportadas = criancasComportadas;
   }
 
-  // Métodos para obter os valores dos atributos
+
+  /**
+   * @return código identificador do tipo de acomodação.
+   */
   public long getCodigo() {
     return codigo;
   }
 
+
+  /**
+   * @return nome do tipo de acomodação.
+   */
   public String getNome() {
     return nome;
   }
 
+  /**
+   * @return descrição do tipo de acomodação.
+   */
   public String getDescricao() {
     return descricao;
   }
 
+    /**
+     * @return quantidade existente desse tipo de acomodação.
+     */
   public int getQuantidadeExistente() {
     return quantidadeExistente;
   }
 
+    /**
+     * @return valor da diária para esse tipo de acomodação.
+     */
   public double getDiaria() {
     return valorDiaria;
   }
 
+  /**
+   * @return número de adultos que podem ser acomodados.
+   */
   public int getAdultosComportados() {
     return adultosComportados;
   }
 
+
+  /**
+   * @return número de crianças que podem ser acomodadas.
+   */
   public int getCriancasComportadas() {
     return criancasComportadas;
   }
 
+    /**
+     * @return quantidade disponível desse tipo de acomodação.
+     */
   public int getQuantidadeDisponivel() {
     return quantidadeDisponivel;
   }
 
+    /**
+     * Método para ocupar uma unidade da quantidade disponível
+     */
   public void addQuantidadeDisponivel() {
     quantidadeDisponivel -= 1;
   }
 
-  // Método para obter o próprio objeto TipoAcomodacao
+  /**
+   * @return tipo da acomodação.
+   */
   public TipoAcomodacao getTipo() {
     return this;
   }
 
+    /**
+     * Método que retorna uma descricao do tipo de acomodacao.
+     * @return String contendo o codigo, nome, descricao, quantidade
+     * existente, valor da diaria e
+     * quantidade de adultos e criancas que cabem nela.
+     */
   @Override
     public String toString() {
         return "TipoAcomodacao{" +

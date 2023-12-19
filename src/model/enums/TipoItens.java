@@ -2,6 +2,10 @@ package model.enums;
 
 import model.itensCosumo.ItensConsumo;
 
+/**
+ * Definição da enumeração de tipos de itens de consumo.
+ * @enumeracoes  LAVANDERIA, FRIGOBAR, RESTAURANTE.
+ */
 public enum TipoItens {
   LAVANDERIA("Lavanderia"),
   FRIGOBAR("Frigobar"),

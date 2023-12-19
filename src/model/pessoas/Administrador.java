@@ -12,17 +12,36 @@ import java.util.Objects;
 
 import static view.Hotel.formatterData;
 
-// Definição da classe Administrador que herda de Funcionario
+
+/**
+ * Definição da classe Administrador que herda de Funcionario.
+ * @atributos nome, telefone, cidade, estado, data de nascimento e senha.
+ */
 public class Administrador extends Funcionario {
 
-    // Construtor da classe Administrador que chama o construtor da classe pai (Funcionario)
+    /**
+     * Construtor da classe Administrador que recebe parâmetros para inicializar
+     * os atributos.
+     * @param nome
+     * @param telefone
+     * @param cidade
+     * @param estado
+     * @param dataNascimento
+     * @param senha
+     */
     public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento) {
         super(nome, telefone, cidade, estado, dataNascimento, 3);
     }
 
     // Manipulação de funcionário
 
-    // Método que verifica se há um cadastro do funcionário antes de iniciar um novo cadastro
+
+    /**
+     * Método para verificar se um funcionário já existe na lista de funcionários.
+     * @param funcionario especifiico que será verificado
+     * @param lista de funcionarios
+     * @return true se o funcionario existe na lista, false caso contrario.
+     */
     public boolean existeFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
         for (Funcionario lista : funcionarios) {
             if (lista.getNome().equals(funcionario.getNome())
@@ -34,7 +53,17 @@ public class Administrador extends Funcionario {
         return false;
     }
 
-    // Método para cadastrar um novo funcionário
+
+    /**
+     * Método para cadastrar um novo funcionário
+     * @param nome
+     * @param telefone
+     * @param cidade
+     * @param estado
+     * @param dataNascimento
+     * @param lista de funcionarios
+     * @return true se o funcionario foi cadastrado com sucesso, false caso contrario.
+     */
     public boolean cadastrarFuncionario(String nome, long telefone, String cidade, Estados estado,
                                         LocalDate dataNascimento, List<Funcionario> funcionarios) {
         Funcionario new_funcionario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
@@ -46,7 +75,12 @@ public class Administrador extends Funcionario {
         return false;
     }
 
-    // Método para remover um funcionário
+    /**
+     * Método para remover um funcionário
+     * @param funcionario especifico que será removido
+     * @param lista de funcionarios
+     * @return true se o funcionario foi removido com sucesso, false caso contrario.
+     */
     public boolean removerFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
         if (existeFuncionario(funcionario, funcionarios)) {
             funcionarios.remove(funcionario);
@@ -55,7 +89,13 @@ public class Administrador extends Funcionario {
         return false;
     }
 
-    // Método para editar as informações de um funcionário
+    /**
+     * Método para editar as informações de um funcionário
+     * @param funcionario especifico que será editado
+     * @param newFuncionario novo funcionario com as informações atualizadas
+     * @param lista de funcionarios
+     * @return true se o funcionario foi editado com sucesso, false caso contrario.
+     */
     public boolean editarFuncionario(Funcionario funcionario, Funcionario newFuncionario,
                                      List<Funcionario> funcionarios) {
         if (existeFuncionario(funcionario, funcionarios)) {
@@ -68,7 +108,14 @@ public class Administrador extends Funcionario {
 
     // Manipulação de cadastros de acomodação
 
-    // Método para cadastrar uma nova acomodação
+
+    /**
+     * Método para cadastrar uma acomodação na lista de acomodações.
+     * @param acomodacoes disponiveis no hotel
+     * @param acomodacoes ocupadas no hotel
+     * @param acomodacao especifica que será cadastrada
+     * @return true se a acomodacao foi cadastrada com sucesso, false caso contrario.
+     */
     public boolean cadastrarAcomodacao(List<Acomodacao> acomodacoesDisponiveis,
                                        List<Acomodado> acomodacoes, Acomodacao acomodacao) {
         for (Acomodado lista : acomodacoes) {
@@ -80,7 +127,13 @@ public class Administrador extends Funcionario {
         return true;
     }
 
-    // Método para editar as informações de uma acomodação
+    /**
+     * Método para editar as informações de uma acomodação
+     * @param acomodacoes disponiveis no hotel
+     * @param newAcomodacao nova acomodacao com as informações atualizadas
+     * @param numeroAcomodacao especifica que será editada
+     * @return true se a acomodacao foi editada com sucesso, false caso contrario.
+     */
     public boolean editarAcomodacao(List<Acomodacao> acomodacoes, Acomodacao newAcomodacao, int numeroAcomodacao) {
         for (Acomodacao lista : acomodacoes) {
             if (lista.getNumero() == numeroAcomodacao) {
@@ -92,11 +145,22 @@ public class Administrador extends Funcionario {
         return false;
     }
 
-    // Método para remover uma acomodação
+    /**
+     * Método para remover uma acomodação
+     * @param acomodacao especifica que será removida
+     * @param acomodacoes disponiveis no hotel
+     * @return true se a acomodacao foi removida com sucesso, false caso contrario.
+     */
     public boolean removerAcomodacao(Acomodacao acomodacao, List<Acomodacao> acomodacoes) {
         return acomodacoes.remove(acomodacao);
     }
 
+    /**
+     * Metodo para cadastrar um tipo de acomodacao nos tipos disponiveis do hotel.
+     * @param tipo de acomodacao especifico que será cadastrado
+     * @param tipos de acomodacao disponiveis no hotel
+     * @return true se o tipo de acomodacao foi cadastrado com sucesso, false caso contrario.
+     */
     // Método para cadastrar um novo tipo de acomodação
     public boolean cadastrarTipoAcomodacao(TipoAcomodacao tipoAcomodacao, List<TipoAcomodacao> tiposAcomodacao) {
         for (TipoAcomodacao lista : tiposAcomodacao) {
@@ -108,7 +172,12 @@ public class Administrador extends Funcionario {
         return true;
     }
 
-    // Método para remover um tipo de acomodação
+    /**
+     * Método para remover um tipo de acomodação do hotel.
+     * @param tipo de acomodacao especifico que será removido
+     * @param tiposAcomodacao disponiveis no hotel
+     * @return true se o tipo de acomodacao foi editado com sucesso, false caso contrario.
+     */
     public boolean removerTipoAcomodacao(TipoAcomodacao tipoAcomodacao, List<TipoAcomodacao> tiposAcomodacao) {
         for (TipoAcomodacao lista : tiposAcomodacao) {
             if (lista.equals(tipoAcomodacao)) {
@@ -121,7 +190,12 @@ public class Administrador extends Funcionario {
 
     // Manipulação de cadastros de consumo
 
-    // Método para cadastrar um novo item de consumo
+    /**
+     * Método para cadastrar um item de consumo.
+     * @param itemConsumo especifico que será cadastrado
+     * @param itensConsumo disponiveis no hotel
+     * @return true se o item de consumo foi cadastrado com sucesso, false caso contrario.
+     */
     public boolean cadastrarItemConsumo(ItensConsumo itemConsumo, List<ItensConsumo> itensConsumo) {
         for (ItensConsumo lista : itensConsumo) {
             if (lista.getCodigo() == itemConsumo.getCodigo()) {
@@ -132,7 +206,12 @@ public class Administrador extends Funcionario {
         return true;
     }
 
-    // Método para remover um item de consumo
+    /**
+     * Método para remover um item de consumo
+     * @param item de consumo especifico que será removido
+     * @param itens de consumo disponiveis no hotel
+     * @return true se o item de consumo foi editado com sucesso, false caso contrario.
+     */
     public boolean removerItemConsumo(ItensConsumo itemConsumo, List<ItensConsumo> itensConsumo) {
         for (ItensConsumo lista : itensConsumo) {
             if (lista.getCodigo() == itemConsumo.getCodigo()) {
@@ -144,13 +223,20 @@ public class Administrador extends Funcionario {
     }
 
 
-    // Método privado para verificar a senha do administrador
+    /**
+     * Metodo que verifica se a senha do administrador esta correta.
+     * @param key senha do administrador
+     * @return true se a senha estiver correta, false caso contrario.
+     */
     @Override
     protected boolean password(int key) {
         return key == this.getKey();
     }
 
-    // Sobrescrevendo o método toString() para fornecer uma representação textual do objeto
+    /**
+     * Método que retorna uma descricao do administrador.
+     * @return String contendo o nome, telefone, cidade, estado e data de nascimento.
+     */
     @Override
     public String toString() {
         return "Administrador: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
