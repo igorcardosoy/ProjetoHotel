@@ -147,7 +147,7 @@ public class Administrador extends Funcionario {
     // Método privado para verificar a senha do administrador
     @Override
     protected boolean password(int key) {
-        return key == 1234;
+        return key == this.getKey();
     }
 
     // Sobrescrevendo o método toString() para fornecer uma representação textual do objeto

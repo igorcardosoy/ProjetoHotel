@@ -100,7 +100,8 @@ public class Hotel {
         // Janela de diálogo para escolher o acesso
         escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
-        usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores, funcionarios);
+        usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores,
+                funcionarios, hospedes);
         if (niveisAcesso.getNivelAcesso() == -1) {
           quit = true;
         }
@@ -123,7 +124,7 @@ public class Hotel {
                 null, questions, questions[0]);
 
         // Execução da opção escolhida
-        boolean voltar = false;
+        boolean voltar;
         voltar = menus.menu(opcao, usuario,
                 hospedes, administradores,
                 funcionarios, reservas,
@@ -144,7 +145,7 @@ public class Hotel {
   private Object[] hotelMenu(){
     Object[] questions;
 
-    if (usuario == null){
+    if (niveisAcesso.getNivelAcesso() == 1){
       questions = funcoesDefault;
     } else {
       questions = new Object[]{
@@ -182,11 +183,11 @@ public class Hotel {
     // Cadastrar hóspedes
     if (usuario instanceof Funcionario funcionario){
       funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
-              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José", funcionario), hospedes);
+              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José", funcionario, 123456), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
-              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José", funcionario), hospedes);
+              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José", funcionario, 123456), hospedes);
       funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
-              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João", funcionario), hospedes);
+              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João", funcionario, 123456), hospedes);
     }
 
     // Cadastrar itens de consumo

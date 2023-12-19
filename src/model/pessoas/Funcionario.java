@@ -1,6 +1,5 @@
 package model.pessoas;
 
-import model.CartaoCredito;
 import model.acomodacoes.Acomodacao;
 import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
@@ -139,13 +138,11 @@ public class Funcionario extends Pessoa {
     }
 
     // Método que verifica se o funcionário tem acesso com a senha fornecida
-    public boolean allowAccess(int nivelAcesso) {
-        return password(nivelAcesso);
-    }
 
     // Método privado para verificar a senha do funcionário
+    @Override
     protected boolean password(int key) {
-        return key == 4321;
+        return key == this.getKey();
     }
 
     // Método protegido para obter a data de nascimento do funcionário

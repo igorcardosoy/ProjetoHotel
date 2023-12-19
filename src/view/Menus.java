@@ -22,7 +22,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesVizualizar
-  ){
+  ) {
     String title = "Vizualizar";
     String opcao;
     Object result;
@@ -57,7 +57,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesRemover
-  ){
+  ) {
     String title = "Remover";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, funcoesRemover, funcoesRemover[0]);
@@ -108,7 +108,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesEditar
-  ){
+  ) {
     String title = "Editar";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, funcoesEditar, funcoesEditar[0]);
@@ -159,8 +159,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesCadastro,
-          Object[] estados)
-  {
+          Object[] estados) {
 
 
     String title = "Cadastros";
@@ -204,20 +203,20 @@ public class Menus {
 
   // Método que gerencia as opções do menu
   public boolean menu(String opcao, Pessoa usuario,
-                    List<Hospede> hospedes,
-                    List<Administrador> administradores,
-                    List<Funcionario> funcionarios,
-                    List<Reserva> reservas,
-                    List<Acomodado> acomodados,
-                    List<ItensConsumo> itensConsumo,
-                    List<TipoAcomodacao> tiposAcomodacao,
-                    List<Acomodacao> acomodacoes,
-                    Object[] funcoesCadastro,
-                    Object[] funcoesEditar,
-                    Object[] funcoesRemover,
-                    Object[] funcoesVizualizar,
-                    Object[] estados)
-  {
+                      List<Hospede> hospedes,
+                      List<Administrador> administradores,
+                      List<Funcionario> funcionarios,
+                      List<Reserva> reservas,
+                      List<Acomodado> acomodados,
+                      List<ItensConsumo> itensConsumo,
+                      List<TipoAcomodacao> tiposAcomodacao,
+                      List<Acomodacao> acomodacoes,
+                      Object[] funcoesCadastro,
+                      Object[] funcoesEditar,
+                      Object[] funcoesRemover,
+                      Object[] funcoesVizualizar,
+                      Object[] estados) {
+
     switch (opcao) {
       case "Cadastros":
         menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
@@ -248,7 +247,7 @@ public class Menus {
         break;
       case "Encerrar estadia":
         Acomodado acomodado = null;
-        
+
         if (usuario instanceof Hospede hospede) {
           for (Acomodado acomodado1 : acomodados) {
             if (acomodado1.getHospedePrincipal().equals(hospede)) {
@@ -257,12 +256,32 @@ public class Menus {
             }
           }
         }
-        
+
         Remocao.encerrarEstadia(acomodados, acomodado);
         break;
       default:
-        return true;
+
+        if (opcao != null) {
+          switch (opcao) {
+            case "Cadastros":
+              menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
+              break;
+            case "Editar":
+              menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);
+              break;
+            case "Remover":
+              menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover);
+              break;
+            case "Vizualizar":
+              menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);
+              break;
+            default:
+              return true;
+          }
+        } else {
+          return true;
+        }
     }
-      return false;
+    return false;
   }
 }

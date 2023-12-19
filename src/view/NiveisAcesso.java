@@ -3,6 +3,7 @@ package view;
 import model.enums.Estados;
 import model.pessoas.Administrador;
 import model.pessoas.Funcionario;
+import model.pessoas.Hospede;
 import model.pessoas.Pessoa;
 
 import javax.swing.*;
@@ -172,7 +173,7 @@ public class NiveisAcesso {
   }
 
   // Método que gerencia o nível de acesso
-  public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios) {
+  public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios, List<Hospede> hospedes) {
     switch (acesso) {
       case 2:
         usuario = ADMAccess(administradores, usuario);
@@ -183,7 +184,7 @@ public class NiveisAcesso {
         break;
       case 0:
         // Entrar como hóspede? Sim ou não
-        usuario = HospedeAccess(usuario);
+        usuario = HospedeAccess(hospedes, usuario);
         break;
       case 3:
         // Sair...
@@ -197,7 +198,7 @@ public class NiveisAcesso {
   // Método para entrar como administrador
   private Pessoa ADMAccess(List<Administrador> administradores, Pessoa usuario) {
     Estados[] estados = Estados.values();
-    int senha;
+    String senha;
 
     if (administradores.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Nao ha administradores cadastrados");
@@ -225,10 +226,16 @@ public class NiveisAcesso {
         }
       }
 
-      senha = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de administrador",
-              JOptionPane.QUESTION_MESSAGE));
+      senha = JOptionPane.showInputDialog(null,
+              "Digite a senha", "Acesso de administrador",
+              JOptionPane.QUESTION_MESSAGE);
+
+      if (senha == null) {
+        return usuario;
+      }
+
       assert adm != null;
-      if (adm.allowAccess(senha)) {
+      if (!adm.allowAccess(Integer.parseInt(senha))) {
         JOptionPane.showMessageDialog(null, "Senha incorreta");
       } else {
         nivelAcesso = 3;
@@ -241,7 +248,7 @@ public class NiveisAcesso {
 
   // Método para entrar como funcionário
   private Pessoa FuncAccess(List<Funcionario> funcionarios, Pessoa usuario) {
-    int senha;
+    String senha;
 
     if (funcionarios.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Nao ha funcionarios cadastrados");
@@ -268,10 +275,13 @@ public class NiveisAcesso {
       }
 
       // Senha para entrar como funcionário
-      senha = Integer.parseInt(
-              JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE));
-      assert func != null;
-      if (func.allowAccess(senha)) {
+      senha = JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE);
+
+      if (senha == null || func == null) {
+        return usuario;
+      }
+        
+      if (!func.allowAccess(Integer.parseInt(senha))) {
         JOptionPane.showMessageDialog(null, "Senha incorreta");
       } else {
         nivelAcesso = 2;
@@ -283,14 +293,50 @@ public class NiveisAcesso {
   }
 
   // Método para entrar como hóspede
-  private Pessoa HospedeAccess(Pessoa usuario) {
-    if (JOptionPane.showConfirmDialog(null, "Deseja entrar como hospede?", "Acesso de hospede",
-            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-      nivelAcesso = 1;
-      usuario = null;
-      return usuario;
+  private Pessoa HospedeAccess(List<Hospede> hospedes, Pessoa usuario) {
+    String senha;
+
+    if (hospedes.isEmpty()) {
+      JOptionPane.showMessageDialog(null, "Nao ha hospedes cadastrados");
     } else {
-      nivelAcesso = 0;
+      Object[] nomesHospedes = new Object[hospedes.size()];
+      for (int i = 0; i < hospedes.size(); i++) {
+        nomesHospedes[i] = hospedes.get(i).getNome();
+      }
+
+      String nomeFuncionario = (String) JOptionPane.showInputDialog(null,
+              "Quem é você?",
+              "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE, null,
+              nomesHospedes,
+              nomesHospedes[0]);
+
+      if (nomeFuncionario == null) {
+        return usuario;
+      }
+
+      Hospede hospede = null;
+
+      for (Hospede lista : hospedes) {
+        if (lista.getNome().equals(nomeFuncionario)) {
+          hospede = lista;
+          break;
+        }
+      }
+
+      // Senha para entrar como funcionário
+      senha = JOptionPane.showInputDialog(null, "Digite a senha", "Acesso de funcionario", JOptionPane.QUESTION_MESSAGE);
+
+      if (senha == null || hospede == null) {
+        return usuario;
+      }
+
+      if (!hospede.allowAccess(Integer.parseInt(senha))) {
+        JOptionPane.showMessageDialog(null, "Senha incorreta");
+      } else {
+        nivelAcesso = 1;
+        usuario = usuario;
+        return usuario;
+      }
     }
 
     return usuario;
