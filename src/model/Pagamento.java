@@ -2,14 +2,25 @@ package model;
 
 import model.enums.FormasPagamento;
 
+/**
+ * Definição da classe Pagamento dependendo do que o hóspede deseje
+ * @atributos formas de pagamento 
+ */
 public class Pagamento {
 
     private FormasPagamento formaPagamento;
 
+    /**
+     * Construtor da classe Pagamento
+     * @param formasPagamento
+     */
     public Pagamento(FormasPagamento formasPagamento){
         this.formaPagamento = formaPagamento;
     }
 
+    /**
+     * Método de interação de acordo com a escolha do hóspede
+     */
     public void realizarPagamento(){
         switch(formaPagamento){
             case AVISTA_DINHEIRO:
@@ -29,7 +40,4 @@ public class Pagamento {
                 break;
         }
     }
-
-    
-    
 }
