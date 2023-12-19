@@ -64,7 +64,7 @@ public class Menus {
 
     switch (opcao) {
       case "Remover hospede":
-        Remocao.removerHospede();
+        Remocao.removerHospede(hospedes);
         break;
       case "Remover administrador":
         Remocao.removerAdministrador();
@@ -79,7 +79,7 @@ public class Menus {
         Remocao.removerAcomodado(acomodados, hospedes);
         break;
       case "Remover item de consumo":
-        Remocao.removerItemConsumo();
+        Remocao.removerItemConsumo(itensConsumo);
         break;
       case "Remover consumo":
         Remocao.removerConsumo();
@@ -257,31 +257,9 @@ public class Menus {
           }
           Remocao.encerrarEstadia(acomodados, hospedes,acomodado);
         }
-
-
         break;
       default:
-
-        if (opcao != null) {
-          switch (opcao) {
-            case "Cadastros":
-              menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
-              break;
-            case "Editar":
-              menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);
-              break;
-            case "Remover":
-              menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover);
-              break;
-            case "Vizualizar":
-              menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);
-              break;
-            default:
-              return true;
-          }
-        } else {
           return true;
-        }
     }
     return false;
   }

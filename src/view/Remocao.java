@@ -4,9 +4,11 @@ import model.Saida;
 import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
 import model.itensCosumo.Consumo;
+import model.itensCosumo.ItensConsumo;
 import model.pessoas.Hospede;
 
 import javax.swing.*;
+import java.awt.event.ItemEvent;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,7 +29,21 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerItemConsumo() {
+  public static void removerItemConsumo(List<ItensConsumo> itensConsumoDisponiveis) {
+
+    String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
+
+    ItensConsumo itemConsumo = null;
+
+    for (ItensConsumo itemConsumo1 : itensConsumoDisponiveis) {
+      if (itemConsumo1.getDescricao().equals(nomeItemConsumo)) {
+        itemConsumo = itemConsumo1;
+        break;
+      }
+    }
+    itensConsumoDisponiveis.remove(itemConsumo);
+
+    JOptionPane.showMessageDialog(null, "Item de consumo removido com sucesso!", "Remover item de consumo", JOptionPane.INFORMATION_MESSAGE);
 
   }
 
@@ -35,15 +51,14 @@ public class Remocao {
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado) {
 
     List<Hospede> hospedesAcomodados = acomodado.getAllHospedes();
-    acomodados.remove(acomodado);
 
     for (Hospede hospede1 : hospedesAcomodados) {
-          hospedes.remove(hospede1);
+          removerHospede(hospedes, hospede1);
     }
 
+    acomodados.remove(acomodado);
 
-
-      JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes) {
@@ -51,6 +66,7 @@ public class Remocao {
     String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
 
     Acomodado acomodado = null;
+    List<Hospede> hospedesAcomodados = null;
 
     for (Acomodado acomodado1 : acomodados) {
       if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
@@ -59,7 +75,10 @@ public class Remocao {
       }
     }
 
-    for (Hospede hospede1 : hospedes) {
+    assert acomodado != null;
+    hospedesAcomodados = acomodado.getAllHospedes();
+
+    for (Hospede hospede1 : hospedesAcomodados) {
       hospedes.remove(hospede1);
     }
 
@@ -109,8 +128,27 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerHospede() {
+  public static void removerHospede(List<Hospede> hospedes, Hospede hospede) {
+      hospedes.remove(hospede);
 
+      JOptionPane.showMessageDialog(null, "Hóspede removido com sucesso!", "Remover hóspede", JOptionPane.INFORMATION_MESSAGE);
+  }
+
+  public static void removerHospede(List<Hospede> hospedes) {
+    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover hóspede", JOptionPane.QUESTION_MESSAGE);
+
+  Hospede hospede = null;
+
+    for (Hospede hospede1 : hospedes) {
+      if (hospede1.getNome().equals(nomeHospede)) {
+        hospede = hospede1;
+        break;
+      }
+    }
+
+    hospedes.remove(hospede);
+
+    JOptionPane.showMessageDialog(null, "Hóspede removido com sucesso!", "Remover hóspede", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
