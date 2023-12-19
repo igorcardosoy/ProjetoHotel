@@ -175,18 +175,18 @@ public class NiveisAcesso {
   // Método que gerencia o nível de acesso
   public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios, List<Hospede> hospedes) {
     switch (acesso) {
-      case 3:
+      case 2:
         usuario = ADMAccess(administradores, usuario);
         break;
-      case 2:
+      case 1:
         // Nível de acesso para funcionários
         usuario = FuncAccess(funcionarios, usuario);
         break;
-      case 1:
+      case 0:
         // Entrar como hóspede? Sim ou não
         usuario = HospedeAccess(hospedes, usuario);
         break;
-      case 0:
+      case 3:
         // Sair...
         nivelAcesso = -1;
         break;
@@ -202,7 +202,7 @@ public class NiveisAcesso {
 
     if (administradores.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Nao ha administradores cadastrados");
-      Cadastros.cadastrarAdministrador(administradores, estados, usuario);
+      Cadastros.cadastrarAdministrador(administradores, usuario);
     } else {
       // Selecionar qual administrador de acordo com o nome.
       Object[] nomes = new Object[administradores.size()];
@@ -338,6 +338,7 @@ public class NiveisAcesso {
         return usuario;
       }
     }
+
     return usuario;
   }
 

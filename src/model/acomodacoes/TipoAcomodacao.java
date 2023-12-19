@@ -8,6 +8,7 @@ public class TipoAcomodacao {
   String nome;                  // Nome do tipo de acomodação
   String descricao;             // Descrição do tipo de acomodação
   int quantidadeExistente;      // Quantidade existente desse tipo de acomodação
+  int quantidadeDisponivel;     // Quantidade disponível desse tipo de acomodação
   double valorDiaria;           // Valor da diária para esse tipo de acomodação
   int adultosComportados;       // Número de adultos que podem ser acomodados
   int criancasComportadas;      // Número de crianças que podem ser acomodadas
@@ -19,6 +20,7 @@ public class TipoAcomodacao {
     this.nome = nome;
     this.descricao = descricao;
     this.quantidadeExistente = quantidadeExistente;
+    this.quantidadeDisponivel = quantidadeExistente;
     this.valorDiaria = valorDiaria;
     this.adultosComportados = adultosComportados;
     this.criancasComportadas = criancasComportadas;
@@ -51,6 +53,14 @@ public class TipoAcomodacao {
 
   public int getCriancasComportadas() {
     return criancasComportadas;
+  }
+
+  public int getQuantidadeDisponivel() {
+    return quantidadeDisponivel;
+  }
+
+  public void addQuantidadeDisponivel() {
+    quantidadeDisponivel -= 1;
   }
 
   // Método para obter o próprio objeto TipoAcomodacao

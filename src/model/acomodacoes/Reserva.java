@@ -4,8 +4,11 @@ package model.acomodacoes;
 // Importações de classes necessárias do pacote model.pessoas e java.time
 import model.pessoas.Hospede;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import model.CartaoCredito;
+
+import static view.Hotel.*;
 
 // Definição da classe ReservaAbstract (classe abstrata)
 public class Reserva {
@@ -29,6 +32,7 @@ public class Reserva {
         this.acomodacao = acomodacao;
         this.cartaoCredito = cartaoCredito;
         this.multa = 0;
+        hospedes = new ArrayList<>();
     }
 
     // Método para adicionar um hóspede à lista de hóspedes associada à reserva
@@ -87,5 +91,9 @@ public class Reserva {
 
   public boolean canRemoveWithoutPay() {
     return false;
+  }
+
+  public String toString() {
+    return "Reserva: " + this.checkIn.format(formatterData) + " - " + this.checkOut.format(formatterData) + " - " + this.hospedePrincipal.getNome() + " - " + this.acomodacao.getNumero() + " - " + this.cartaoCredito.getNumero() + " - " + this.multa + " - " + this.hospedes.size();
   }
 }

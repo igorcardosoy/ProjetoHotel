@@ -1,5 +1,6 @@
 package view;
 
+import model.CartaoCredito;
 import model.acomodacoes.*;
 import model.enums.*;
 import model.itensCosumo.*;
@@ -7,6 +8,8 @@ import model.pessoas.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 // Definição da classe Hotel
@@ -38,6 +41,9 @@ public class Hotel {
   private final NiveisAcesso niveisAcesso;
   private final Menus menus;
 
+  public static final DateTimeFormatter formatterDataHora = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+  public static final DateTimeFormatter formatterData = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
   /**
    * Construtor da classe Hotel.
    */
@@ -64,6 +70,9 @@ public class Hotel {
     funcoesVizualizar = new Object[]{};
     funcoesDefault = new Object[]{};
 
+
+
+
     defaultValues();
   }
 
@@ -71,7 +80,7 @@ public class Hotel {
    * Método para inicializar o sistema Hotel
    */
   public void init() {
-    String opcao;
+    String opcao = "";
     String title = "Hotel";
     boolean quit = false;
 
@@ -81,59 +90,50 @@ public class Hotel {
 
       // Opções de acesso
       Object[] acessos = {
-              "Sair",
               "Hospede",
               "Funcionario",
-              "Administrador" };
+              "Administrador",
+              "Sair"
+      };
 
-      while (!quit){
-        while (niveisAcesso.getNivelAcesso() == 0 && !quit) {
-          // Janela de diálogo para escolher o acesso
-          escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
-                  JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
-          usuario = niveisAcesso.nivelAcesso(escolha, usuario,
-                  administradores, funcionarios, hospedes);
-
-          System.out.println(niveisAcesso.getNivelAcesso() + " " + quit);
-
-          if (niveisAcesso.getNivelAcesso() == -1) {
-            quit = true;
-          }
+      while (!quit && niveisAcesso.getNivelAcesso() == 0) {
+        // Janela de diálogo para escolher o acesso
+        escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
+        usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores,
+                funcionarios, hospedes);
+        if (niveisAcesso.getNivelAcesso() == -1) {
+          quit = true;
         }
+      }
 
-        // Loop enquanto a opção não for "Sair" e o nível de acesso for maior que 0
-        while (niveisAcesso.getNivelAcesso() > 0) {
-          // Opções específicas de acordo com o nível de acesso
+      // Loop enquanto a opção não for "Sair" e o nível de acesso for maior que 0
+      while (!opcao.equals("Sair") && niveisAcesso.getNivelAcesso() > 0) {
+        // Opções específicas de acordo com o nível de acesso
 
-          funcoesVizualizar = niveisAcesso.functionsVizualizar();
-          funcoesCadastro = niveisAcesso.functionsCadastro();
-          funcoesEditar = niveisAcesso.functionsEditar();
-          funcoesRemover = niveisAcesso.functionsRemover();
-          funcoesDefault = niveisAcesso.functionsDefault();
+        funcoesVizualizar = niveisAcesso.functionsVizualizar();
+        funcoesCadastro = niveisAcesso.functionsCadastro();
+        funcoesEditar = niveisAcesso.functionsEditar();
+        funcoesRemover = niveisAcesso.functionsRemover();
+        funcoesDefault = niveisAcesso.functionsDefault();
 
-          Object[] questions = hotelMenu();
+        Object[] questions = hotelMenu();
 
-          // Janela de diálogo para escolher uma opção, entre Cadastros, Editar, Remover, Vizualizar e Sair
-          opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
-                  null, questions, questions[0]);
+        // Janela de diálogo para escolher uma opção, entre Cadastros, Editar, Remover, Vizualizar e Sair
+        opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
+                null, questions, questions[0]);
 
-          if (opcao == null){
-            niveisAcesso.setNivelAcesso(0);
-            break;
-          }
-
-          // Execução da opção escolhida
-          boolean voltar = false;
-          voltar = menus.menu(opcao, usuario,
-                  hospedes, administradores,
-                  funcionarios, reservas,
-                  acomodados, itensConsumoDisponiveis,
-                  tiposAcomodacao, acomodacoesDisponiveis,
-                  funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
-                  estados);
-          if (voltar) {
-            niveisAcesso.setNivelAcesso(0);
-          }
+        // Execução da opção escolhida
+        boolean voltar = false;
+        voltar = menus.menu(opcao, usuario,
+                hospedes, administradores,
+                funcionarios, reservas,
+                acomodados, itensConsumoDisponiveis,
+                tiposAcomodacao, acomodacoesDisponiveis,
+                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
+                estados);
+        if (voltar) {
+          niveisAcesso.setNivelAcesso(0);
         }
       }
     }
@@ -182,12 +182,12 @@ public class Hotel {
 
     // Cadastrar hóspedes
     if (usuario instanceof Funcionario funcionario){
-      funcionario.cadastrarHospede(new Hospede("João", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
+      funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
               "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José"), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
-              "Brasil", "maria@gmail.com", TipoDoc.RG, 123456789, "João", "José"), hospedes);
-      funcionario.cadastrarHospede(new Hospede("José", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
-              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 123456789, "Maria", "João"), hospedes);
+              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José"), hospedes);
+      funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
+              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João"), hospedes);
     }
 
     // Cadastrar itens de consumo
@@ -207,6 +207,26 @@ public class Hotel {
     tiposAcomodacao.add(new TipoAcomodacao(2, "Quarto", "Quarto com cama de solteiro", 10, 100.00, 1, 0));
     tiposAcomodacao.add(new TipoAcomodacao(3, "Quarto", "Quarto com cama de " +
             "casal e cama de solteiro", 10, 150.00, 2, 1));
+
+    // Cadastrar acomodações
+    acomodacoesDisponiveis.add(new Acomodacao(1, 1, tiposAcomodacao.get(0)));
+    acomodacoesDisponiveis.add(new Acomodacao(2, 1, tiposAcomodacao.get(1)));
+    acomodacoesDisponiveis.add(new Acomodacao(3, 1, tiposAcomodacao.get(2)));
+
+    // Cadastrar reservas
+    if (usuario instanceof Administrador administrador){
+
+      CartaoCredito cartao = new CartaoCredito(123, 123, "Jonas", "12/25");
+
+      LocalDateTime checkIn = LocalDate.parse("2021-12-20").atStartOfDay();
+      LocalDateTime checkOut = LocalDate.parse("2021-12-30").atStartOfDay();
+
+      Reserva reser = new Reserva(checkIn, checkOut, hospedes.getLast(), acomodacoesDisponiveis.getFirst(), cartao);
+
+      administrador.cadastrarReserva(reser, reservas);
+    }
+
+    // Cadastrar acomodados
 
   }
 }

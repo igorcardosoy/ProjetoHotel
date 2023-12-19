@@ -1,7 +1,5 @@
 package model.acomodacoes;
 
-import model.acomodacoes.TipoAcomodacao;
-
 // Definição da classe Acomodacao
 public class Acomodacao {
 
@@ -30,6 +28,12 @@ public class Acomodacao {
   // Método para obter o tipo de acomodação
   public TipoAcomodacao getTipo() {
     return tipo;
+  }
+
+  public String toString() {
+    return "Número: " + numero + " | " +
+           "Andar: " + andar + " | " +
+           "Tipo: " + tipo.getDescricao() + "\n";
   }
 }
 

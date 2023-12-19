@@ -3,8 +3,9 @@ package model.acomodacoes;
 import model.CartaoCredito;
 import model.pessoas.Funcionario;
 import model.pessoas.Hospede;
-import model.pessoas.Pessoa;
 import java.time.LocalDateTime;
+
+import static view.Hotel.*;
 
 // Definição da classe Acomodado, que herda de ReservaAbstract
 public class Acomodado extends Reserva {
@@ -21,9 +22,17 @@ public class Acomodado extends Reserva {
     this.funcionarioResponsavel = responsavel;
   }
 
-  public Acomodado(Reserva reserva) {
+  public Acomodado(Reserva reserva, Funcionario funcionarioResponsavel) {
     super(reserva.getCheckIn(), reserva.getCheckOut(), reserva.getHospedePrincipal(), reserva.getAcomodacao(), reserva.getCartaoCredito());
-      this.funcionarioResponsavel = null;
+      this.funcionarioResponsavel = funcionarioResponsavel;
+  }
+
+  public String toString() {
+    return "Check-in: " + getCheckIn().format(formatterDataHora) + " | " +
+            "Check-out: " + getCheckOut().format(formatterData) + " | " +
+            "Hóspede principal: " + getHospedePrincipal().getNome() + " | " +
+            "Acomodação: " + getAcomodacao().getNumero() + " | " +
+            "Funcionário responsável: " + funcionarioResponsavel.getNome() + "\n";
   }
 }
 

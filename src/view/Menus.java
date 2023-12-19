@@ -11,7 +11,7 @@ import java.util.List;
 public class Menus {
 
   // Oferece o menu de funções para visualizar os dados do Hotel
-  public void menuVizualizar(
+  private void menuVizualizar(
           List<Hospede> hospedes,
           List<Administrador> administradores,
           List<Funcionario> funcionarios,
@@ -46,7 +46,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para remover os dados do Hotel
-  public void menuRemover(
+  private void menuRemover(
           List<Hospede> hospedes,
           List<Administrador> administradores,
           List<Funcionario> funcionarios,
@@ -96,7 +96,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para editar os dados do Hotel
-  public void menuEditar(
+  private void menuEditar(
           Pessoa usuario,
           List<Hospede> hospedes,
           List<Administrador> administradores,
@@ -147,7 +147,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para cadastrar os dados do Hotel
-  public void menuCadastros(
+  private void menuCadastros(
           Pessoa usuario,
           List<Hospede> hospedes,
           List<Administrador> administradores,
@@ -168,21 +168,21 @@ public class Menus {
 
     switch (opcao) {
       case "Cadastrar hospede":
-        Cadastros.cadastrarHospede(hospedes, estados, usuario);
+        Cadastros.cadastrarHospede(hospedes, usuario);
         break;
       case "Cadastrar administrador":
-        Cadastros.cadastrarAdministrador(administradores, estados, usuario);
+        Cadastros.cadastrarAdministrador(administradores, usuario);
         break;
       case "Cadastrar funcionario":
-        Cadastros.cadastrarFuncionario(funcionarios, estados, usuario);
+        Cadastros.cadastrarFuncionario(funcionarios, usuario);
         break;
       case "Cadastrar reserva":
         Cadastros.cadastrarReserva(reservas, acomodacoes, usuario,
-                tiposAcomodacao);
+                tiposAcomodacao, hospedes);
         break;
-//      case "Cadastrar acomodado":
-//        Cadastros.cadastrarAcomodado();
-//        break;
+      case "Cadastrar acomodado":
+        Cadastros.cadastrarAcomodado(usuario, reservas, acomodados, acomodacoes, tiposAcomodacao, hospedes);
+        break;
       case "Cadastrar item de consumo":
         Cadastros.cadastrarItemConsumo(itensConsumo, usuario);
         break;

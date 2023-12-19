@@ -10,6 +10,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import static view.Hotel.formatterData;
+
 // Definição da classe Administrador que herda de Funcionario
 public class Administrador extends Funcionario {
 
@@ -152,6 +154,6 @@ public class Administrador extends Funcionario {
     @Override
     public String toString() {
         return "Administrador: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
-                + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento();
+                + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento().format(formatterData);
     }
 }

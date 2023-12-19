@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import static view.Hotel.formatterData;
+
 // Definição da classe Hospede que herda de Pessoa
 public class Hospede extends Pessoa {
 
@@ -168,10 +170,17 @@ public class Hospede extends Pessoa {
     return this.identificacao;
   }
 
+  @Override
   protected boolean password(int key) {
-    return key == 3456;
+    return key == Keys.HOSPEDE.getkey();
   }
-  public boolean allowAccess(int nivelAcesso) {
-    return password(nivelAcesso);
+
+  @Override
+  public String toString() {
+    return "Hospede: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
+            + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento().format(formatterData);
+
+
   }
+
 }

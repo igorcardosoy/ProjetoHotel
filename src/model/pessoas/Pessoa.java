@@ -5,6 +5,8 @@ import model.enums.Estados;
 
 import java.time.LocalDate;
 
+import static view.Hotel.formatterData;
+
 public abstract class Pessoa {
   private String nome;
   private long telefone;
@@ -82,6 +84,6 @@ public abstract class Pessoa {
             "Telefone: " + telefone + "\n" +
             "Cidade: " + cidade + "\n" +
             "Estado: " + estado + "\n" +
-            "Data de Nascimento: " + dataNascimento + "\n";
+            "Data de Nascimento: " + dataNascimento.format(formatterData) + "\n";
   }
 }
