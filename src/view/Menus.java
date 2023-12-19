@@ -107,7 +107,7 @@ public class Menus {
         Remocao.removerItemConsumo(itensConsumo, usuario);
         break;
       case "Remover consumo":
-        Remocao.removerConsumo();
+        Remocao.removerConsumo(itensConsumo);
         break;
       case "Remover tipo de acomodacao":
         Remocao.removerTipoAcomodacao();
@@ -323,7 +323,7 @@ public class Menus {
               break;
             }
           }
-          Remocao.encerrarEstadia(acomodados, hospedes,acomodado);
+          Remocao.encerrarEstadia(acomodados, hospedes,acomodado, usuario);
         }
         break;
       default:

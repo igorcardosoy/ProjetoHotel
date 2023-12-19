@@ -79,7 +79,7 @@ public class Cadastros {
    */
   // Método para cadastrar um funcionário
   public static void cadastrarFuncionario(List<Funcionario> funcionarios, Pessoa usuario){
-    if (usuario.getKey() >= 3){
+    if (usuario instanceof Administrador){
       // Janela de diálogo para coletar informações do funcionário
       String title = "Cadastrar funcionario";
 
@@ -104,9 +104,12 @@ public class Cadastros {
         }
       }
 
+      int key = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha do funcionario", title,
+              JOptionPane.QUESTION_MESSAGE));
+
       // Adicionar o funcionário à lista
       if (usuario instanceof Administrador administrador)
-        administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, funcionarios);
+        administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, key, funcionarios);
     }
   }
 
@@ -116,7 +119,7 @@ public class Cadastros {
    * @param usuario Usuario logado no sistema.
    */
   public static void cadastrarHospede(List<Hospede> hospedes, Pessoa usuario) {
-    if (usuario.getKey() >= 2){
+    if (usuario instanceof Funcionario){
       // Janela de diálogo para coletar informações do hóspede
       String title = "Cadastrar hospede";
 
@@ -178,7 +181,7 @@ public class Cadastros {
                                       List<Acomodacao> acomodacoes, Pessoa usuario,
                                       List<TipoAcomodacao> tipoAcomodacoesCadastradas,
                                       List<Hospede> hospedes) {
-    if (usuario.getKey() >= 2) {
+    if (usuario instanceof Funcionario funcionario) {
       String title = "Cadastrar reserva";
 
       System.out.println(acomodacoes.size());
@@ -267,8 +270,7 @@ public class Cadastros {
 
           Reserva reserva = new Reserva(dataCheckIn, dataCheckOut, hospedePrincipal, acomodacao, cartaoCredito);
 
-          if (usuario instanceof Funcionario funcionario)
-            funcionario.cadastrarReserva(reserva, reservas);
+          funcionario.cadastrarReserva(reserva, reservas);
 
           int numHospedes = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de hospedes que estaram na reserva: ", title, JOptionPane.QUESTION_MESSAGE));
 
@@ -285,7 +287,6 @@ public class Cadastros {
     }
   }
 
-  // TO DO
   public static void cadastrarAcomodado(Pessoa usuario, List<Reserva> reservas, List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao, List<Hospede> hospedes) {
     // Um acomodado pode ser criado do zero ou a partir de uma reserva
 
@@ -299,6 +300,9 @@ public class Cadastros {
         Reserva reserva = null;
         for (Reserva reserva1 : reservas) {
           if (reserva1.getHospedePrincipal().getNome().equalsIgnoreCase(nomeHospedePrincipal)) {
+            for (Hospede hospede : reserva1.getAllHospedes()) {
+              hospede.setAcomodado(true);
+            }
             reserva = reserva1;
             break;
           }
@@ -452,7 +456,6 @@ public class Cadastros {
     }
   }
 
-  // TO DO
   static void cadastrarConsumo() {
 
   }

@@ -149,7 +149,7 @@ public class Hotel {
     Object[] questions;
 
     if (niveisAcesso.getNivelAcesso() == 1){
-      questions = funcoesDefault;
+        questions = funcoesDefault;
     } else {
       questions = new Object[]{
               "Cadastros",
@@ -178,9 +178,9 @@ public class Hotel {
 
     // Cadastrar funcionários
     if (usuario instanceof Administrador administrador){
-      administrador.cadastrarFuncionario("Caua", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"), funcionarios);
-      administrador.cadastrarFuncionario("Pedro", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"), funcionarios);
-      administrador.cadastrarFuncionario("Eduardo", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"), funcionarios);
+      administrador.cadastrarFuncionario("Caua", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"), 123456, funcionarios);
+      administrador.cadastrarFuncionario("Pedro", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"), 123456, funcionarios);
+      administrador.cadastrarFuncionario("Eduardo", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"), 123456, funcionarios);
     }
 
     // Cadastrar hóspedes

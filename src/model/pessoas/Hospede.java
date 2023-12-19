@@ -30,10 +30,9 @@ public class Hospede extends Pessoa {
   private double gastosTelefonicos;
   private List<Consumo> dadosConsumo;
   private List<Consumo> dadosConsumoFrigobar;
-  private List<Consumo> dadosConsumoLavanderia;
-  private List<Consumo> dadosConsumoRestaurante;
   private List<ItensConsumo> itensComprados;
   private Funcionario funcionarioResponsavel;
+  private boolean acomodado;
 
   /**
    * Construtor da classe Hospede
@@ -63,6 +62,7 @@ public class Hospede extends Pessoa {
     this.nomePai = nomePai;
     gastosTelefonicos = 0;
     // Inicializando listas
+    this.funcionarioResponsavel = funcionarioResponsavel;
     setItensComprados();
     setDadosConsumo();
   }
@@ -74,14 +74,20 @@ public class Hospede extends Pessoa {
     this.itensComprados = new ArrayList<>(5);
   }
 
+  public boolean isAcomodado() {
+    return acomodado;
+  }
+
+  public void setAcomodado(boolean acomodado) {
+    this.acomodado = acomodado;
+  }
+
   /**
    * Método privado para inicializar as listas de consumo
    */
   private void setDadosConsumo() {
     this.dadosConsumo = new ArrayList<>(5);
     this.dadosConsumoFrigobar = new ArrayList<>(5);
-    // this.dadosConsumoLavanderia = new ArrayList<>(5);
-    // this.dadosConsumoRestaurante = new ArrayList<>(5);
   }
 
   /**
@@ -140,17 +146,10 @@ public class Hospede extends Pessoa {
 
   /**
    * Método para contabilizar os itens consumidos
-   * @param key senha do usuário
-   * @return true caso a contabilização dos itens ocorrer com sucesso ou false caso contrário
    */
-  public boolean contabilizarItens(int key) {
-    // Verifica se o usuário tem permissão para contabilizar itens
-    if (canEdit(key)) {
+  public void contabilizarItens() {
       dadosConsumo.addAll(dadosConsumoFrigobar);
       dadosConsumoFrigobar.clear();
-      return true;
-    }
-    return false;
   }
 
   // Métodos de acesso aos atributos da classe Hospede
