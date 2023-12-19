@@ -1,7 +1,5 @@
 package model.acomodacoes;
 
-import model.acomodacoes.TipoAcomodacao;
-
 // Definição da classe Acomodacao
 public class Acomodacao {
 

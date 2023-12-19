@@ -11,7 +11,7 @@ import java.util.List;
 public class Menus {
 
   // Oferece o menu de funções para visualizar os dados do Hotel
-  public void menuVizualizar(
+  private void menuVizualizar(
           List<Hospede> hospedes,
           List<Administrador> administradores,
           List<Funcionario> funcionarios,
@@ -46,7 +46,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para remover os dados do Hotel
-  public void menuRemover(
+  private void menuRemover(
           List<Hospede> hospedes,
           List<Administrador> administradores,
           List<Funcionario> funcionarios,
@@ -96,7 +96,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para editar os dados do Hotel
-  public void menuEditar(
+  private void menuEditar(
           Pessoa usuario,
           List<Hospede> hospedes,
           List<Administrador> administradores,
@@ -147,7 +147,7 @@ public class Menus {
   }
 
   // Oferece o menu de funções para cadastrar os dados do Hotel
-  public void menuCadastros(
+  private void menuCadastros(
           Pessoa usuario,
           List<Hospede> hospedes,
           List<Administrador> administradores,
