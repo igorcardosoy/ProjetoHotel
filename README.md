@@ -51,9 +51,9 @@ Pode-se executar abrindo o executável criado após a compilação ou utilizando
 
 ## Screenshots:
 
-![Sistema Rodando](link img)
-![Sistema Rodando](link img)
-![Sistema Rodando](link img)
+![Sistema Rodando](https://imgur.com/1B4vHZF.png)
+![Sistema Rodando](https://imgur.com/qlqL2iE.png)
+![Sistema Rodando](https://imgur.com/wD2BqVf.png)
 
 ## Descrição do Projeto:
 
@@ -65,4 +65,5 @@ Pode-se executar abrindo o executável criado após a compilação ou utilizando
 
 ## Diagrama de Classe
 
-![Diagrama](Link img)
+![Diagrama](https://imgur.com/uD27oEJ.png)
+![Diagrama](https://imgur.com/NnmgSAM.png)
