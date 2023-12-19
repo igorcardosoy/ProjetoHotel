@@ -321,6 +321,7 @@ public class Cadastros {
           if (usuario instanceof Funcionario funcionario) {
             funcionario.cadastrarAcomodado(reserva, acomodados, acomodacoesDisponiveis, tiposAcomodacao);
             JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
+            Remocao.removerReserva(reservas, reserva, usuario);
           }
         } else {
           JOptionPane.showMessageDialog(null, "Reserva nao encontrada", "Cadastrar acomodado", JOptionPane.ERROR_MESSAGE);
@@ -362,6 +363,7 @@ public class Cadastros {
           JOptionPane.showMessageDialog(null, "Cadastro do hospede principal", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
           cadastrarHospede(hospedes, usuario);
 
+          hospedes.getLast().setAcomodado(true);
           Hospede hospedePrincipal = hospedes.getLast();
 
           // Gerar estadia

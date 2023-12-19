@@ -40,11 +40,12 @@ public class NiveisAcesso {
       Object[] funcoesFuncionario;
       Object[] auxFunctionsFUNC;
 
+      // "Cadastrar consumo"
+
       funcoesFuncionario = new Object[]{
               "Cadastrar reserva",
               "Cadastrar acomodado",
               "Cadastrar item de consumo",
-              "Cadastrar consumo",
               "Cadastrar hospede",
               "Voltar"
       };
@@ -108,9 +109,11 @@ public class NiveisAcesso {
     Object[] funcoesRemover = new Object[0];
 
     if (nivelAcesso >= 3) {
+
+      //"Remover administrador",
+      //"Remover funcionario",
+
       funcoesRemover = new Object[]{
-              "Remover administrador",
-              "Remover funcionario",
               "Remover tipo de acomodacao",
               "Remover acomodacao",
       };
@@ -120,11 +123,12 @@ public class NiveisAcesso {
       Object[] funcoesFuncionario;
       Object[] AuxFunctionsFUNC;
 
+      //"Remover item de consumo",
+      //"Remover consumo",
+
       funcoesFuncionario = new Object[]{
               "Remover reserva",
               "Remover acomodado",
-              "Remover item de consumo",
-              "Remover consumo",
               "Remover hospede",
               "Voltar"
       };
@@ -356,7 +360,7 @@ public class NiveisAcesso {
         return usuario;
       } else {
         Object[] nomesHospedes = new Object[hospedesAcomodados.size()];
-        for (int i = 0; i < hospedes.size(); i++) {
+        for (int i = 0; i < hospedesAcomodados.size(); i++) {
           nomesHospedes[i] = hospedesAcomodados.get(i).getNome();
         }
 

@@ -131,6 +131,23 @@ public class Remocao {
     }
   }
 
+
+  /**
+   * Método para remover uma reserva
+   * @param reservas reservas
+   * @param reserva reserva
+   * @param usuarioLogado usuario logado
+   */
+  public static void removerReserva(List<Reserva> reservas, Reserva reserva , Pessoa usuarioLogado){
+    if (usuarioLogado instanceof Funcionario){
+
+      reservas.remove(reserva);
+
+      JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!", "Remover reserva", JOptionPane.INFORMATION_MESSAGE);
+
+    }
+  }
+
   /**
    * Método para remoção de uma reserva
    * @param reservas reservas
