@@ -124,7 +124,7 @@ public class Hotel {
                 null, questions, questions[0]);
 
         // Execução da opção escolhida
-        boolean voltar = false;
+        boolean voltar;
         voltar = menus.menu(opcao, usuario,
                 hospedes, administradores,
                 funcionarios, reservas,
@@ -170,7 +170,7 @@ public class Hotel {
   private void defaultValues(){
     // Cadastrar administradores
     administradores.add(new Administrador("Igu", 16992479541L, "Ibaté",
-            Estados.SP, LocalDate.parse("2005-04-18")));
+            Estados.SP, LocalDate.parse("2005-04-18"), 40028922));
     usuario = administradores.getFirst();
 
     // Cadastrar funcionários
@@ -183,14 +183,11 @@ public class Hotel {
     // Cadastrar hóspedes
     if (usuario instanceof Funcionario funcionario){
       funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
-              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria",
-              "José", 100), hospedes);
+              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José", funcionario, 123456), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
-              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "Jos" +
-              "é", 101), hospedes);
+              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José", funcionario, 123456), hospedes);
       funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
-              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789,
-              "Maria", "João", 102), hospedes);
+              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João", funcionario, 123456), hospedes);
     }
 
     // Cadastrar itens de consumo

@@ -31,4 +31,35 @@ public class Consumo {
     this.quantidade = quantidade;
     this.valorTotal = valorTotal;
   }
+
+  public LocalDateTime getDataConsumo() {
+    return dataConsumo;
+  }
+
+  public String getFuncionarioResponsavel() {
+    return funcionarioResponsavel;
+  }
+
+  public int getCodigoItem() {
+    return codigoItem;
+  }
+
+  public int getQuantidade() {
+    return quantidade;
+  }
+
+  public double getValorTotal() {
+    return valorTotal;
+  }
+
+  public void setDataConsumo(LocalDateTime dataConsumo) {
+    this.dataConsumo = dataConsumo;
+  }
+
+  public String toString() {
+    return "Data do consumo: " + dataConsumo + "\n" +
+           "Código do item: " + codigoItem + "\n" +
+           "Quantidade: " + quantidade + "\n" +
+           "Valor total: " + valorTotal + "\n";
+  }
 }

@@ -65,8 +65,11 @@ public class Cadastros {
         }
       }
 
+      int key = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite a senha do administrador", title,
+              JOptionPane.QUESTION_MESSAGE));
+
       // Adicionar o administrador à lista
-      administradores.add(new Administrador(nome, telefone, cidade, estado, dataNascimento));
+      administradores.add(new Administrador(nome, telefone, cidade, estado, dataNascimento, key));
     }
   }
 
@@ -162,7 +165,7 @@ public class Cadastros {
       if (usuario instanceof Funcionario funcionario)
         funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade,
                 estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae
-                , nomePai, senha), hospedes);
+                , nomePai, funcionario, senha), hospedes);
     }
   }
 
@@ -304,11 +307,6 @@ public class Cadastros {
             funcionario.cadastrarAcomodado(reserva, acomodados, acomodacoesDisponiveis, tiposAcomodacao);
             JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
           }
-
-          if (usuario instanceof Administrador administrador) {
-            administrador.cadastrarAcomodado(reserva, acomodados, acomodacoesDisponiveis, tiposAcomodacao);
-            JOptionPane.showMessageDialog(null, "Acomodado cadastrado com sucesso", "Cadastrar acomodado", JOptionPane.INFORMATION_MESSAGE);
-          }
         } else {
           JOptionPane.showMessageDialog(null, "Reserva nao encontrada", "Cadastrar acomodado", JOptionPane.ERROR_MESSAGE);
         }
@@ -375,7 +373,7 @@ public class Cadastros {
     if (usuario.getKey() >= 3) {
       String title = "Cadastrar item de consumo";
 
-      long codigo = Long.parseLong(JOptionPane.showInputDialog(null, "Digite o codigo do item de consumo", title, JOptionPane.QUESTION_MESSAGE));
+      int codigo = Integer.parseInt((JOptionPane.showInputDialog(null, "Digite o codigo do item de consumo", title, JOptionPane.QUESTION_MESSAGE)));
       TipoItens tipo = (TipoItens) JOptionPane.showInputDialog(null, "Escolha o tipo do item de consumo", title, JOptionPane.QUESTION_MESSAGE, null, TipoItens.values(), TipoItens.values()[0]);
       String descricao = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo", title, JOptionPane.QUESTION_MESSAGE);
       double preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o preco do item de consumo", title, JOptionPane.QUESTION_MESSAGE));

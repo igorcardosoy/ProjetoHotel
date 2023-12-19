@@ -5,6 +5,7 @@ import model.acomodacoes.*;
 import model.itensCosumo.*;
 import javax.swing.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesVizualizar
-  ){
+  ) {
     String title = "Vizualizar";
     String opcao;
     Object result;
@@ -56,14 +57,14 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesRemover
-  ){
+  ) {
     String title = "Remover";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, funcoesRemover, funcoesRemover[0]);
 
     switch (opcao) {
       case "Remover hospede":
-        Remocao.removerHospede();
+        Remocao.removerHospede(hospedes);
         break;
       case "Remover administrador":
         Remocao.removerAdministrador();
@@ -75,10 +76,10 @@ public class Menus {
         Remocao.removerReserva(reservas);
         break;
       case "Remover acomodado":
-        Remocao.removerAcomodado();
+        Remocao.removerAcomodado(acomodados, hospedes);
         break;
       case "Remover item de consumo":
-        Remocao.removerItemConsumo();
+        Remocao.removerItemConsumo(itensConsumo);
         break;
       case "Remover consumo":
         Remocao.removerConsumo();
@@ -107,7 +108,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesEditar
-  ){
+  ) {
     String title = "Editar";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, funcoesEditar, funcoesEditar[0]);
@@ -158,8 +159,7 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesCadastro,
-          Object[] estados)
-  {
+          Object[] estados) {
 
 
     String title = "Cadastros";
@@ -203,40 +203,64 @@ public class Menus {
 
   // Método que gerencia as opções do menu
   public boolean menu(String opcao, Pessoa usuario,
-                    List<Hospede> hospedes,
-                    List<Administrador> administradores,
-                    List<Funcionario> funcionarios,
-                    List<Reserva> reservas,
-                    List<Acomodado> acomodados,
-                    List<ItensConsumo> itensConsumo,
-                    List<TipoAcomodacao> tiposAcomodacao,
-                    List<Acomodacao> acomodacoes,
-                    Object[] funcoesCadastro,
-                    Object[] funcoesEditar,
-                    Object[] funcoesRemover,
-                    Object[] funcoesVizualizar,
-                    Object[] estados)
-  {
-    if (opcao != null){
-      switch (opcao) {
-        case "Cadastros":
-          menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
-          break;
-        case "Editar":
-          menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);
-          break;
-        case "Remover":
-          menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover);
-          break;
-        case "Vizualizar":
-          menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);
-          break;
-        default:
+                      List<Hospede> hospedes,
+                      List<Administrador> administradores,
+                      List<Funcionario> funcionarios,
+                      List<Reserva> reservas,
+                      List<Acomodado> acomodados,
+                      List<ItensConsumo> itensConsumo,
+                      List<TipoAcomodacao> tiposAcomodacao,
+                      List<Acomodacao> acomodacoes,
+                      Object[] funcoesCadastro,
+                      Object[] funcoesEditar,
+                      Object[] funcoesRemover,
+                      Object[] funcoesVizualizar,
+                      Object[] estados) {
+
+    switch (opcao) {
+      case "Cadastros":
+        menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
+        break;
+      case "Editar":
+        menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);
+        break;
+      case "Remover":
+        menuRemover(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesRemover);
+        break;
+      case "Vizualizar":
+        menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);
+        break;
+      case "Consumir":
+        if (usuario instanceof Hospede hospede) {
+
+          //Selecionar qual itens quer consumir
+          ItensConsumo item = (ItensConsumo) JOptionPane.showInputDialog(null, "Escolha uma opcao", "Consumir", JOptionPane.QUESTION_MESSAGE,
+                  null, itensConsumo.toArray(), itensConsumo.getFirst());
+
+          int qnt = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade: ", "Consumir", JOptionPane.QUESTION_MESSAGE));
+
+          hospede.consumirItem(LocalDateTime.now(), hospede.getFuncionarioResponsavel().getNome(), qnt, item.getValor(), item.getCodigo(), itensConsumo);
+        } else {
+
+          JOptionPane.showMessageDialog(null, "Apenas hospedes podem consumir", "Consumir", JOptionPane.ERROR_MESSAGE);
+        }
+        break;
+      case "Encerrar estadia":
+        Acomodado acomodado = null;
+
+        if (usuario instanceof Hospede hospede) {
+          for (Acomodado acomodado1 : acomodados) {
+            if (acomodado1.getHospedePrincipal().equals(hospede)) {
+              acomodado = acomodado1;
+              break;
+            }
+          }
+          Remocao.encerrarEstadia(acomodados, hospedes,acomodado);
+        }
+        break;
+      default:
           return true;
-      }
-    } else {
-        return true;
     }
-      return false;
+    return false;
   }
 }

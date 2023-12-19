@@ -23,24 +23,26 @@ public class Hospede extends Pessoa {
   private Indentificacao identificacao;
   private String nomeMae;
   private String nomePai;
+  private double gastosTelefonicos;
   private List<Consumo> dadosConsumo;
   private List<Consumo> dadosConsumoFrigobar;
   private List<Consumo> dadosConsumoLavanderia;
   private List<Consumo> dadosConsumoRestaurante;
   private List<ItensConsumo> itensComprados;
+  private Funcionario funcionarioResponsavel;
 
   // Construtor da classe Hospede
   public Hospede(String nome, int telefone, String cidade, Estados estado, LocalDate dataNascimento, String pais,
-                 String email, TipoDoc tipoDoc, int numDoc, String nomeMae,
-                 String nomePai, int key) {
+                 String email, TipoDoc tipoDoc, int numDoc, String nomeMae, String nomePai, Funcionario funcionarioResponsavel, int senha){
     // Chamando o construtor da classe pai (Pessoa)
-    super(nome, telefone, cidade, estado, dataNascimento, key);
+    super(nome, telefone, cidade, estado, dataNascimento, senha);
     // Inicializando os atributos específicos da classe Hospede
     this.pais = pais;
     this.email = email;
     this.identificacao = new Indentificacao(numDoc, tipoDoc);
     this.nomeMae = nomeMae;
     this.nomePai = nomePai;
+    gastosTelefonicos = 0;
     // Inicializando listas
     setItensComprados();
     setDadosConsumo();
@@ -114,6 +116,10 @@ public class Hospede extends Pessoa {
     return dadosConsumo;
   }
 
+  public List<Consumo> getConsumoFrigobar() {
+    return dadosConsumoFrigobar;
+  }
+
   public String getPais() {
     return pais;
   }
@@ -126,6 +132,10 @@ public class Hospede extends Pessoa {
     return identificacao.getNumero();
   }
 
+  public double getGastosTelefonicos() {
+    return gastosTelefonicos;
+  }
+
   public String getIdentificacaoTipo() {
     return identificacao.getTipo();
   }
@@ -136,6 +146,10 @@ public class Hospede extends Pessoa {
 
   public String getNomePai() {
     return nomePai;
+  }
+
+  public Funcionario getFuncionarioResponsavel() {
+    return funcionarioResponsavel;
   }
 
   public List<ItensConsumo> getItensComprados() {
@@ -161,6 +175,10 @@ public class Hospede extends Pessoa {
 
   public void setNomePai(String nomePai) {
     this.nomePai = nomePai;
+  }
+
+  public void setFuncionarioResponsavel(Funcionario funcionarioResponsavel) {
+    this.funcionarioResponsavel = funcionarioResponsavel;
   }
 
   // Método de acesso ao atributo identificacao
