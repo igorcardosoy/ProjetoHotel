@@ -18,11 +18,11 @@ public class Consumo {
     /**
      * Construtor da classe Consumo que recebe parâmetros para inicializar
      * os atributos.
-     * @param dataConsumo
-     * @param funcionarioResponsavel
-     * @param codigoItem
-     * @param quantidade
-     * @param valorTotal
+     * @param dataConsumo data do consumo
+     * @param funcionarioResponsavel funcionario responsavel pela marcacao
+     * @param codigoItem codigo do item
+     * @param quantidade quantidade consumida
+     * @param valorTotal valor total
      */
   public Consumo(LocalDateTime dataConsumo, String funcionarioResponsavel, int codigoItem, int quantidade, double valorTotal) {
     this.dataConsumo = dataConsumo;

@@ -8,7 +8,7 @@ import model.enums.TipoItens;
  */
 public class ItensConsumo {
   TipoItens tipo;
-  long codigo;
+  int codigo;
   String descricao;
   double valor;
 
@@ -20,7 +20,7 @@ public class ItensConsumo {
      * @param descricao
      * @param valor
      */
-  public ItensConsumo(long codigo, TipoItens tipo, String descricao, double valor) {
+  public ItensConsumo(int codigo, TipoItens tipo, String descricao, double valor) {
     this.codigo = codigo;
     this.descricao = descricao;
     this.valor = valor;
@@ -38,7 +38,7 @@ public class ItensConsumo {
     /**
      * @return codigo do item.
      */
-  public long getCodigo() {
+  public int getCodigo() {
     return codigo;
   }
 

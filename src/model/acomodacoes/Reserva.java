@@ -157,4 +157,15 @@ public class Reserva {
   public String toString() {
     return "Reserva: " + this.checkIn.format(formatterData) + " - " + this.checkOut.format(formatterData) + " - " + this.hospedePrincipal.getNome() + " - " + this.acomodacao.getNumero() + " - " + this.cartaoCredito.getNumero() + " - " + this.multa + " - " + this.hospedes.size();
   }
+
+    /**
+     * Método que retorna uma lista com todos os hospedes da reserva.
+     * @return lista de hospedes.
+     */
+  public List<Hospede> getAllHospedes() {
+    List<Hospede> hospedes = new ArrayList<>();
+    hospedes.add(this.hospedePrincipal);
+    hospedes.addAll(this.hospedes);
+    return hospedes;
+  }
 }

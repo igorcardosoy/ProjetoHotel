@@ -1,6 +1,5 @@
 package view;
 
-import model.enums.Estados;
 import model.pessoas.Administrador;
 import model.pessoas.Funcionario;
 import model.pessoas.Hospede;
@@ -145,7 +144,6 @@ public class NiveisAcesso {
               "Ver reservas",
               "Ver acomodados",
               "Ver itens de consumo",
-              "Ver consumos",
               "Ver hospedes",
               "Voltar"
       };
@@ -197,7 +195,6 @@ public class NiveisAcesso {
 
   // Método para entrar como administrador
   private Pessoa ADMAccess(List<Administrador> administradores, Pessoa usuario) {
-    Estados[] estados = Estados.values();
     String senha;
 
     if (administradores.isEmpty()) {

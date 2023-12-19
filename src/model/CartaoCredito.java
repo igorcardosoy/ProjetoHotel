@@ -13,10 +13,10 @@ public class CartaoCredito {
 
     /**
      * Construtor da classe CartaoCredito
-     * @param numero
-     * @param cvv
-     * @param nome
-     * @param dataValidade
+     * @param numero numero do cartão de crédito
+     * @param cvv cvv do cartão de crédito
+     * @param nome nome do responsável do cartão de crédito
+     * @param dataValidade data de validade do cartão de crédito
      */
     public CartaoCredito(long numero, int cvv, String nome, String dataValidade) {
         this.numero = numero;
@@ -70,7 +70,7 @@ public class CartaoCredito {
 
     /**
      * Método de modificação do número do cartão de crédito
-     * @param numero
+     * @param numero numero do cartão de crédito que sera setado
      */
     public void setNumero(int numero) {
         this.numero = numero;
@@ -78,7 +78,7 @@ public class CartaoCredito {
 
     /**
      * Método de modificação do cvv do cartão de crédito
-     * @param cvv
+     * @param cvv cvv do cartão de crédito que sera setado
      */
     public void setCvv(int cvv) {
         this.cvv = cvv;
@@ -86,7 +86,7 @@ public class CartaoCredito {
 
     /**
      * Método de modificação do nome do responsável do cartão de crédito
-     * @param nome
+     * @param nome nome do responsável do cartão de crédito que sera setado
      */
     public void setNome(String nome) {
         this.nome = nome;
@@ -94,7 +94,7 @@ public class CartaoCredito {
 
     /**
      * Método de modificação à data de validade do cartão de crédito
-     * @param dataValidade
+     * @param dataValidade data de validade do cartão de crédito que sera setado
      */
     public void setDataValidade(String dataValidade) {
         this.dataValidade = dataValidade;

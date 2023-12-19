@@ -11,7 +11,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import static view.Hotel.formatterData;
 /**
@@ -21,12 +20,12 @@ public class Funcionario extends Pessoa {
     /**
      * Construtor da classe funcionario que recebe parâmetros para inicializar
      * um funcinário
-     * @param nome
-     * @param telefone
-     * @param cidade
-     * @param estado
-     * @param dataNascimento
-     * @param key
+     * @param nome do funcionário
+     * @param telefone do funcionário
+     * @param cidade do funcionário
+     * @param estado do funcionário
+     * @param dataNascimento do funcionário
+     * @param key do funcionário
      */
     // Construtor protegido(protected) da classe Funcionario que chama o construtor da classe pai (Pessoa)
     protected Funcionario(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
@@ -37,8 +36,8 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método privado que verifica se um hóspede já existe na lista
-     * @param hospede
-     * @param hospedes
+     * @param hospede, o hóspede que será verificado
+     * @param hospedes, a lista de hóspedes
      * @return true para caso o hópede existe na lista ou false caso contrário
      */
     private boolean existeHospede(Hospede hospede, List<Hospede> hospedes) {
@@ -52,22 +51,20 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para cadastrar um novo hóspede
-     * @param hospede
-     * @param hospedes
-     * @return true se deu certo cadastrar ou false caso não foi possível realizar o cadastro
+     *
+     * @param hospede,  o hóspede que será cadastrado
+     * @param hospedes, a lista de hóspedes
      */
-    public boolean cadastrarHospede(Hospede hospede, List<Hospede> hospedes) {
+    public void cadastrarHospede(Hospede hospede, List<Hospede> hospedes) {
         if (!existeHospede(hospede, hospedes)) {
             hospedes.add(hospede);
-            return true;
         }
-        return false;
     }
 
     /**
      * Método para remover um hóspede
-     * @param hospede
-     * @param hospedes
+     * @param hospede, o hóspede que será removido
+     * @param hospedes, a lista de hóspedes
      * @return true caso a remoção do hospede ocorrer com sucesso ou false caso não ocorrer a remoção
      */
     public boolean removerHospede(Hospede hospede, List<Hospede> hospedes) {
@@ -80,8 +77,8 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método público que verifica se há reserva no nome do hóspede, antes de iniciar um novo cadastro
-     * @param nomeHospede
-     * @param reservas
+     * @param nomeHospede, o nome do hóspede que será verificado
+     * @param reservas, a lista de reservas
      * @return true se tem a reserva do hóspede ou false caso não tenha a reserva
      */
     public boolean temReserva(String nomeHospede, List<Reserva> reservas) {
@@ -95,8 +92,8 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para cadastrar uma nova reserva
-     * @param reserva
-     * @param reservas
+     * @param reserva, a reserva que será cadastrada
+     * @param reservas, a lista de reservas
      * @return true se o cadastro da reserva for efetuada com sucesso ou false caso a reserva não tenha sido feita
      */
     public boolean cadastrarReserva(Reserva reserva, List<Reserva> reservas) {
@@ -109,8 +106,8 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para remover uma reserva
-     * @param reserva
-     * @param reservas
+     * @param reserva, a reserva que será removida
+     * @param reservas, a lista de reservas
      * @return true caso a remoção da reserva der certo ou false caso a remoção não tenha ocorrido
      */
     public boolean removerReserva(Reserva reserva, List<Reserva> reservas) {
@@ -123,8 +120,8 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método que recupera reservas de hóspedes com nome igual
-     * @param nomeHospede
-     * @param reservas
+     * @param nomeHospede, o nome do hóspede que será verificado
+     * @param reservas, a lista de reservas
      * @return reservasComNomeIgual caso há reservas de hóspedes com nome igual ou null caso contrário
      */
     public List<Reserva> getReserva(String nomeHospede, List<Reserva> reservas) {
@@ -142,10 +139,10 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para acomodar um hóspede a partir de uma reserva
-     * @param nomeHospede
-     * @param funcionarioResponsavel
-     * @param reservas
-     * @param acomodados
+     * @param nomeHospede, o nome do hóspede que será acomodado
+     * @param funcionarioResponsavel, o funcionário que está responsável pela acomodação
+     * @param reservas, a lista de reservas
+     * @param acomodados, a lista de acomodados
      * @return true se a acomodação do hospede ocorrer conforme a reserva ou false caso contrário
      */
     public boolean acomodarHospede(String nomeHospede, Funcionario funcionarioResponsavel, List<Reserva> reservas,
@@ -165,13 +162,13 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para acomodar um hóspede sem necessidade de reserva
-     * @param checkIn
-     * @param checkOut
-     * @param hospede
-     * @param acomodacao
-     * @param funcionarioResponsavel
-     * @param acomodados
-     * @param reservas
+     * @param checkIn, data de entrada do hóspede
+     * @param checkOut, data de saída do hóspede
+     * @param hospede, o hóspede que será acomodado
+     * @param acomodacao, a acomodação que será ocupada pelo hóspede
+     * @param funcionarioResponsavel, o funcionário que está responsável pela acomodação
+     * @param acomodados, a lista de acomodados
+     * @param reservas, a lista de reservas
      * @return true se acomodação do hopede ocorrer com sucesso ou false caso contrário
      */
     public boolean acomodarHospede(LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospede,
@@ -187,9 +184,9 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método para desacomodar um hóspede
-     * @param hospede
-     * @param acomodado
-     * @param acomodados
+     * @param hospede, o hóspede que será desacomodado
+     * @param acomodado, a acomodação que será desocupada
+     * @param acomodados, a lista de acomodados
      * @return true se a desacomodação ocorrer com sucesso ou false caso contrário
      */
     public boolean desacomodarHospede(Hospede hospede, Acomodado acomodado, List<Acomodado> acomodados) {
@@ -198,9 +195,9 @@ public class Funcionario extends Pessoa {
 
     /**
      * Manipulação de cadastro de consumo
-     * @param consumo
-     * @param hospede
-     * @param hospedes
+     * @param consumo, o consumo que será cadastrado
+     * @param hospede, o hóspede que está consumindo
+     * @param hospedes, a lista de hóspedes
      * @return true caso o cadastro do consumo ocorrer com sucesso ou false caso contrário
      */
     public boolean cadastrarConsumo(Consumo consumo, Hospede hospede, List<Hospede> hospedes) {
@@ -213,7 +210,7 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método protegido para verificar a senha do funcionário
-     * @param key
+     * @param key, a senha do funcionário
      * @return true se a senha estiver correta, false caso contrario.
      */
     @Override
@@ -243,13 +240,13 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método que cadastra o hóspede no sistema
-     * @param acomodados
-     * @param acomodacoesDisponiveis
-     * @param tiposAcomodacao
-     * @param checkIn
-     * @param checkOut
-     * @param hospedePrincipal
-     * @param acomodacao
+     * @param acomodados, a lista de acomodados
+     * @param acomodacoesDisponiveis, a lista de acomodações disponíveis
+     * @param tiposAcomodacao, a lista de tipos de acomodações
+     * @param checkIn, data de entrada do hóspede
+     * @param checkOut, data de saída do hóspede
+     * @param hospedePrincipal, o hóspede que será cadastrado
+     * @param acomodacao, a acomodação que será ocupada pelo hóspede
      */
     public void cadastrarAcomodado(List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao, LocalDateTime checkIn, 
                                     LocalDateTime checkOut, Hospede hospedePrincipal, Acomodacao acomodacao){
@@ -268,10 +265,10 @@ public class Funcionario extends Pessoa {
 
     /**
      * Método que recupera os dados de uma reserva feita pelo hospede
-     * @param reserva
-     * @param acomodados
-     * @param acomodacoesDisponiveis
-     * @param tiposAcomodacao
+     * @param reserva, a reserva que será acomodada
+     * @param acomodados, a lista de acomodados
+     * @param acomodacoesDisponiveis, a lista de acomodações disponíveis
+     * @param tiposAcomodacao, a lista de tipos de acomodações
      */
     public void cadastrarAcomodado(Reserva reserva, List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao) {
         Acomodado acomodado = new Acomodado(reserva, this);

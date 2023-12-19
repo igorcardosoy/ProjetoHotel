@@ -21,12 +21,12 @@ public abstract class Pessoa {
 
   /**
    * Construtor da classe da Pessoa
-   * @param nome
-   * @param telefone
-   * @param cidade
-   * @param estado
-   * @param dataNascimento
-   * @param key
+   * @param nome nome da pessoa
+   * @param telefone telefone da pessoa
+   * @param cidade cidade da pessoa
+   * @param estado estado da pessoa
+   * @param dataNascimento data de nascimento da pessoa
+   * @param key chave de acesso da pessoa
    */
   public Pessoa(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento, int key) {
     this.nome = nome;
@@ -39,7 +39,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação da chave
-   * @param key
+   * @param key chave de acesso
    */
   private void setKey(int key) {
     this.key = key;
@@ -95,7 +95,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação do nome da pessoa
-   * @param nome
+   * @param nome que sera setado
    */
   public void setNome(String nome) {
     this.nome = nome;
@@ -103,7 +103,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação do telefone da pessoa
-   * @param telefone
+   * @param telefone que sera setado
    */
   public void setTelefone(int telefone) {
     this.telefone = telefone;
@@ -111,7 +111,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação da cidade do hospede
-   * @param cidade
+   * @param cidade que sera setado
    */
   public void setCidade(String cidade) {
     this.cidade = cidade;
@@ -119,7 +119,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação do estado da pessoa
-   * @param estado
+   * @param estado que sera setado
    */
   public void setEstado(Estados estado) {
     this.estado = estado;
@@ -127,7 +127,7 @@ public abstract class Pessoa {
 
   /**
    * Método de modificação da data de nascimento da pessoa
-   * @param dataNascimento
+   * @param dataNascimento data de nascimento que sera setada
    */
   public void setDataNascimento(LocalDate dataNascimento) {
     this.dataNascimento = dataNascimento;
@@ -135,7 +135,7 @@ public abstract class Pessoa {
 
   /**
    * Método para permitir o acesso da pessoa
-   * @param key
+   * @param key chave de acesso
    * @return chave de acesso
    */
   public boolean allowAccess(int key) {

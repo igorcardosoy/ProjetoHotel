@@ -5,10 +5,11 @@ import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
 import model.itensCosumo.Consumo;
 import model.itensCosumo.ItensConsumo;
+import model.pessoas.Funcionario;
 import model.pessoas.Hospede;
+import model.pessoas.Pessoa;
 
 import javax.swing.*;
-import java.awt.event.ItemEvent;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -47,21 +48,23 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerItemConsumo(List<ItensConsumo> itensConsumoDisponiveis) {
+  public static void removerItemConsumo(List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuarioLogado) {
 
-    String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
+    if (usuarioLogado instanceof Funcionario){
+      String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
 
-    ItensConsumo itemConsumo = null;
+      ItensConsumo itemConsumo = null;
 
-    for (ItensConsumo itemConsumo1 : itensConsumoDisponiveis) {
-      if (itemConsumo1.getDescricao().equals(nomeItemConsumo)) {
-        itemConsumo = itemConsumo1;
-        break;
+      for (ItensConsumo itemConsumo1 : itensConsumoDisponiveis) {
+        if (itemConsumo1.getDescricao().equals(nomeItemConsumo)) {
+          itemConsumo = itemConsumo1;
+          break;
+        }
       }
-    }
-    itensConsumoDisponiveis.remove(itemConsumo);
+      itensConsumoDisponiveis.remove(itemConsumo);
 
-    JOptionPane.showMessageDialog(null, "Item de consumo removido com sucesso!", "Remover item de consumo", JOptionPane.INFORMATION_MESSAGE);
+      JOptionPane.showMessageDialog(null, "Item de consumo removido com sucesso!", "Remover item de consumo", JOptionPane.INFORMATION_MESSAGE);
+    }
 
   }
 
@@ -79,59 +82,62 @@ public class Remocao {
     JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
-  public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes) {
+  public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Pessoa usuarioLogado){
 
-    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
+    if (usuarioLogado instanceof Funcionario){
+      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
 
-    Acomodado acomodado = null;
-    List<Hospede> hospedesAcomodados = null;
+      Acomodado acomodado = null;
+      List<Hospede> hospedesAcomodados;
 
-    for (Acomodado acomodado1 : acomodados) {
-      if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
-        acomodado = acomodado1;
-        break;
+      for (Acomodado acomodado1 : acomodados) {
+        if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
+          acomodado = acomodado1;
+          break;
+        }
       }
+
+      assert acomodado != null;
+      hospedesAcomodados = acomodado.getAllHospedes();
+
+      for (Hospede hospede1 : hospedesAcomodados) {
+        hospedes.remove(hospede1);
+      }
+
+      acomodados.remove(acomodado);
+
+      JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
     }
-
-    assert acomodado != null;
-    hospedesAcomodados = acomodado.getAllHospedes();
-
-    for (Hospede hospede1 : hospedesAcomodados) {
-      hospedes.remove(hospede1);
-    }
-
-    acomodados.remove(acomodado);
-
-    JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
-  public static void removerReserva(List<Reserva> reservas) {
+  public static void removerReserva(List<Reserva> reservas, Pessoa usuarioLogado){
+    if (usuarioLogado instanceof Funcionario){
+      boolean found = false;
 
-    boolean found = false;
+      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover reserva", JOptionPane.QUESTION_MESSAGE);
 
-    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover reserva", JOptionPane.QUESTION_MESSAGE);
+      for (Reserva reserva : reservas) {
+        if (reserva.getHospedePrincipal().getNome().equals(nomeHospede)) {
+          if (reserva.canRemoveWithoutPay())
+          {
+            reservas.remove(reserva);
+          }
+          else
+          {
+            JOptionPane.showMessageDialog(null, "Multa a ser paga:"  + reserva.getMulta(), "Remover reserva", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Valor cobrado do cartão final: [" + reserva.getCartaoCredito().getNumerosFinais() + "]", "Remover reserva", JOptionPane.INFORMATION_MESSAGE);
+          }
 
-    for (Reserva reserva : reservas) {
-      if (reserva.getHospedePrincipal().getNome().equals(nomeHospede)) {
-        if (reserva.canRemoveWithoutPay())
-        {
-          reservas.remove(reserva);
+          found = true;
+          break;
         }
-        else
-        {
-          JOptionPane.showMessageDialog(null, "Multa a ser paga:"  + reserva.getMulta(), "Remover reserva", JOptionPane.ERROR_MESSAGE);
-          JOptionPane.showMessageDialog(null, "Valor cobrado do cartão final: [" + reserva.getCartaoCredito().getNumerosFinais() + "]", "Remover reserva", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        found = true;
-        break;
       }
-    }
 
-    if (!found) {
-      JOptionPane.showMessageDialog(null, "Reserva não encontrada!", "Remover reserva", JOptionPane.ERROR_MESSAGE);
-    } else {
-      JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!", "Remover reserva", JOptionPane.INFORMATION_MESSAGE);
+      if (!found) {
+        JOptionPane.showMessageDialog(null, "Reserva não encontrada!", "Remover reserva", JOptionPane.ERROR_MESSAGE);
+      } else {
+        JOptionPane.showMessageDialog(null, "Reserva removida com sucesso!", "Remover reserva", JOptionPane.INFORMATION_MESSAGE);
+      }
     }
   }
 
@@ -145,28 +151,24 @@ public class Remocao {
 
   }
 
-  // TO DO
-  public static void removerHospede(List<Hospede> hospedes, Hospede hospede) {
-      hospedes.remove(hospede);
+  public static void removerHospede(List<Hospede> hospedes, Pessoa usuarioLogado) {
+
+    if (usuarioLogado instanceof Funcionario funcionario){
+      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover hóspede", JOptionPane.QUESTION_MESSAGE);
+
+      Hospede hospede = null;
+
+      for (Hospede hospede1 : hospedes) {
+        if (hospede1.getNome().equals(nomeHospede)) {
+          hospede = hospede1;
+          break;
+        }
+      }
+
+      funcionario.removerHospede(hospede, hospedes);
 
       JOptionPane.showMessageDialog(null, "Hóspede removido com sucesso!", "Remover hóspede", JOptionPane.INFORMATION_MESSAGE);
-  }
-
-  public static void removerHospede(List<Hospede> hospedes) {
-    String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover hóspede", JOptionPane.QUESTION_MESSAGE);
-
-  Hospede hospede = null;
-
-    for (Hospede hospede1 : hospedes) {
-      if (hospede1.getNome().equals(nomeHospede)) {
-        hospede = hospede1;
-        break;
-      }
     }
-
-    hospedes.remove(hospede);
-
-    JOptionPane.showMessageDialog(null, "Hóspede removido com sucesso!", "Remover hóspede", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
@@ -193,12 +195,14 @@ public class Remocao {
       for (Hospede hospede : acomodado.getAllHospedes()) {
         for (Consumo consumo : hospede.getConsumo()) {
           gastosGeraisConsumo += consumo.getValorTotal();
-          sb.append(consumo.toString());
+          sb.append(consumo);
           sb.append("\n---------------------------------------");
         }
       }
 
       sb.append("\nGastos gerais de consumo: R$ ").append(gastosGeraisConsumo);
+
+      JOptionPane.showMessageDialog(null, sb.toString(), "Encerrar estadia", JOptionPane.INFORMATION_MESSAGE);
 
       Saida saida = new Saida(LocalDateTime.now(), acomodado.getAcomodacao().getNumero(), dias, acomodado.getAcomodacao().getTipo().getDiaria(), gastosTelefonicos, gastosGeraisConsumo);
 

@@ -15,22 +15,22 @@ import static view.Hotel.formatterData;
 
 /**
  * Definição da classe Administrador que herda de Funcionario.
- * @atributos nome, telefone, cidade, estado, data de nascimento e senha.
+ * @atributos  nome, telefone, cidade, estado, data de nascimento e senha.
  */
 public class Administrador extends Funcionario {
 
     /**
      * Construtor da classe Administrador que recebe parâmetros para inicializar
      * os atributos.
-     * @param nome
-     * @param telefone
-     * @param cidade
-     * @param estado
-     * @param dataNascimento
-     * @param senha
+     * @param nome do administrador
+     * @param telefone do administrador
+     * @param cidade do administrador
+     * @param estado do administrador
+     * @param dataNascimento do administrador
+     * @param senha do administrador
      */
-    public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento) {
-        super(nome, telefone, cidade, estado, dataNascimento, 3);
+    public Administrador(String nome, long telefone, String cidade, Estados estado, LocalDate dataNascimento, int senha) {
+        super(nome, telefone, cidade, estado, dataNascimento, senha);
     }
 
     // Manipulação de funcionário
@@ -39,7 +39,7 @@ public class Administrador extends Funcionario {
     /**
      * Método para verificar se um funcionário já existe na lista de funcionários.
      * @param funcionario especifiico que será verificado
-     * @param lista de funcionarios
+     * @param funcionarios de funcionarios
      * @return true se o funcionario existe na lista, false caso contrario.
      */
     public boolean existeFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
@@ -56,29 +56,27 @@ public class Administrador extends Funcionario {
 
     /**
      * Método para cadastrar um novo funcionário
-     * @param nome
-     * @param telefone
-     * @param cidade
-     * @param estado
-     * @param dataNascimento
-     * @param lista de funcionarios
-     * @return true se o funcionario foi cadastrado com sucesso, false caso contrario.
+     *
+     * @param nome do funcionario
+     * @param telefone do funcionario
+     * @param cidade do funcionario
+     * @param estado do funcionario
+     * @param dataNascimento do funcionario
+     * @param funcionarios é uma lista de funcionarios do hotel
      */
-    public boolean cadastrarFuncionario(String nome, long telefone, String cidade, Estados estado,
-                                        LocalDate dataNascimento, List<Funcionario> funcionarios) {
+    public void cadastrarFuncionario(String nome, long telefone, String cidade, Estados estado,
+                                     LocalDate dataNascimento, List<Funcionario> funcionarios) {
         Funcionario new_funcionario = new Funcionario(nome, telefone, cidade, estado, dataNascimento, 2);
 
         if (!existeFuncionario(new_funcionario, funcionarios)) {
             funcionarios.add(new_funcionario);
-            return true;
         }
-        return false;
     }
 
     /**
      * Método para remover um funcionário
      * @param funcionario especifico que será removido
-     * @param lista de funcionarios
+     * @param funcionarios é uma lista de funcionarios do hotel
      * @return true se o funcionario foi removido com sucesso, false caso contrario.
      */
     public boolean removerFuncionario(Funcionario funcionario, List<Funcionario> funcionarios) {
@@ -93,7 +91,7 @@ public class Administrador extends Funcionario {
      * Método para editar as informações de um funcionário
      * @param funcionario especifico que será editado
      * @param newFuncionario novo funcionario com as informações atualizadas
-     * @param lista de funcionarios
+     * @param funcionarios é uma lista de funcionarios do hotel
      * @return true se o funcionario foi editado com sucesso, false caso contrario.
      */
     public boolean editarFuncionario(Funcionario funcionario, Funcionario newFuncionario,
@@ -111,7 +109,7 @@ public class Administrador extends Funcionario {
 
     /**
      * Método para cadastrar uma acomodação na lista de acomodações.
-     * @param acomodacoes disponiveis no hotel
+     * @param acomodacoesDisponiveis no hotel
      * @param acomodacoes ocupadas no hotel
      * @param acomodacao especifica que será cadastrada
      * @return true se a acomodacao foi cadastrada com sucesso, false caso contrario.
@@ -157,8 +155,8 @@ public class Administrador extends Funcionario {
 
     /**
      * Metodo para cadastrar um tipo de acomodacao nos tipos disponiveis do hotel.
-     * @param tipo de acomodacao especifico que será cadastrado
-     * @param tipos de acomodacao disponiveis no hotel
+     * @param tipoAcomodacao especifico que será cadastrado
+     * @param tiposAcomodacao disponiveis no hotel
      * @return true se o tipo de acomodacao foi cadastrado com sucesso, false caso contrario.
      */
     // Método para cadastrar um novo tipo de acomodação
@@ -174,7 +172,7 @@ public class Administrador extends Funcionario {
 
     /**
      * Método para remover um tipo de acomodação do hotel.
-     * @param tipo de acomodacao especifico que será removido
+     * @param tipoAcomodacao de acomodacao especifico que será removido
      * @param tiposAcomodacao disponiveis no hotel
      * @return true se o tipo de acomodacao foi editado com sucesso, false caso contrario.
      */
@@ -208,8 +206,8 @@ public class Administrador extends Funcionario {
 
     /**
      * Método para remover um item de consumo
-     * @param item de consumo especifico que será removido
-     * @param itens de consumo disponiveis no hotel
+     * @param itemConsumo de consumo especifico que será removido
+     * @param itensConsumo de consumo disponiveis no hotel
      * @return true se o item de consumo foi editado com sucesso, false caso contrario.
      */
     public boolean removerItemConsumo(ItensConsumo itemConsumo, List<ItensConsumo> itensConsumo) {
