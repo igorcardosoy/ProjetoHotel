@@ -7,7 +7,7 @@ import static view.Hotel.formatterDataHora;
 
 /**
  * Definição da classe Consumo do hospede.
- * @atributos data do consumo, funcionario responsavel pela marcacao, codigo
+ * data do consumo, funcionario responsavel pela marcacao, codigo
  * do item, quantidade consumida e valor total.
  */
 public class Consumo {

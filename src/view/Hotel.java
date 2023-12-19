@@ -14,7 +14,7 @@ import java.util.*;
 
 /**
  * Definição da classe Hotel
- * @atributos usuario
+ * usuario
  */
 public class Hotel {
 
@@ -38,8 +38,6 @@ public class Hotel {
 
   private final List<Reserva> reservas;
   private final List<Acomodado> acomodados;
-
-  private final Object[] estados = Estados.values();
 
   private final NiveisAcesso niveisAcesso;
   private final Menus menus;
@@ -133,8 +131,8 @@ public class Hotel {
                 funcionarios, reservas,
                 acomodados, itensConsumoDisponiveis,
                 tiposAcomodacao, acomodacoesDisponiveis,
-                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
-                estados);
+                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar
+                );
         if (voltar) {
           niveisAcesso.setNivelAcesso(0);
         }

@@ -14,7 +14,6 @@ import static view.Hotel.*;
 /**
  * Definição da classe ReservaAbstract (classe abstrata) que representa uma
  * reserva de acomodação no hotel.
- * @atributos checkIn, checkOut, hospedePrincipal, hospede principal, hospedes
  * adicionais, acomodacao, cartaoCredito, valor de uma possivel multa.
 
  */

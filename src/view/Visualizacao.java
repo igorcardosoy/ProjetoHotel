@@ -17,7 +17,7 @@ import java.util.List;
 public class Visualizacao {
   /**
    * Método para mostrar os hóspedes em uma janela de diálogo
-   * @param hospedes
+   * @param hospedes hospedes
    * @return os hospedes
    */
   public static Object mostrarHospedes(List<Hospede> hospedes) {
@@ -34,7 +34,7 @@ public class Visualizacao {
 
   /**
    * Método para mostrar os administradores em uma janela de diálogo
-   * @param administradores
+   * @param administradores administradores
    * @return os administradores
    */
   public static Object mostrarAdministradores(List<Administrador> administradores) {
@@ -51,8 +51,8 @@ public class Visualizacao {
 
   /**
    * Método para mostrar os funcionários em uma janela de diálogo
-   * @param funcionarios
-   * @return
+   * @param funcionarios funcionarios
+   * @return os funcionarios
    */
   public static Object mostrarFuncionarios(List<Funcionario> funcionarios) {
     StringBuilder message = new StringBuilder();
@@ -68,8 +68,8 @@ public class Visualizacao {
 
   /**
    * Método para mostrar os iten de consumo
-   * @param itensConsumoDisponiveis
-   * @return
+   * @param itensConsumoDisponiveis itens de consumo
+   * @return os itens de consumo
    */
   public static Object mostarItensConsumo(List<ItensConsumo> itensConsumoDisponiveis){
 
@@ -86,8 +86,8 @@ public class Visualizacao {
 
   /**
    * Método para mostrar as acomodações disponíveis
-   * @param acomodacoesDisponiveis
-   * @return
+   * @param acomodacoesDisponiveis acomodacoes disponiveis
+   * @return as acomodacoes disponiveis
    */
   public static Object mostrarAcomodacoes(List<Acomodacao> acomodacoesDisponiveis) {
 
@@ -104,8 +104,8 @@ public class Visualizacao {
 
   /**
    * Método para mostrar os tipos de acomodações
-   * @param tiposAcomodacao
-   * @return as acomodações 
+   * @param tiposAcomodacao tipos de acomodacao
+   * @return as acomodações
    */
   public static Object mostrarTiposAcomodacao(List<TipoAcomodacao> tiposAcomodacao) {
 
@@ -122,7 +122,7 @@ public class Visualizacao {
 
   /**
    * Método para mostrar os acomodados
-   * @param acomodados
+   * @param acomodados acomodados
    * @return os acomodados
    */
   public static Object mostrarAcomodados(List<Acomodado> acomodados) {
@@ -140,7 +140,7 @@ public class Visualizacao {
 
   /**
    * Método para mostrar as reservas
-   * @param reservas
+   * @param reservas reservas
    * @return as reservas
    */
   public static Object mostrarReservas(List<Reserva> reservas) {

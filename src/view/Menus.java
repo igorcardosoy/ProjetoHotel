@@ -15,15 +15,15 @@ public class Menus {
 
   /**
    * Método que oferece o menu de funções para visualizar os dados do Hotel
-   * @param hospedes
-   * @param administradores
-   * @param funcionarios
-   * @param reservas
-   * @param acomodados
-   * @param itensConsumo
-   * @param tiposAcomodacao
-   * @param acomodacoes
-   * @param funcoesVizualizar
+   * @param hospedes lista de hospedes
+   * @param administradores lista de administradores
+   * @param funcionarios lista de funcionarios
+   * @param reservas lista de reservas
+   * @param acomodados lista de acomodados
+   * @param itensConsumo lista de itens de consumo
+   * @param tiposAcomodacao  lista de tipos de acomodacao
+   * @param acomodacoes lista de acomodacoes
+   * @param funcoesVizualizar funcoes de vizualizacao
    */
   private void menuVizualizar(
           List<Hospede> hospedes,
@@ -60,16 +60,16 @@ public class Menus {
 
   /**
    * Método que oferece o menu de funções para remover os dados do Hotel
-   * @param hospedes
-   * @param administradores
-   * @param funcionarios
-   * @param reservas
-   * @param acomodados
-   * @param itensConsumo
-   * @param tiposAcomodacao
-   * @param acomodacoes
-   * @param funcoesRemover
-   * @param usuario
+   * @param hospedes hospedes
+   * @param administradores administradores
+   * @param funcionarios funcionarios
+   * @param reservas reservas
+   * @param acomodados acomodados
+   * @param itensConsumo itens de consumo
+   * @param tiposAcomodacao tipos de acomodacao
+   * @param acomodacoes acomodacoes
+   * @param funcoesRemover funcoes de remocao
+   * @param usuario usuario
    */
   private void menuRemover(
           List<Hospede> hospedes,
@@ -123,16 +123,16 @@ public class Menus {
 
   /**
    * Método que oferece o menu de funções para editar os dados do Hotel
-   * @param usuario
-   * @param hospedes
-   * @param administradores
-   * @param funcionarios
-   * @param reservas
-   * @param acomodados
-   * @param itensConsumo
-   * @param tiposAcomodacao
-   * @param acomodacoes
-   * @param funcoesEditar
+   * @param usuario usuario
+   * @param hospedes lista de hospedes
+   * @param administradores  lista de administradores
+   * @param funcionarios lista de funcionarios
+   * @param reservas lista de reservas
+   * @param acomodados lista de acomodados
+   * @param itensConsumo lista de itens de consumo
+   * @param tiposAcomodacao lista de tipos de acomodacao
+   * @param acomodacoes lista de acomodacoes
+   * @param funcoesEditar  funcoes de edicao
    */
   private void menuEditar(
           Pessoa usuario,
@@ -186,17 +186,16 @@ public class Menus {
 
   /**
    * Método que oferece o menu de funções para cadastrar os dados do Hotel
-   * @param usuario
-   * @param hospedes
-   * @param administradores
-   * @param funcionarios
-   * @param reservas
-   * @param acomodados
-   * @param itensConsumo
-   * @param tiposAcomodacao
-   * @param acomodacoes
-   * @param funcoesCadastro
-   * @param estados
+   * @param usuario usuario
+   * @param hospedes hospedes
+   * @param administradores administradores
+   * @param funcionarios funcionarios
+   * @param reservas reservas
+   * @param acomodados acomodados
+   * @param itensConsumo itens de consumo
+   * @param tiposAcomodacao tipos de acomodacao
+   * @param acomodacoes acomodacoes
+   * @param funcoesCadastro funcoes de cadastro
    */
   private void menuCadastros(
           Pessoa usuario,
@@ -208,8 +207,8 @@ public class Menus {
           List<ItensConsumo> itensConsumo,
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
-          Object[] funcoesCadastro,
-          Object[] estados) {
+          Object[] funcoesCadastro)
+  {
 
 
     String title = "Cadastros";
@@ -253,21 +252,20 @@ public class Menus {
 
   /**
    * Método que gerencia as opções do menu
-   * @param opcao
-   * @param usuario
-   * @param hospedes
-   * @param administradores
-   * @param funcionarios
-   * @param reservas
-   * @param acomodados
-   * @param itensConsumo
-   * @param tiposAcomodacao
-   * @param acomodacoes
-   * @param funcoesCadastro
-   * @param funcoesEditar
-   * @param funcoesRemover
-   * @param funcoesVizualizar
-   * @param estados
+   * @param opcao opcao
+   * @param usuario usuario
+   * @param hospedes hospedes
+   * @param administradores administradores
+   * @param funcionarios funcionarios
+   * @param reservas  reservas
+   * @param acomodados  acomodados
+   * @param itensConsumo itens de consumo
+   * @param tiposAcomodacao tipos de acomodacao
+   * @param acomodacoes acomodacoes
+   * @param funcoesCadastro funcoes de cadastro
+   * @param funcoesEditar funcoes de edicao
+   * @param funcoesRemover funcoes de remocao
+   * @param funcoesVizualizar funcoes de vizualizacao
    * @return true se não ocorreu nada de errado ou false caso contrario
    */
   public boolean menu(String opcao, Pessoa usuario,
@@ -282,12 +280,12 @@ public class Menus {
                       Object[] funcoesCadastro,
                       Object[] funcoesEditar,
                       Object[] funcoesRemover,
-                      Object[] funcoesVizualizar,
-                      Object[] estados) {
+                      Object[] funcoesVizualizar)
+  {
 
     switch (opcao) {
       case "Cadastros":
-        menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
+        menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro);
         break;
       case "Editar":
         menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);

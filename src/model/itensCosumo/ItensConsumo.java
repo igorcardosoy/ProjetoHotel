@@ -4,7 +4,6 @@ import model.enums.TipoItens;
 
 /**
  * Definição da classe ItensConsumo.
- * @atributos tipo do item, codigo, descricao e valor.
  */
 public class ItensConsumo {
   TipoItens tipo;

@@ -15,7 +15,6 @@ import static view.Hotel.formatterData;
 
 /**
  * Definição da classe Administrador que herda de Funcionario.
- * @atributos  nome, telefone, cidade, estado, data de nascimento e senha.
  */
 public class Administrador extends Funcionario {
 

@@ -79,7 +79,7 @@ public class Cadastros {
    */
   // Método para cadastrar um funcionário
   public static void cadastrarFuncionario(List<Funcionario> funcionarios, Pessoa usuario){
-    if (usuario instanceof Administrador){
+    if (usuario instanceof Administrador administrador){
       // Janela de diálogo para coletar informações do funcionário
       String title = "Cadastrar funcionario";
 
@@ -108,8 +108,7 @@ public class Cadastros {
               JOptionPane.QUESTION_MESSAGE));
 
       // Adicionar o funcionário à lista
-      if (usuario instanceof Administrador administrador)
-        administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, key, funcionarios);
+      administrador.cadastrarFuncionario(nome, telefone, cidade, estado, dataNascimento, key, funcionarios);
     }
   }
 
@@ -119,7 +118,7 @@ public class Cadastros {
    * @param usuario Usuario logado no sistema.
    */
   public static void cadastrarHospede(List<Hospede> hospedes, Pessoa usuario) {
-    if (usuario instanceof Funcionario){
+    if (usuario instanceof Funcionario funcionario) {
       // Janela de diálogo para coletar informações do hóspede
       String title = "Cadastrar hospede";
 
@@ -164,10 +163,9 @@ public class Cadastros {
               JOptionPane.QUESTION_MESSAGE));
 
       // Adicionar o hóspede à lista
-      if (usuario instanceof Funcionario funcionario)
-        funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade,
-                estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae
-                , nomePai, funcionario, senha), hospedes);
+      funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade,
+              estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae
+              , nomePai, funcionario, senha), hospedes);
     }
   }
 
@@ -176,6 +174,8 @@ public class Cadastros {
    * @param reservas Lista de reservas do hotel, que será incrementada.
    * @param acomodacoes Lista de acomodacoes disponiveis no hotel.
    * @param usuario Usuario logado no sistema.
+   * @param tipoAcomodacoesCadastradas Lista de tipos de acomodacoes cadastradas no hotel.
+   * @param hospedes Lista de hospedes do hotel.
    */
   public static void cadastrarReserva(List<Reserva> reservas,
                                       List<Acomodacao> acomodacoes, Pessoa usuario,
@@ -287,6 +287,15 @@ public class Cadastros {
     }
   }
 
+  /**
+   * Método que cadastra um novo acomodado no hotel.
+   * @param usuario Usuario logado no sistema.
+   * @param reservas Lista de reservas do hotel.
+   * @param acomodados Lista de acomodados do hotel.
+   * @param acomodacoesDisponiveis Lista de acomodacoes disponiveis no hotel.
+   * @param tiposAcomodacao Lista de tipos de acomodacoes cadastradas no hotel.
+   * @param hospedes Lista de hospedes do hotel.
+   */
   public static void cadastrarAcomodado(Pessoa usuario, List<Reserva> reservas, List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao, List<Hospede> hospedes) {
     // Um acomodado pode ser criado do zero ou a partir de uma reserva
 
@@ -372,6 +381,11 @@ public class Cadastros {
     }
   }
 
+  /**
+   * Método para cadastrar um item de consumo
+   * @param itensConsumoDisponiveis itens de consumo disponiveis
+   * @param usuario usuario
+   */
   public static void cadastrarItemConsumo(List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuario) {
     if (usuario.getKey() >= 3) {
       String title = "Cadastrar item de consumo";
@@ -394,6 +408,11 @@ public class Cadastros {
     }
   }
 
+  /**
+   * Método para cadastrar um tipo de acomodacao
+   * @param tiposAcomodacao tipos de acomodacao
+   * @param usuario usuario
+   */
   public static void cadastrarTipoAcomodacao(List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
     if (usuario.getKey() >= 3) {
       String title = "Cadastrar tipo de acomodacao";
@@ -422,6 +441,13 @@ public class Cadastros {
     }
   }
 
+/**
+   * Método para cadastrar uma acomodacao
+   * @param acomodacoesDisponiveis acomodacoes disponiveis
+   * @param acomodados acomodados
+   * @param tiposAcomodacao tipos de acomodacao
+   * @param usuario usuario
+   */
   public static void cadastrarAcomodacao(List<Acomodacao> acomodacoesDisponiveis, List<Acomodado> acomodados, List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
     if (usuario.getKey() >= 3) {
       String title = "Cadastrar acomodacao";
@@ -456,7 +482,7 @@ public class Cadastros {
     }
   }
 
-  static void cadastrarConsumo() {
+  public static void cadastrarConsumo() {
 
   }
 }

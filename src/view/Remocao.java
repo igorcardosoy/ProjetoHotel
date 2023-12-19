@@ -29,7 +29,7 @@ public class Remocao {
 
   /**
    * Método para a remoção de um item de consumo da lista
-   * @param itensConsumoDisponiveis
+   * @param itensConsumoDisponiveis itens de consumo disponiveis
    */
   public static void removerConsumo(List<ItensConsumo> itensConsumoDisponiveis) {
     String nomeItemConsumo = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo a ser removido", "Remover item de consumo", JOptionPane.QUESTION_MESSAGE);
@@ -55,8 +55,8 @@ public class Remocao {
 
   /**
    * Método para romover um item consumido
-   * @param itensConsumoDisponiveis
-   * @param usuarioLogado
+   * @param itensConsumoDisponiveis itens de consumo disponiveis
+   * @param usuarioLogado usuario logado
    */
   public static void removerItemConsumo(List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuarioLogado) {
 
@@ -80,9 +80,9 @@ public class Remocao {
 
   /**
    * Método para remover um acomodado do sistema
-   * @param acomodados
-   * @param hospedes
-   * @param acomodado
+   * @param acomodados acomodados
+   * @param hospedes hospedes
+   * @param acomodado acomodado
    */
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado) {
 
@@ -99,9 +99,9 @@ public class Remocao {
 
   /**
    * Método para remover um acomodado
-   * @param acomodados
-   * @param hospedes
-   * @param acomodado
+   * @param acomodados acomodados
+   * @param hospedes hospedes
+   * @param usuarioLogado usuario logado
    */
   public static void removerAcomodado(List<Acomodado> acomodados, List<Hospede> hospedes, Pessoa usuarioLogado){
 
@@ -133,8 +133,8 @@ public class Remocao {
 
   /**
    * Método para remoção de uma reserva
-   * @param reservas
-   * @param usuarioLogado
+   * @param reservas reservas
+   * @param usuarioLogado usuario logado
    */
   public static void removerReserva(List<Reserva> reservas, Pessoa usuarioLogado){
     if (usuarioLogado instanceof Funcionario){
@@ -179,8 +179,8 @@ public class Remocao {
 
   /**
    * Método para a remoção de um hospede
-   * @param hospedes
-   * @param usuarioLogado
+   * @param hospedes hospedes
+   * @param usuarioLogado usuario logado
    */
   public static void removerHospede(List<Hospede> hospedes, Pessoa usuarioLogado) {
 
@@ -204,9 +204,9 @@ public class Remocao {
 
   /**
    * Método para encerrar a estadia do hospede
-   * @param acomodados
-   * @param hospedes
-   * @param acomodado
+   * @param acomodados acomodados
+   * @param hospedes  hospedes
+   * @param acomodado acomodado
    */
   public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
     boolean certeza = JOptionPane.showConfirmDialog(null, "Deseja encerrar a estadia?", "Encerrar estadia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;

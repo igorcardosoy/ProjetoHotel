@@ -5,7 +5,6 @@ import model.pessoas.Hospede;
 
 /**
  * Definição da classe Identificação para a identificação do hospede
- * @atributos numero, tipo
  */
 public class Indentificacao {
   private int numero;

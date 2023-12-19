@@ -3,8 +3,7 @@ package model;
 import model.enums.FormasPagamento;
 
 /**
- * Definição da classe Pagamento dependendo do que o hóspede deseje
- * @atributos formas de pagamento 
+ * Definição da classe Pagamento.
  */
 public class Pagamento {
 

@@ -4,7 +4,7 @@ import model.itensCosumo.ItensConsumo;
 
 /**
  * Definição da enumeração de tipos de itens de consumo.
- * @enumeracoes  LAVANDERIA, FRIGOBAR, RESTAURANTE.
+ * @see java.lang.Enum  LAVANDERIA, FRIGOBAR, RESTAURANTE.
  */
 public enum TipoItens {
   LAVANDERIA("Lavanderia"),

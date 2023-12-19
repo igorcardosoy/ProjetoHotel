@@ -16,7 +16,7 @@ import static view.Hotel.formatterData;
 
 /**
  * Definição da classe Hospede que herda de Pessoa
- * @atributos país, email, identificação, nome da mãe, nome do pai, gastos telefonicos, dados de consumo,
+ * país, email, identificação, nome da mãe, nome do pai, gastos telefonicos, dados de consumo,
  *            dados de cosumo do frigobar, dados de consumo da lavanderia, itens comprados, funcionário responsável
  */
 public class Hospede extends Pessoa {

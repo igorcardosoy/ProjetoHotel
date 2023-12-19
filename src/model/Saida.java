@@ -15,8 +15,6 @@ import static view.Hotel.formatterDataHora;
 /**
  * Definição da classe Saida para o processamento do encerramento da
  * estadia do hospede no hotel
- * @atributos número da acomodação, data e hora, diária cobrada, valor de cada diária, 
- *            gasto com telefonemas, desconto concedido, valor dos gastos com o consumo
  */
 public class Saida {
     private int numAcomodacao; //Número da acomodação utilizada

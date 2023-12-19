@@ -195,11 +195,11 @@ public class NiveisAcesso {
 
   /**
    * Método que gerencia o nível de acesso
-   * @param acesso
-   * @param usuario
-   * @param administradores
-   * @param funcionarios
-   * @param hospedes
+   * @param acesso nível de acesso
+   * @param usuario usuario a usar o sistema
+   * @param administradores administradores
+   * @param funcionarios funcionarios
+   * @param hospedes hospedes
    * @return usuario a usar o sistema
    */
   public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios, List<Hospede> hospedes) {
@@ -226,8 +226,8 @@ public class NiveisAcesso {
 
   /**
    * Método para entrar como administrador
-   * @param administradores
-   * @param usuario
+   * @param administradores administradores
+   * @param usuario usuario a usar o sistema
    * @return usuario acessado
    */
   private Pessoa ADMAccess(List<Administrador> administradores, Pessoa usuario) {
@@ -281,8 +281,8 @@ public class NiveisAcesso {
 
   /**
    * Método para entrar como funcionário
-   * @param funcionarios
-   * @param usuario
+   * @param funcionarios funcionarios
+   * @param usuario usuario a usar o sistema
    * @return usuario acessado
    */
   private Pessoa FuncAccess(List<Funcionario> funcionarios, Pessoa usuario) {
@@ -332,8 +332,8 @@ public class NiveisAcesso {
 
   /**
    * Método para entrar como hóspede
-   * @param hospedes
-   * @param usuario
+   * @param hospedes hospedes
+   * @param usuario usuario a usar o sistema
    * @return acessado
    */
   private Pessoa HospedeAccess(List<Hospede> hospedes, Pessoa usuario) {
@@ -409,7 +409,7 @@ public class NiveisAcesso {
 
   /**
    * Método de modificação do nível de acesso
-   * @param nivelAcesso
+   * @param nivelAcesso nivel de acesso
    */
   public void setNivelAcesso(int nivelAcesso) {
     if (nivelAcesso < this.nivelAcesso)

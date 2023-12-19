@@ -5,7 +5,7 @@ import model.pessoas.Hospede;
 
 /**
  * Definição da enumeração de tipos de documentos.
- * @enumeracoes  CPF, RG, PASSAPORTE.
+ * @see java.lang.Enum  CPF, RG, PASSAPORTE.
  */
 public enum TipoDoc {
   CPF("CPF"),

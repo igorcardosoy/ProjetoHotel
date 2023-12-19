@@ -3,7 +3,6 @@ package model;
 /**
  * Definição da classe CartaoCredito, em que sera armazenará os dados
  * do cartão de crédito do hospede
- * @atributos numero, cvv, nome, data de validade
  */
 public class CartaoCredito {
     private long numero;

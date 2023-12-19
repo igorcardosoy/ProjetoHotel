@@ -11,8 +11,8 @@ import java.util.List;
 public class Designador {
     /**
      * Método estatico que acessa as acomodações disponíveis
-     * @param descricao
-     * @param acomodacoes
+     * @param descricao descricao
+     * @param acomodacoes acomodacoes
      * @return as acomodações disponíveis
      */
     public static List<Acomodacao> getAcomodacoesDisponiveis(String descricao,

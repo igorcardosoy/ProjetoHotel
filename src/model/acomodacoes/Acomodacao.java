@@ -2,7 +2,6 @@ package model.acomodacoes;
 
 /**
  * Definição da classe Acomodacao.
- * @atributos numero, andar, tipo.
  */
 public class Acomodacao {
 

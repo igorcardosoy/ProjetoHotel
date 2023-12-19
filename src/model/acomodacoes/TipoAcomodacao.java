@@ -2,7 +2,6 @@ package model.acomodacoes;
 
 /**
  * Definição da classe TipoAcomodacao.
- * @atributos codigo, nome, descricao, quantidade existente do tipo, quantidade disponivel do tipo,
  * valor da diaria,
  * quantidade de adultos  e criancas que cabem nela.
  */

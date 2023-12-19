@@ -8,8 +8,7 @@ import java.time.LocalDate;
 import static view.Hotel.formatterData;
 
 /**
- * Definição da classe abstrata Pessoa para ser usada como base para os integrantes do hotel
- * @atributos nome, telefone, cidade, estado, data de nascimento, e a chave de acesso
+ * Definição da classe Pessoa que é abstrata e representa uma pessoa
  */
 public abstract class Pessoa {
   private String nome;

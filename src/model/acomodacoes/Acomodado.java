@@ -11,7 +11,6 @@ import static view.Hotel.*;
 /**
  * Definição da classe Acomodado, que herda de Reserva e representa o hospede
  * que está acomodado no hotel.
- * @atributos Data e hora de checkin e checkout, hospede principal,
  * acomodacao, funcionario responsavel pela acomodacao e cartao de credito.
  */
 public class Acomodado extends Reserva {
