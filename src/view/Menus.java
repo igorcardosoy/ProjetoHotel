@@ -5,6 +5,7 @@ import model.acomodacoes.*;
 import model.itensCosumo.*;
 import javax.swing.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -75,7 +76,7 @@ public class Menus {
         Remocao.removerReserva(reservas);
         break;
       case "Remover acomodado":
-        Remocao.removerAcomodado();
+        Remocao.removerAcomodado(acomodados);
         break;
       case "Remover item de consumo":
         Remocao.removerItemConsumo();
@@ -229,6 +230,35 @@ public class Menus {
         break;
       case "Vizualizar":
         menuVizualizar(hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesVizualizar);
+        break;
+      case "Consumir":
+        if (usuario instanceof Hospede hospede) {
+
+          //Selecionar qual itens quer consumir
+          ItensConsumo item = (ItensConsumo) JOptionPane.showInputDialog(null, "Escolha uma opcao", "Consumir", JOptionPane.QUESTION_MESSAGE,
+                  null, itensConsumo.toArray(), itensConsumo.getFirst());
+
+          int qnt = Integer.parseInt(JOptionPane.showInputDialog(null, "Quantidade: ", "Consumir", JOptionPane.QUESTION_MESSAGE));
+
+          hospede.consumirItem(LocalDateTime.now(), hospede.getFuncionarioResponsavel().getNome(), qnt, item.getValor(), item.getCodigo(), itensConsumo);
+        } else {
+
+          JOptionPane.showMessageDialog(null, "Apenas hospedes podem consumir", "Consumir", JOptionPane.ERROR_MESSAGE);
+        }
+        break;
+      case "Encerrar estadia":
+        Acomodado acomodado = null;
+        
+        if (usuario instanceof Hospede hospede) {
+          for (Acomodado acomodado1 : acomodados) {
+            if (acomodado1.getHospedePrincipal().equals(hospede)) {
+              acomodado = acomodado1;
+              break;
+            }
+          }
+        }
+        
+        Remocao.encerrarEstadia(acomodados, acomodado);
         break;
       default:
         return true;

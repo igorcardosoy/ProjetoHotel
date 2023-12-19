@@ -65,6 +65,13 @@ public class Reserva {
         return hospedePrincipal;
     }
 
+    public List<Hospede> getAllHospedes() {
+        List<Hospede> allHospedes = new ArrayList<>();
+        allHospedes.add(hospedePrincipal);
+        allHospedes.addAll(hospedes);
+        return allHospedes;
+    }
+
     // Método para obter a acomodação associada à reserva
     public Acomodacao getAcomodacao() {
         return acomodacao;

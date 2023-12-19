@@ -1,8 +1,13 @@
 package view;
 
+import model.Saida;
+import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
+import model.itensCosumo.Consumo;
+import model.pessoas.Hospede;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Remocao {
@@ -27,8 +32,21 @@ public class Remocao {
   }
 
   // TO DO
-  public static void removerAcomodado() {
+  public static void removerAcomodado(List<Acomodado> acomodados) {
 
+      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
+
+      Acomodado acomodado = null;
+
+      for (Acomodado acomodado1 : acomodados) {
+          if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
+              acomodado = acomodado1;
+              break;
+          }
+      }
+
+      acomodados.remove(acomodado);
+      JOptionPane.showMessageDialog(null, "Acomodado removido com sucesso!", "Remover acomodado", JOptionPane.INFORMATION_MESSAGE);
   }
 
   public static void removerReserva(List<Reserva> reservas) {
@@ -74,5 +92,44 @@ public class Remocao {
   // TO DO
   public static void removerHospede() {
 
+  }
+
+  public static void encerrarEstadia(List<Acomodado> acomodados, Acomodado acomodado){
+    boolean certeza = JOptionPane.showConfirmDialog(null, "Deseja encerrar a estadia?", "Encerrar estadia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+
+    if (certeza) {
+
+      double gastosTelefonicos = 0;
+
+      for (Hospede hospede : acomodado.getAllHospedes()) {
+        gastosTelefonicos += hospede.getGastosTelefonicos();
+      }
+
+      //Descobrir quantos dias de diferença tem entre oi checkout e checkin
+      LocalDateTime checkIn = acomodado.getCheckIn();
+      LocalDateTime checkOut = acomodado.getCheckOut();
+      int dias = checkOut.getDayOfYear() - checkIn.getDayOfYear();
+
+      double gastosGeraisConsumo = 0;
+
+      StringBuilder sb = new StringBuilder();
+      sb.append("\n---------------------------------------");
+
+      for (Hospede hospede : acomodado.getAllHospedes()) {
+        for (Consumo consumo : hospede.getConsumo()) {
+          gastosGeraisConsumo += consumo.getValorTotal();
+          sb.append(consumo.toString());
+          sb.append("\n---------------------------------------");
+        }
+      }
+
+      sb.append("\nGastos gerais de consumo: R$ ").append(gastosGeraisConsumo);
+
+      Saida saida = new Saida(LocalDateTime.now(), acomodado.getAcomodacao().getNumero(), dias, acomodado.getAcomodacao().getTipo().getDiaria(), gastosTelefonicos, gastosGeraisConsumo);
+
+      JOptionPane.showMessageDialog(null, saida.toString(), "Encerrar estadia", JOptionPane.INFORMATION_MESSAGE);
+
+      removerAcomodado(acomodados);
+    }
   }
 }

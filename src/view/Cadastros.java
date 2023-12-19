@@ -158,9 +158,7 @@ public class Cadastros {
       // Adicionar o hóspede à lista
 
       if (usuario instanceof Funcionario funcionario)
-        funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade, estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae, nomePai), hospedes);
-      if (usuario instanceof Administrador administrador)
-        administrador.cadastrarHospede(new Hospede(nome, telefone, cidade, estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae, nomePai), hospedes);
+        funcionario.cadastrarHospede(new Hospede(nome, telefone, cidade, estado, dataNascimento, pais, email, tipoDoc, numDoc, nomeMae, nomePai, funcionario), hospedes);
     }
   }
 
@@ -373,7 +371,7 @@ public class Cadastros {
     if (usuario.getKey() >= 3) {
       String title = "Cadastrar item de consumo";
 
-      long codigo = Long.parseLong(JOptionPane.showInputDialog(null, "Digite o codigo do item de consumo", title, JOptionPane.QUESTION_MESSAGE));
+      int codigo = Integer.parseInt((JOptionPane.showInputDialog(null, "Digite o codigo do item de consumo", title, JOptionPane.QUESTION_MESSAGE)));
       TipoItens tipo = (TipoItens) JOptionPane.showInputDialog(null, "Escolha o tipo do item de consumo", title, JOptionPane.QUESTION_MESSAGE, null, TipoItens.values(), TipoItens.values()[0]);
       String descricao = JOptionPane.showInputDialog(null, "Digite o nome do item de consumo", title, JOptionPane.QUESTION_MESSAGE);
       double preco = Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o preco do item de consumo", title, JOptionPane.QUESTION_MESSAGE));

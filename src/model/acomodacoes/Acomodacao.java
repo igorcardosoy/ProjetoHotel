@@ -4,9 +4,9 @@ package model.acomodacoes;
 public class Acomodacao {
 
   // Atributos da classe
-  int numero; // Número da acomodação
-  int andar;  // Andar onde a acomodação está localizada
-  TipoAcomodacao tipo; // Tipo de acomodação (presumivelmente uma enumeração TipoAcomodacao)
+  private int numero; // Número da acomodação
+  private int andar;  // Andar onde a acomodação está localizada
+  private TipoAcomodacao tipo; // Tipo de acomodação (presumivelmente uma enumeração TipoAcomodacao)
 
   // Construtor da classe Acomodacao que recebe parâmetros para inicializar os atributos
   public Acomodacao(int numero, int andar, TipoAcomodacao tipo) {

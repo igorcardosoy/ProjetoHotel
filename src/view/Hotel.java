@@ -182,11 +182,11 @@ public class Hotel {
     // Cadastrar hóspedes
     if (usuario instanceof Funcionario funcionario){
       funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
-              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José"), hospedes);
+              "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José", funcionario), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
-              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José"), hospedes);
+              "Brasil", "maria@gmail.com", TipoDoc.RG, 12456789, "João", "José", funcionario), hospedes);
       funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
-              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João"), hospedes);
+              "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 12956789, "Maria", "João", funcionario), hospedes);
     }
 
     // Cadastrar itens de consumo

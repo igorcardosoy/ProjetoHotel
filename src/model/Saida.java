@@ -10,20 +10,35 @@ import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import static view.Hotel.formatterDataHora;
+
 public class Saida {
     private int numAcomodacao; //Número da acomodação utilizada
     private LocalDateTime DataHora; //checkout do hospede
-    private float diariaCost; //Número de diárias cobradas
-    private float uniDiaria; //Valor de cada diária
-    private float telefonemaCost; //Valor gasto com telefonemas
+    private int diariaCost; //Número de diárias cobradas
+    private double uniDiaria; //Valor de cada diária
+    private double telefonemaCost; //Valor gasto com telefonemas
     private float desconto; //Desconto concedido
+    private double gastosConsumo; //Valor gasto com consumo
 
-    public Saida(Acomodacao acomodacao, Reserva reserva, int numAcomodacao, LocalDateTime DataHora, float diariaCost, float uniDiaria, float telefonemaCost){
-        this.numAcomodacao = acomodacao.getNumero();
-        this.DataHora = reserva.getCheckOut();
+    public Saida(LocalDateTime checkOut ,int numAcomodacao, int diariaCost, double uniDiaria, double telefonemaCost, double gastosConsumo, float desconto){
+        this.numAcomodacao = numAcomodacao;
+        this.DataHora = checkOut;
         this.diariaCost = diariaCost;
         this.uniDiaria = uniDiaria;
         this.telefonemaCost = telefonemaCost;
+        this.desconto = desconto;
+        this.gastosConsumo = gastosConsumo;
+    }
+
+    public Saida(LocalDateTime checkOut ,int numAcomodacao, int diariaCost, double uniDiaria, double telefonemaCost, double gastosConsumo){
+        this.numAcomodacao = numAcomodacao;
+        this.DataHora = checkOut;
+        this.diariaCost = diariaCost;
+        this.uniDiaria = uniDiaria;
+        this.telefonemaCost = telefonemaCost;
+        this.gastosConsumo = gastosConsumo;
+        this.desconto = 0;
     }
 
     public int getNumAcomodacao() {
@@ -47,11 +62,11 @@ public class Saida {
         return diariaCost;
     }
 
-    public void setDiariaCost(float diariaCost) {
+    public void setDiariaCost(int diariaCost) {
         this.diariaCost = diariaCost;
     }
 
-    public float getUniDiaria() {
+    public double getUniDiaria() {
         return uniDiaria;
     }
 
@@ -59,7 +74,7 @@ public class Saida {
         this.uniDiaria = uniDiaria;
     }
 
-    public float getTelefonemaCost() {
+    public double getTelefonemaCost() {
         return telefonemaCost;
     }
 
@@ -75,23 +90,23 @@ public class Saida {
         this.desconto = desconto;
     }
 
-    public float calcularTotal(){
-        float totalDiaria =  diariaCost * uniDiaria;
+    private float calcularTotal(){
+        double totalDiaria =  diariaCost * uniDiaria;
 
-        float totalPagar = totalDiaria + /*totalConsumo*/ + telefonemaCost;
+        double totalPagar = totalDiaria + gastosConsumo + telefonemaCost;
 
         if(desconto > 0){
             totalPagar -= desconto;
         }
         
-        return Math.abs(totalPagar);
+        return Math.abs((float)totalPagar);
     }
 
     @Override
     public String toString() {
         float totalPagar = calcularTotal();
 
-        return "Saida do hóspede: [Número da Acomodação=" + numAcomodacao + ", Data e Horário de Saida=" + DataHora + 
+        return "Saida do hóspede: [Número da Acomodação=" + numAcomodacao + ", Data e Horário de Saida=" + DataHora.format(formatterDataHora) +
                 ", Número de Diárias Cobradas=" + diariaCost + ", Valor de Cada Diária=" + uniDiaria + ", Valor Gasto com Telefonemas=" + 
                 telefonemaCost + ", Desconto=" + desconto + "Total a pagar=" + totalPagar + "]";
     }
