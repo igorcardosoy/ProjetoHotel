@@ -2,6 +2,7 @@ package view;
 
 import model.acomodacoes.Acomodacao;
 import model.acomodacoes.Acomodado;
+import model.acomodacoes.Reserva;
 import model.acomodacoes.TipoAcomodacao;
 import model.enums.Estados;
 import model.enums.TipoDoc;
@@ -16,11 +17,20 @@ import javax.swing.*;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Classe que contém os métodos para cadastrar novos objetos no sistema.
+ */
 public class Cadastros {
 
+  /**
+   * Método para cadastrar um novo administrador do hotel.
+   * @param administradores Lista de administradores do hotel.
+   * @param estados Lista de estados do Brasil.w
+   * @param usuario Usuario logado no sistema.
+   */
   // Método para cadastrar um administrador
-  public static void cadastrarAdministrador(int nivelAcesso, List<Administrador> administradores, Object[] estados, Pessoa usuario) {
-    if (nivelAcesso >= 3) {
+  public static void cadastrarAdministrador(List<Administrador> administradores, Object[] estados, Pessoa usuario) {
+    if (usuario.getKey() >= 3) {
       // Janela de diálogo para coletar informações do administrador
       String title = "Cadastrar administrador";
 
@@ -53,9 +63,15 @@ public class Cadastros {
     }
   }
 
+  /**
+   * Método que cadastra um novo funcionário no hotel.
+   * @param funcionarios Lista de funcionarios do hotel.
+   * @param estados Lista de estados do Brasil.
+   * @param usuario Usuario logado no sistema.
+   */
   // Método para cadastrar um funcionário
-  public static void cadastrarFuncionario(int nivelAcesso, List<Funcionario> funcionarios, Object[] estados, Pessoa usuario){
-    if (nivelAcesso >= 3){
+  public static void cadastrarFuncionario(List<Funcionario> funcionarios, Object[] estados, Pessoa usuario){
+    if (usuario.getKey() >= 3){
       // Janela de diálogo para coletar informações do funcionário
       String title = "Cadastrar funcionario";
 
@@ -86,9 +102,14 @@ public class Cadastros {
     }
   }
 
-  // Método para cadastrar um hóspede
-  public static void cadastrarHospede(int nivelAcesso, List<Hospede> hospedes, Object[] estados, Pessoa usuario) {
-    if (nivelAcesso >= 2){
+  /**
+   * Método que cadastra um novo hóspede no hotel.
+   * @param hospedes Lista de hospedes do hotel.
+   * @param estados Lista de estados do Brasil.
+   * @param usuario Usuario logado no sistema.
+   */
+  public static void cadastrarHospede(List<Hospede> hospedes, Object[] estados, Pessoa usuario) {
+    if (usuario.getKey() >= 2){
       // Janela de diálogo para coletar informações do hóspede
       String title = "Cadastrar hospede";
 
@@ -139,14 +160,102 @@ public class Cadastros {
     }
   }
 
-  // TO DO
-  public static void cadastrarReserva() {
+  /**
+   * Método que cadastra uma nova reserva no hotel.
+   * @param reservas Lista de reservas do hotel, que será incrementada.
+   * @param acomodacoes Lista de acomodacoes disponiveis no hotel.
+   * @param usuario Usuario logado no sistema.
+   */
+  public static void cadastrarReserva(List<Reserva> reservas,
+                                      List<Acomodacao> acomodacoes, Pessoa usuario,
+                                      List<TipoAcomodacao> tipoAcomodacoesCadastradas) {
+    if (usuario.getKey() >= 2) {
+      String title = "Cadastrar reserva";
 
+      System.out.println(acomodacoes.size());
+
+      Object []descricoesTipoAcomodacao  = new Object[tipoAcomodacoesCadastradas.size()];
+      for (int i = 0; i < tipoAcomodacoesCadastradas.size(); i++) {
+        descricoesTipoAcomodacao[i] =
+                tipoAcomodacoesCadastradas.get(i).getDescricao();
+      }
+
+      // Selecionar o tipo de acomodação
+      String tipoAcomodacaoDesejada =
+              (String) JOptionPane.showInputDialog(null, "Escolha o tipo da acomodacao desejada", title,
+                      JOptionPane.QUESTION_MESSAGE, null, descricoesTipoAcomodacao,
+                      descricoesTipoAcomodacao[0]);
+
+      // Filtrar acomodacoes disponiveis
+      List<Acomodacao> acomodacoesDisponiveis =
+              Designador.getAcomodacoesDisponiveis(tipoAcomodacaoDesejada, acomodacoes);
+
+      while (acomodacoesDisponiveis == null) {
+        JOptionPane.showMessageDialog(null, "Nao ha acomodacoes disponiveis para o tipo selecionado", title, JOptionPane.ERROR_MESSAGE);
+        tipoAcomodacaoDesejada =
+                (String) JOptionPane.showInputDialog(null, "Escolha o tipo da " +
+                                "acomodacao desejada", title,
+                        JOptionPane.QUESTION_MESSAGE, null, descricoesTipoAcomodacao,
+                        descricoesTipoAcomodacao[0]);
+        acomodacoesDisponiveis =
+                Designador.getAcomodacoesDisponiveis(tipoAcomodacaoDesejada, acomodacoes);
+      }
+
+      // Selecionar a acomodação desejada dentre as acomodacoes disponiveis
+      Object acomodacao = JOptionPane.showInputDialog(null, "Escolha a acomodacao desejada", title,
+              JOptionPane.QUESTION_MESSAGE, null,
+              acomodacoesDisponiveis.toArray(),
+              acomodacoesDisponiveis.getFirst());
+
+        LocalDate dataCheckIn = null;
+        boolean done = false;
+        while (!done) {
+          try {
+            dataCheckIn = LocalDate.parse(JOptionPane.showInputDialog(null,
+                    "Digite a data de check-in", title, JOptionPane.QUESTION_MESSAGE));
+            done = true;
+          } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
+          }
+        }
+
+        LocalDate dataCheckOut = null;
+        done = false;
+        while (!done) {
+          try {
+            dataCheckOut = LocalDate.parse(JOptionPane.showInputDialog(null,
+                    "Digite a data de check-out", title, JOptionPane.QUESTION_MESSAGE));
+            done = true;
+          } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Data invalida", title, JOptionPane.ERROR_MESSAGE);
+          }
+        }
+
+        int numAdultos = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de adultos", title,
+                JOptionPane.QUESTION_MESSAGE));
+        int numCriancas = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o numero de criancas", title,
+                JOptionPane.QUESTION_MESSAGE));
+
+        String nomeCartao = JOptionPane.showInputDialog(null, "Digite o nome do cartao", title,
+                JOptionPane.QUESTION_MESSAGE);
+
+        String numeroCartao = JOptionPane.showInputDialog(null, "Digite o numero do cartao", title,
+                JOptionPane.QUESTION_MESSAGE);
+
+        String codigoCartao = JOptionPane.showInputDialog(null, "Digite o codigo do cartao", title,
+                JOptionPane.QUESTION_MESSAGE);
+
+        String dataValidadeCartao = JOptionPane.showInputDialog(null, "Digite a data de validade do cartao", title,
+                JOptionPane.QUESTION_MESSAGE);
+
+        String bandeiraCartao = JOptionPane.showInputDialog(null, "Digite a bandeira do cartao", title,
+                JOptionPane.QUESTION_MESSAGE);
+    }
   }
 
   // TO DO
-  public static void cadastrarAcomodado() {
-//    if (nivelAcesso >= 2) {
+  public static void cadastrarAcomodado(Pessoa usuario) {
+//    if (usuario.getKey() >= 2) {
 //      String title = "Cadastrar acomodado";
 //
 //      String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede a ser acomodado", title,
@@ -184,8 +293,8 @@ public class Cadastros {
 //    }
   }
 
-  public static void cadastrarItemConsumo(int nivelAcesso, List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuario) {
-    if (nivelAcesso >= 3) {
+  public static void cadastrarItemConsumo(List<ItensConsumo> itensConsumoDisponiveis, Pessoa usuario) {
+    if (usuario.getKey() >= 3) {
       String title = "Cadastrar item de consumo";
 
       long codigo = Long.parseLong(JOptionPane.showInputDialog(null, "Digite o codigo do item de consumo", title, JOptionPane.QUESTION_MESSAGE));
@@ -206,8 +315,8 @@ public class Cadastros {
     }
   }
 
-  public static void cadastrarTipoAcomodacao(int nivelAcesso, List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
-    if (nivelAcesso >= 3) {
+  public static void cadastrarTipoAcomodacao(List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
+    if (usuario.getKey() >= 3) {
       String title = "Cadastrar tipo de acomodacao";
 
       // Dados necessarios: codigo, nome, descricao, quantidades existentes, diaria, adultos comportados, criancas comportadas
@@ -234,8 +343,8 @@ public class Cadastros {
     }
   }
 
-  public static void cadastrarAcomodacao(int nivelAcesso, List<Acomodacao> acomodacoesDisponiveis, List<Acomodado> acomodados, List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
-    if (nivelAcesso >= 3) {
+  public static void cadastrarAcomodacao(List<Acomodacao> acomodacoesDisponiveis, List<Acomodado> acomodados, List<TipoAcomodacao> tiposAcomodacao, Pessoa usuario) {
+    if (usuario.getKey() >= 3) {
       String title = "Cadastrar acomodacao";
 
       //Escolha o tipo de acomodacao

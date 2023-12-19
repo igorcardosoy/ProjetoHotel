@@ -201,7 +201,7 @@ public class NiveisAcesso {
 
     if (administradores.isEmpty()) {
       JOptionPane.showMessageDialog(null, "Nao ha administradores cadastrados");
-      Cadastros.cadastrarAdministrador(3, administradores, estados, usuario);
+      Cadastros.cadastrarAdministrador(administradores, estados, usuario);
     } else {
       // Selecionar qual administrador de acordo com o nome.
       Object[] nomes = new Object[administradores.size()];

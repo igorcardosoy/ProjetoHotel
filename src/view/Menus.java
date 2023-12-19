@@ -158,40 +158,42 @@ public class Menus {
           List<TipoAcomodacao> tiposAcomodacao,
           List<Acomodacao> acomodacoes,
           Object[] funcoesCadastro,
-          Object[] estados,
-          int nivelAcesso)
+          Object[] estados)
   {
+
+
     String title = "Cadastros";
     String opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
             null, funcoesCadastro, funcoesCadastro[0]);
 
     switch (opcao) {
       case "Cadastrar hospede":
-        Cadastros.cadastrarHospede(nivelAcesso, hospedes, estados, usuario);
+        Cadastros.cadastrarHospede(hospedes, estados, usuario);
         break;
       case "Cadastrar administrador":
-        Cadastros.cadastrarAdministrador(nivelAcesso, administradores, estados, usuario);
+        Cadastros.cadastrarAdministrador(administradores, estados, usuario);
         break;
       case "Cadastrar funcionario":
-        Cadastros.cadastrarFuncionario(nivelAcesso, funcionarios, estados, usuario);
+        Cadastros.cadastrarFuncionario(funcionarios, estados, usuario);
         break;
       case "Cadastrar reserva":
-        Cadastros.cadastrarReserva();
+        Cadastros.cadastrarReserva(reservas, acomodacoes, usuario,
+                tiposAcomodacao);
         break;
-      case "Cadastrar acomodado":
-        Cadastros.cadastrarAcomodado();
-        break;
+//      case "Cadastrar acomodado":
+//        Cadastros.cadastrarAcomodado();
+//        break;
       case "Cadastrar item de consumo":
-        Cadastros.cadastrarItemConsumo(nivelAcesso, itensConsumo, usuario);
+        Cadastros.cadastrarItemConsumo(itensConsumo, usuario);
         break;
       case "Cadastrar consumo":
         Cadastros.cadastrarConsumo();
         break;
       case "Cadastrar tipo de acomodacao":
-        Cadastros.cadastrarTipoAcomodacao(nivelAcesso, tiposAcomodacao, usuario);
+        Cadastros.cadastrarTipoAcomodacao(tiposAcomodacao, usuario);
         break;
       case "Cadastrar acomodacao":
-        Cadastros.cadastrarAcomodacao(nivelAcesso, acomodacoes, acomodados, tiposAcomodacao, usuario);
+        Cadastros.cadastrarAcomodacao(acomodacoes, acomodados, tiposAcomodacao, usuario);
         break;
       default:
         System.out.println("Opcao invalida");
@@ -218,7 +220,7 @@ public class Menus {
   {
     switch (opcao) {
       case "Cadastros":
-        menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados, nivelAcesso);
+        menuCadastros(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesCadastro, estados);
         break;
       case "Editar":
         menuEditar(usuario, hospedes, administradores, funcionarios, reservas, acomodados, itensConsumo, tiposAcomodacao, acomodacoes, funcoesEditar);

@@ -57,4 +57,17 @@ public class TipoAcomodacao {
   public TipoAcomodacao getTipo() {
     return this;
   }
+
+  @Override
+    public String toString() {
+        return "TipoAcomodacao{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", quantidadeExistente=" + quantidadeExistente +
+                ", valorDiaria=" + valorDiaria +
+                ", adultosComportados=" + adultosComportados +
+                ", criancasComportadas=" + criancasComportadas +
+                '}';
+    }
 }

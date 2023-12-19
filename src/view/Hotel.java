@@ -38,7 +38,9 @@ public class Hotel {
   private final NiveisAcesso niveisAcesso;
   private final Menus menus;
 
-  // Construtor da classe Hotel
+  /**
+   * Construtor da classe Hotel.
+   */
   public Hotel() {
     // Inicialização das listas e chamada do método defaultValues()
     administradores = new ArrayList<>(5);
@@ -65,7 +67,9 @@ public class Hotel {
     defaultValues();
   }
 
-  // Método para iniciar o hotel
+  /**
+   * Método para inicializar o sistema Hotel
+   */
   public void init() {
     String opcao = "";
     String title = "Hotel";
@@ -82,7 +86,7 @@ public class Hotel {
               "Funcionario",
               "Administrador" };
 
-      while (niveisAcesso.getNivelAcesso() <= 0){
+      while (niveisAcesso.getNivelAcesso() <= 0 && !quit){
         // Janela de diálogo para escolher o acesso
         escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
@@ -124,6 +128,9 @@ public class Hotel {
     }
   }
 
+  /**
+   * @return Object[] com as opções do menu principal do sistema (Hotel) de acordo com o nível de acesso do usuário.
+   */
   private Object[] hotelMenu(){
     Object[] questions;
 
@@ -144,10 +151,15 @@ public class Hotel {
     return questions;
   }
 
-  // Método para configurar valores padrão
+  /**
+   * Método para configurar valores padrão do sistema, como nome e dados de
+   * administradores, funcionarios, hospedes, itens de consumo, e tipos de
+   * acomodacões.
+   */
   private void defaultValues(){
     // Cadastrar administradores
-    administradores.add(new Administrador("Igor", 16992479541L, "Ibaté", Estados.SP, LocalDate.parse("2005-04-18")));
+    administradores.add(new Administrador("Igu", 16992479541L, "Ibaté",
+            Estados.SP, LocalDate.parse("2005-04-18")));
     usuario = administradores.getFirst();
 
     // Cadastrar funcionários
@@ -180,9 +192,10 @@ public class Hotel {
 
 
     // Cadastrar tipos de acomodação
-    tiposAcomodacao.add(new TipoAcomodacao(1, "Quarto", "Quarto com cama de casal", 10, 100.00, 2, 0));
+    tiposAcomodacao.add(new TipoAcomodacao(1, "Quarto", "Quarto com cama de casal", 0, 100.00, 2, 0));
     tiposAcomodacao.add(new TipoAcomodacao(2, "Quarto", "Quarto com cama de solteiro", 10, 100.00, 1, 0));
-    tiposAcomodacao.add(new TipoAcomodacao(3, "Quarto", "Quarto com cama de solteiro", 10, 100.00, 1, 0));
+    tiposAcomodacao.add(new TipoAcomodacao(3, "Quarto", "Quarto com cama de " +
+            "casal e cama de solteiro", 10, 150.00, 2, 1));
 
   }
 }
