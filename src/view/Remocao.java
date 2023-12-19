@@ -88,7 +88,7 @@ public class Remocao {
       String nomeHospede = JOptionPane.showInputDialog(null, "Digite o nome do hóspede", "Remover acomodado", JOptionPane.QUESTION_MESSAGE);
 
       Acomodado acomodado = null;
-      List<Hospede> hospedesAcomodados = null;
+      List<Hospede> hospedesAcomodados;
 
       for (Acomodado acomodado1 : acomodados) {
         if (acomodado1.getHospedePrincipal().getNome().equals(nomeHospede)) {
@@ -195,7 +195,7 @@ public class Remocao {
       for (Hospede hospede : acomodado.getAllHospedes()) {
         for (Consumo consumo : hospede.getConsumo()) {
           gastosGeraisConsumo += consumo.getValorTotal();
-          sb.append(consumo.toString());
+          sb.append(consumo);
           sb.append("\n---------------------------------------");
         }
       }
