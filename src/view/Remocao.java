@@ -171,7 +171,7 @@ public class Remocao {
     }
   }
 
-  public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado){
+  public static void encerrarEstadia(List<Acomodado> acomodados, List<Hospede> hospedes, Acomodado acomodado, Pessoa usuarioLogado){
     boolean certeza = JOptionPane.showConfirmDialog(null, "Deseja encerrar a estadia?", "Encerrar estadia", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
 
     if (certeza) {
@@ -179,6 +179,7 @@ public class Remocao {
       double gastosTelefonicos = 0;
 
       for (Hospede hospede : acomodado.getAllHospedes()) {
+        hospede.contabilizarItens(usuarioLogado);
         gastosTelefonicos += hospede.getGastosTelefonicos();
       }
 

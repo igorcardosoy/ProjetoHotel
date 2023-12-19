@@ -30,8 +30,6 @@ public class Hospede extends Pessoa {
   private double gastosTelefonicos;
   private List<Consumo> dadosConsumo;
   private List<Consumo> dadosConsumoFrigobar;
-  private List<Consumo> dadosConsumoLavanderia;
-  private List<Consumo> dadosConsumoRestaurante;
   private List<ItensConsumo> itensComprados;
   private Funcionario funcionarioResponsavel;
 
@@ -80,8 +78,6 @@ public class Hospede extends Pessoa {
   private void setDadosConsumo() {
     this.dadosConsumo = new ArrayList<>(5);
     this.dadosConsumoFrigobar = new ArrayList<>(5);
-    // this.dadosConsumoLavanderia = new ArrayList<>(5);
-    // this.dadosConsumoRestaurante = new ArrayList<>(5);
   }
 
   /**
@@ -140,17 +136,13 @@ public class Hospede extends Pessoa {
 
   /**
    * Método para contabilizar os itens consumidos
-   * @param key senha do usuário
-   * @return true caso a contabilização dos itens ocorrer com sucesso ou false caso contrário
    */
-  public boolean contabilizarItens(int key) {
+  public void contabilizarItens(Pessoa usuarioLogado) {
     // Verifica se o usuário tem permissão para contabilizar itens
-    if (canEdit(key)) {
+    if (usuarioLogado instanceof Funcionario) {
       dadosConsumo.addAll(dadosConsumoFrigobar);
       dadosConsumoFrigobar.clear();
-      return true;
     }
-    return false;
   }
 
   // Métodos de acesso aos atributos da classe Hospede
