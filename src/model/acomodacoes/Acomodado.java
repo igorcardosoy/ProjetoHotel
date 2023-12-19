@@ -21,9 +21,17 @@ public class Acomodado extends Reserva {
     this.funcionarioResponsavel = responsavel;
   }
 
-  public Acomodado(Reserva reserva) {
+  public Acomodado(Reserva reserva, Funcionario funcionarioResponsavel) {
     super(reserva.getCheckIn(), reserva.getCheckOut(), reserva.getHospedePrincipal(), reserva.getAcomodacao(), reserva.getCartaoCredito());
-      this.funcionarioResponsavel = null;
+      this.funcionarioResponsavel = funcionarioResponsavel;
+  }
+
+  public String toString() {
+    return "Check-in: " + getCheckIn() + " | " +
+            "Check-out: " + getCheckOut() + " | " +
+            "Hóspede principal: " + getHospedePrincipal().getNome() + " | " +
+            "Acomodação: " + getAcomodacao().getNumero() + " | " +
+            "Funcionário responsável: " + funcionarioResponsavel.getNome() + "\n";
   }
 }
 

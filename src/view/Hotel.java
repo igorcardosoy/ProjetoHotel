@@ -1,5 +1,6 @@
 package view;
 
+import model.CartaoCredito;
 import model.acomodacoes.*;
 import model.enums.*;
 import model.itensCosumo.*;
@@ -7,6 +8,7 @@ import model.pessoas.*;
 
 import javax.swing.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 // Definição da classe Hotel
@@ -171,11 +173,11 @@ public class Hotel {
 
     // Cadastrar hóspedes
     if (usuario instanceof Funcionario funcionario){
-      funcionario.cadastrarHospede(new Hospede("João", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
+      funcionario.cadastrarHospede(new Hospede("Joao", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-03-16"),
               "Brasil", "joao@gmail.com", TipoDoc.CPF, 123456789, "Maria", "José"), hospedes);
       funcionario.cadastrarHospede(new Hospede("Maria", 123456789, "São Carlos", Estados.SP, LocalDate.parse("2003-08-21"),
               "Brasil", "maria@gmail.com", TipoDoc.RG, 123456789, "João", "José"), hospedes);
-      funcionario.cadastrarHospede(new Hospede("José", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
+      funcionario.cadastrarHospede(new Hospede("Jose", 123456789, "Araraquara", Estados.SP, LocalDate.parse("2005-07-12"),
               "Brasil", "jose@gmail.com", TipoDoc.PASSAPORTE, 123456789, "Maria", "João"), hospedes);
     }
 
@@ -196,6 +198,26 @@ public class Hotel {
     tiposAcomodacao.add(new TipoAcomodacao(2, "Quarto", "Quarto com cama de solteiro", 10, 100.00, 1, 0));
     tiposAcomodacao.add(new TipoAcomodacao(3, "Quarto", "Quarto com cama de " +
             "casal e cama de solteiro", 10, 150.00, 2, 1));
+
+    // Cadastrar acomodações
+    acomodacoesDisponiveis.add(new Acomodacao(1, 1, tiposAcomodacao.get(0)));
+    acomodacoesDisponiveis.add(new Acomodacao(2, 1, tiposAcomodacao.get(1)));
+    acomodacoesDisponiveis.add(new Acomodacao(3, 1, tiposAcomodacao.get(2)));
+
+    // Cadastrar reservas
+    if (usuario instanceof Administrador administrador){
+
+      CartaoCredito cartao = new CartaoCredito(123, 123, "Jonas", "12/25");
+
+      LocalDateTime checkIn = LocalDate.parse("2021-12-20").atStartOfDay();
+      LocalDateTime checkOut = LocalDate.parse("2021-12-30").atStartOfDay();
+
+      Reserva reser = new Reserva(checkIn, checkOut, hospedes.getLast(), acomodacoesDisponiveis.getFirst(), cartao);
+
+      administrador.cadastrarReserva(reser, reservas);
+    }
+
+    // Cadastrar acomodados
 
   }
 }

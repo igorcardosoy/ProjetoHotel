@@ -31,5 +31,11 @@ public class Acomodacao {
   public TipoAcomodacao getTipo() {
     return tipo;
   }
+
+  public String toString() {
+    return "Número: " + numero + " | " +
+           "Andar: " + andar + " | " +
+           "Tipo: " + tipo.getDescricao() + "\n";
+  }
 }
 

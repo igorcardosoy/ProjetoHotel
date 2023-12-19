@@ -48,8 +48,6 @@ public class Hospede extends Pessoa {
 
   }
 
-
-
   // Método privado para inicializar a lista de itens comprados
   private void setItensComprados() {
     this.itensComprados = new ArrayList<>(5);

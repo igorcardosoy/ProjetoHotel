@@ -168,21 +168,21 @@ public class Menus {
 
     switch (opcao) {
       case "Cadastrar hospede":
-        Cadastros.cadastrarHospede(hospedes, estados, usuario);
+        Cadastros.cadastrarHospede(hospedes, usuario);
         break;
       case "Cadastrar administrador":
-        Cadastros.cadastrarAdministrador(administradores, estados, usuario);
+        Cadastros.cadastrarAdministrador(administradores, usuario);
         break;
       case "Cadastrar funcionario":
-        Cadastros.cadastrarFuncionario(funcionarios, estados, usuario);
+        Cadastros.cadastrarFuncionario(funcionarios, usuario);
         break;
       case "Cadastrar reserva":
         Cadastros.cadastrarReserva(reservas, acomodacoes, usuario,
-                tiposAcomodacao);
+                tiposAcomodacao, hospedes);
         break;
-//      case "Cadastrar acomodado":
-//        Cadastros.cadastrarAcomodado();
-//        break;
+      case "Cadastrar acomodado":
+        Cadastros.cadastrarAcomodado(usuario, reservas, acomodados, acomodacoes, tiposAcomodacao, hospedes);
+        break;
       case "Cadastrar item de consumo":
         Cadastros.cadastrarItemConsumo(itensConsumo, usuario);
         break;

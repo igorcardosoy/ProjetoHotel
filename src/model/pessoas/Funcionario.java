@@ -1,8 +1,10 @@
 package model.pessoas;
 
+import model.CartaoCredito;
 import model.acomodacoes.Acomodacao;
 import model.acomodacoes.Acomodado;
 import model.acomodacoes.Reserva;
+import model.acomodacoes.TipoAcomodacao;
 import model.enums.Estados;
 import model.itensCosumo.Consumo;
 
@@ -97,7 +99,7 @@ public class Funcionario extends Pessoa {
         if (temReserva(nomeHospede, reservas)) {
             for (Reserva lista : reservas) {
                 if (lista.getHospedePrincipal().getNome().equals(nomeHospede)) {
-                    Acomodado acomodar = new Acomodado(lista);
+                    Acomodado acomodar = new Acomodado(lista, this);
                     reservas.remove(lista);
                     acomodados.add(acomodar);
                     return true;
@@ -153,5 +155,34 @@ public class Funcionario extends Pessoa {
     public String toString() {
         return "Funcionario: " + super.getNome() + "\nTelefone: " + super.getTelefone() + "\nCidade: " + super.getCidade()
                 + "\nEstado: " + super.getEstado() + "\nData de Nascimento: " + super.getDataNascimento();
+
+
     }
+
+    public void cadastrarAcomodado(List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao, LocalDateTime checkIn, LocalDateTime checkOut, Hospede hospedePrincipal,
+                                   Acomodacao acomodacao){
+
+        Acomodado acomodado = new Acomodado(checkIn, checkOut, hospedePrincipal, acomodacao, this, null);
+
+        acomodados.add(acomodado);
+        acomodacoesDisponiveis.remove(acomodacao);
+
+        for (TipoAcomodacao tipoAcomodacao : tiposAcomodacao) {
+            if (tipoAcomodacao.getCodigo() == acomodacao.getTipo().getCodigo()) {
+                tipoAcomodacao.addQuantidadeDisponivel();
+            }
+        }
+    }
+
+  public void cadastrarAcomodado(Reserva reserva, List<Acomodado> acomodados, List<Acomodacao> acomodacoesDisponiveis, List<TipoAcomodacao> tiposAcomodacao) {
+    Acomodado acomodado = new Acomodado(reserva, this);
+    acomodados.add(acomodado);
+    acomodacoesDisponiveis.remove(reserva.getAcomodacao());
+    //Encontrar o tipo de acomodação e adicionar a quantidade disponível
+    for (TipoAcomodacao tipoAcomodacao : tiposAcomodacao) {
+      if (tipoAcomodacao.getCodigo() == reserva.getAcomodacao().getTipo().getCodigo()) {
+        tipoAcomodacao.addQuantidadeDisponivel();
+      }
+    }
+  }
 }
