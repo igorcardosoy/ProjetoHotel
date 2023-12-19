@@ -70,6 +70,13 @@ public abstract class Pessoa {
     this.dataNascimento = dataNascimento;
   }
 
+  public boolean allowAccess(int key) {
+    return password(key);
+  }
+
+  // Método privado para verificar a senha do funcionário
+  protected abstract boolean password(int key);
+
   public String toString() {
     return "Nome: " + nome + "\n" +
             "Telefone: " + telefone + "\n" +

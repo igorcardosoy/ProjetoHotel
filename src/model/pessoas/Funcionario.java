@@ -134,13 +134,11 @@ public class Funcionario extends Pessoa {
     }
 
     // Método que verifica se o funcionário tem acesso com a senha fornecida
-    public boolean allowAccess(int nivelAcesso) {
-        return password(nivelAcesso);
-    }
 
     // Método privado para verificar a senha do funcionário
+    @Override
     protected boolean password(int key) {
-        return key == 4321;
+        return key == 2345;
     }
 
     // Método protegido para obter a data de nascimento do funcionário

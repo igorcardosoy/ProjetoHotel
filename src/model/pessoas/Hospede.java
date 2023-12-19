@@ -48,8 +48,6 @@ public class Hospede extends Pessoa {
 
   }
 
-
-
   // Método privado para inicializar a lista de itens comprados
   private void setItensComprados() {
     this.itensComprados = new ArrayList<>(5);
@@ -170,4 +168,10 @@ public class Hospede extends Pessoa {
     return this.identificacao;
   }
 
+  protected boolean password(int key) {
+    return key == 3456;
+  }
+  public boolean allowAccess(int nivelAcesso) {
+    return password(nivelAcesso);
+  }
 }

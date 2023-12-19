@@ -71,7 +71,7 @@ public class Hotel {
    * Método para inicializar o sistema Hotel
    */
   public void init() {
-    String opcao = "";
+    String opcao;
     String title = "Hotel";
     boolean quit = false;
 
@@ -87,43 +87,53 @@ public class Hotel {
               "Administrador" };
 
       while (!quit){
-        // Janela de diálogo para escolher o acesso
-        escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
-                JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
-        usuario = niveisAcesso.nivelAcesso(escolha, usuario, administradores, funcionarios);
-        System.out.println(niveisAcesso.getNivelAcesso());
-        if (niveisAcesso.getNivelAcesso() == -1) {
-          quit = true;
+        while (niveisAcesso.getNivelAcesso() == 0 && !quit) {
+          // Janela de diálogo para escolher o acesso
+          escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
+                  JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);
+          usuario = niveisAcesso.nivelAcesso(escolha, usuario,
+                  administradores, funcionarios, hospedes);
+
+          System.out.println(niveisAcesso.getNivelAcesso() + " " + quit);
+
+          if (niveisAcesso.getNivelAcesso() == -1) {
+            quit = true;
+          }
         }
-      }
 
-      // Loop enquanto a opção não for "Sair" e o nível de acesso for maior que 0
-      while (!opcao.equals("Sair") && niveisAcesso.getNivelAcesso() > 0) {
-        // Opções específicas de acordo com o nível de acesso
+        // Loop enquanto a opção não for "Sair" e o nível de acesso for maior que 0
+        while (niveisAcesso.getNivelAcesso() > 0) {
+          // Opções específicas de acordo com o nível de acesso
 
-        funcoesVizualizar = niveisAcesso.functionsVizualizar();
-        funcoesCadastro = niveisAcesso.functionsCadastro();
-        funcoesEditar = niveisAcesso.functionsEditar();
-        funcoesRemover = niveisAcesso.functionsRemover();
-        funcoesDefault = niveisAcesso.functionsDefault();
+          funcoesVizualizar = niveisAcesso.functionsVizualizar();
+          funcoesCadastro = niveisAcesso.functionsCadastro();
+          funcoesEditar = niveisAcesso.functionsEditar();
+          funcoesRemover = niveisAcesso.functionsRemover();
+          funcoesDefault = niveisAcesso.functionsDefault();
 
-        Object[] questions = hotelMenu();
+          Object[] questions = hotelMenu();
 
-        // Janela de diálogo para escolher uma opção, entre Cadastros, Editar, Remover, Vizualizar e Sair
-        opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
-                null, questions, questions[0]);
+          // Janela de diálogo para escolher uma opção, entre Cadastros, Editar, Remover, Vizualizar e Sair
+          opcao = (String) JOptionPane.showInputDialog(null, "Escolha uma opcao", title, JOptionPane.QUESTION_MESSAGE,
+                  null, questions, questions[0]);
 
-        // Execução da opção escolhida
-        boolean voltar = false;
-        voltar = menus.menu(opcao, usuario,
-                hospedes, administradores,
-                funcionarios, reservas,
-                acomodados, itensConsumoDisponiveis,
-                tiposAcomodacao, acomodacoesDisponiveis,
-                funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
-                estados, niveisAcesso.getNivelAcesso());
-        if (voltar) {
-          niveisAcesso.setNivelAcesso(0);
+          if (opcao == null){
+            niveisAcesso.setNivelAcesso(0);
+            break;
+          }
+
+          // Execução da opção escolhida
+          boolean voltar = false;
+          voltar = menus.menu(opcao, usuario,
+                  hospedes, administradores,
+                  funcionarios, reservas,
+                  acomodados, itensConsumoDisponiveis,
+                  tiposAcomodacao, acomodacoesDisponiveis,
+                  funcoesCadastro, funcoesEditar, funcoesRemover, funcoesVizualizar,
+                  estados);
+          if (voltar) {
+            niveisAcesso.setNivelAcesso(0);
+          }
         }
       }
     }
