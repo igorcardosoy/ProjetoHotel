@@ -142,7 +142,7 @@ public class Funcionario extends Pessoa {
     // Método privado para verificar a senha do funcionário
     @Override
     protected boolean password(int key) {
-        return key == 2345;
+        return key == this.getKey();
     }
 
     // Método protegido para obter a data de nascimento do funcionário

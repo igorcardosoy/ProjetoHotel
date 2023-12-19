@@ -1,18 +1,15 @@
 package model.pessoas;
 
 import model.Indentificacao;
-import model.acomodacoes.Acomodacao;
 import model.enums.Estados;
 import model.enums.TipoDoc;
 import model.enums.TipoItens;
-import model.enums.Keys;
 import model.itensCosumo.Consumo;
 import model.itensCosumo.ItensConsumo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import static view.Hotel.formatterData;
@@ -63,9 +60,9 @@ public class Hospede extends Pessoa {
     // this.dadosConsumoRestaurante = new ArrayList<>(5);
   }
 
-  // Método privado para verificar se o usuário tem permissão para editar (key 3 == adm, 2 == funcionario, 1 == hospede)
+  // Método privado para verificar se o usuário tem permissão para editar.
   private boolean canEdit(int key) {
-    return key == Keys.FUNCIONARIO.getkey();
+    return key == this.getKey();
   }
 
   // Método para registrar o consumo de um item
@@ -172,7 +169,7 @@ public class Hospede extends Pessoa {
 
   @Override
   protected boolean password(int key) {
-    return key == Keys.HOSPEDE.getkey();
+    return key == this.getKey();
   }
 
   @Override
