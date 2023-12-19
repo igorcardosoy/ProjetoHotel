@@ -83,12 +83,13 @@ public class Hotel {
 
       // Opções de acesso
       Object[] acessos = {
-              "Sair",
               "Hospede",
               "Funcionario",
-              "Administrador" };
+              "Administrador",
+              "Sair"
+      };
 
-      while (!quit && niveisAcesso.getNivelAcesso() == 0){
+      while (!quit && niveisAcesso.getNivelAcesso() == 0) {
         // Janela de diálogo para escolher o acesso
         escolha = JOptionPane.showOptionDialog(null, "Escolha um acesso", title, JOptionPane.DEFAULT_OPTION,
                 JOptionPane.QUESTION_MESSAGE, null, acessos, acessos[1]);

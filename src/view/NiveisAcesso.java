@@ -174,18 +174,18 @@ public class NiveisAcesso {
   // Método que gerencia o nível de acesso
   public Pessoa nivelAcesso(int acesso, Pessoa usuario, List<Administrador> administradores, List<Funcionario> funcionarios) {
     switch (acesso) {
-      case 3:
+      case 2:
         usuario = ADMAccess(administradores, usuario);
         break;
-      case 2:
+      case 1:
         // Nível de acesso para funcionários
         usuario = FuncAccess(funcionarios, usuario);
         break;
-      case 1:
+      case 0:
         // Entrar como hóspede? Sim ou não
         usuario = HospedeAccess(usuario);
         break;
-      case 0:
+      case 3:
         // Sair...
         nivelAcesso = -1;
         break;
@@ -292,6 +292,7 @@ public class NiveisAcesso {
     } else {
       nivelAcesso = 0;
     }
+
     return usuario;
   }
 
